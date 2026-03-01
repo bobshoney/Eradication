@@ -9,1162 +9,390 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
 :root {
-  --fire: #f48c06;
-  --fire-bright: #ffc44d;
-  --fel: #3dff6e;
-  --fel-dark: #1a8c3a;
-  --nether: #7b2fff;
-  --nether-dark: #3a0080;
-  --blood: #cc1a1a;
-  --dark0: #03020a;
-  --dark1: #07050f;
-  --dark2: #0f0b1a;
-  --dark3: #1a1228;
-  --text: #e8dff5;
-  --text-dim: #9a8bb5;
-  --gold: #c8a84b;
-  --gold-bright: #ffd770;
+  --fire:#f48c06; --fire-bright:#ffc44d; --fel:#3dff6e; --fel-dark:#1a8c3a;
+  --nether:#7b2fff; --nether-dark:#3a0080;
+  --dark0:#03020a; --dark1:#07050f; --dark2:#0f0b1a; --dark3:#1a1228;
+  --text:#e8dff5; --text-dim:#9a8bb5;
+  --gold:#c8a84b; --gold-bright:#ffd770;
+  --warrior:#C69B3A; --paladin:#F48CBA; --hunter:#AAD372; --rogue:#FFF468;
+  --priest:#FFFFFF; --shaman:#0070DD; --mage:#3FC7EB; --warlock:#8788EE; --druid:#FF7C0A;
+}
+*{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
+body{font-family:'Crimson Text',Georgia,serif;background:var(--dark0);color:var(--text);min-height:100vh;overflow-x:hidden}
+#starfield{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+::-webkit-scrollbar{width:6px} ::-webkit-scrollbar-track{background:var(--dark1)} ::-webkit-scrollbar-thumb{background:var(--nether);border-radius:3px}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.section-pad{padding:80px 0}
+.fire{color:var(--fire)} .fel{color:var(--fel)} .gold{color:var(--gold)}
+.glow-fire{text-shadow:0 0 20px var(--fire),0 0 40px rgba(244,140,6,0.4)}
+.divider{height:2px;background:linear-gradient(90deg,transparent,var(--nether),var(--fire),var(--fel),transparent);position:relative;z-index:1}
+.glow-sep{height:1px;background:linear-gradient(90deg,transparent,rgba(123,47,255,0.5),transparent);position:relative;z-index:1}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.section-title::after{content:'';display:block;height:3px;background:linear-gradient(90deg,var(--fire),var(--fel),transparent);margin-top:10px;border-radius:2px}
+.section-sub{color:var(--text-dim);font-size:1.1rem;font-style:italic;margin-bottom:48px;margin-top:4px}
 
-  /* WoW Class Colors */
-  --warrior: #C69B3A;
-  --paladin: #F48CBA;
-  --hunter: #AAD372;
-  --rogue: #FFF468;
-  --priest: #FFFFFF;
-  --shaman: #0070DD;
-  --mage: #3FC7EB;
-  --warlock: #8788EE;
-  --druid: #FF7C0A;
-}
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(3,2,10,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(244,140,6,0.3);padding:0 24px}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;flex-direction:column;gap:1px}
+.logo-name{font-family:'Cinzel',serif;font-size:1.6rem;font-weight:900;letter-spacing:6px;color:var(--fire-bright);text-shadow:0 0 20px var(--fire),0 0 40px rgba(244,140,6,0.3);line-height:1;text-transform:uppercase}
+.logo-sub{font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:var(--fel);letter-spacing:3px;text-shadow:0 0 8px var(--fel)}
+nav ul{list-style:none;display:flex;gap:4px;align-items:center}
+nav a{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);text-decoration:none;padding:7px 12px;border-radius:4px;transition:all 0.2s;border:1px solid transparent}
+nav a:hover{color:var(--fire-bright);border-color:rgba(244,140,6,0.4);background:rgba(244,140,6,0.06);text-shadow:0 0 10px var(--fire)}
+.nav-cta{background:linear-gradient(135deg,var(--fire),#d97c00)!important;color:#0a0710!important;font-weight:700!important;border-color:transparent!important;box-shadow:0 0 15px rgba(244,140,6,0.4)}
+.nav-cta:hover{box-shadow:0 0 30px rgba(244,140,6,0.9)!important;transform:translateY(-1px);text-shadow:none!important}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;overflow:hidden;padding-top:64px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 100% 80% at 50% 60%,rgba(123,47,255,0.15) 0%,transparent 65%),radial-gradient(ellipse 60% 40% at 30% 30%,rgba(244,140,6,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 70% 70%,rgba(61,255,110,0.06) 0%,transparent 60%);z-index:-1}
+.hero-portal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(580px,88vw);height:min(580px,88vw);border-radius:50%;background:radial-gradient(ellipse at center,rgba(123,47,255,0.28) 0%,rgba(61,10,140,0.18) 30%,transparent 70%);border:1px solid rgba(123,47,255,0.2);box-shadow:inset 0 0 80px rgba(123,47,255,0.18),0 0 120px rgba(123,47,255,0.08);animation:portalPulse 4s ease-in-out infinite;z-index:-1}
+@keyframes portalPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.7}50%{transform:translate(-50%,-50%) scale(1.05);opacity:1}}
+.hero-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(660px,93vw);height:min(660px,93vw);border-radius:50%;border:1px solid rgba(244,140,6,0.12);animation:ring1 9s linear infinite;z-index:-1}
+.hero-ring::before{content:'';position:absolute;top:-5px;left:50%;width:10px;height:10px;background:var(--fire);border-radius:50%;box-shadow:0 0 18px 5px var(--fire),0 0 35px var(--fire);transform:translateX(-50%)}
+.hero-ring2{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(730px,98vw);height:min(730px,98vw);border-radius:50%;border:1px solid rgba(61,255,110,0.07);animation:ring1 15s linear infinite reverse;z-index:-1}
+.hero-ring2::before{content:'';position:absolute;bottom:-4px;right:28%;width:7px;height:7px;background:var(--fel);border-radius:50%;box-shadow:0 0 12px 4px var(--fel)}
+@keyframes ring1{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:0.72rem;letter-spacing:5px;color:var(--fel);text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fadeUp 0.8s 0.3s ease forwards}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(3.5rem,10vw,7rem);font-weight:900;line-height:0.9;text-transform:uppercase;letter-spacing:8px;margin-bottom:16px;opacity:0;animation:fadeUp 0.8s 0.5s ease forwards}
+.hero-title .line1{color:var(--fire-bright);text-shadow:0 0 30px var(--fire),0 0 80px rgba(244,140,6,0.3)}
+.hero-title .line2{font-size:clamp(1.1rem,3vw,1.9rem);color:var(--text-dim);letter-spacing:12px;display:block;margin-top:8px}
+.hero-desc{font-size:1.2rem;color:var(--text-dim);font-style:italic;max-width:600px;margin:0 auto 36px;line-height:1.7;opacity:0;animation:fadeUp 0.8s 0.7s ease forwards}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 0.9s ease forwards}
+.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:56px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 1.1s ease forwards}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Cinzel',serif;font-size:2.5rem;font-weight:900;color:var(--fire-bright);text-shadow:0 0 15px var(--fire);line-height:1}
+.hero-stat-label{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;margin-top:4px}
+.stat-dot{color:rgba(255,255,255,0.1);font-size:1.5rem;align-self:center}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
-html { scroll-behavior: smooth; }
+/* BUTTONS */
+.btn{font-family:'Cinzel',serif;font-size:0.78rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;padding:13px 30px;border-radius:4px;text-decoration:none;border:none;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px}
+.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);transition:left 0.5s}
+.btn:hover::before{left:100%}
+.btn-fire{background:linear-gradient(135deg,var(--fire) 0%,#b56800 100%);color:#0a0710;box-shadow:0 0 20px rgba(244,140,6,0.4),inset 0 1px 0 rgba(255,200,100,0.3)}
+.btn-fire:hover{box-shadow:0 0 40px rgba(244,140,6,0.8);transform:translateY(-2px)}
+.btn-outline-fire{background:transparent;color:var(--fire);border:1px solid var(--fire);box-shadow:0 0 10px rgba(244,140,6,0.2)}
+.btn-outline-fire:hover{background:rgba(244,140,6,0.08);box-shadow:0 0 25px rgba(244,140,6,0.5);transform:translateY(-2px)}
+.btn-fel{background:transparent;color:var(--fel);border:1px solid var(--fel);box-shadow:0 0 10px rgba(61,255,110,0.2)}
+.btn-fel:hover{background:rgba(61,255,110,0.07);box-shadow:0 0 25px rgba(61,255,110,0.5);transform:translateY(-2px)}
 
-body {
-  font-family: 'Crimson Text', Georgia, serif;
-  background: var(--dark0);
-  color: var(--text);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+/* COUNTDOWN */
+.countdown-bar{position:relative;z-index:1;background:linear-gradient(135deg,rgba(8,4,18,0.97),rgba(18,6,36,0.97));border-top:1px solid rgba(244,140,6,0.22);border-bottom:1px solid rgba(244,140,6,0.22);overflow:hidden}
+.countdown-bar::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(244,140,6,0.04),transparent);animation:scan 7s ease-in-out infinite}
+@keyframes scan{0%{left:-100%}100%{left:200%}}
+.countdown-inner{max-width:1200px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.countdown-label{display:flex;flex-direction:column;gap:2px;min-width:200px}
+.cd-eyebrow{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:4px;color:var(--text-dim);text-transform:uppercase}
+.cd-main{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;letter-spacing:3px;color:var(--fire-bright);text-shadow:0 0 12px var(--fire)}
+.cd-sub{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;color:var(--text-dim)}
+.countdown-clock{display:flex;align-items:center;gap:6px}
+.clock-unit{display:flex;flex-direction:column;align-items:center;background:rgba(0,0,0,0.55);border:1px solid rgba(244,140,6,0.18);border-radius:8px;padding:10px 18px;min-width:76px;position:relative;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s}
+.clock-unit::after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(244,140,6,0.08)}
+.clock-num{font-family:'Share Tech Mono',monospace;font-size:2rem;font-weight:700;color:var(--fire-bright);text-shadow:0 0 15px var(--fire),0 0 30px rgba(244,140,6,0.35);line-height:1;transition:transform 0.15s,opacity 0.15s}
+.clock-num.tick{animation:numTick 0.18s ease}
+@keyframes numTick{0%{transform:translateY(-6px);opacity:0}100%{transform:translateY(0);opacity:1}}
+.clock-label{font-family:'Share Tech Mono',monospace;font-size:0.52rem;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-top:4px}
+.clock-sep{font-family:'Share Tech Mono',monospace;font-size:1.8rem;color:var(--fire);opacity:0.45;padding:0 2px;animation:blink2 1s step-end infinite}
+@keyframes blink2{0%,100%{opacity:0.45}50%{opacity:0.1}}
+.cd-status{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.status-row{display:flex;align-items:center;gap:8px}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--fel);box-shadow:0 0 8px var(--fel);animation:dotpulse 2s ease-in-out infinite}
+@keyframes dotpulse{0%,100%{box-shadow:0 0 8px var(--fel);transform:scale(1)}50%{box-shadow:0 0 16px var(--fel),0 0 30px rgba(61,255,110,0.4);transform:scale(1.2)}}
+.status-text{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase}
+.status-date{font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:1px;color:var(--text-dim)}
+.clock-unit.imminnet{border-color:rgba(244,140,6,0.65);animation:unitglow 1.5s ease-in-out infinite}
+@keyframes unitglow{0%,100%{box-shadow:none}50%{box-shadow:0 0 20px rgba(244,140,6,0.4)}}
 
-/* ===== STARFIELD CANVAS ===== */
-#starfield {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
+/* TICKER */
+.ticker-wrap{position:relative;z-index:1;background:rgba(0,0,0,0.55);border-top:1px solid rgba(61,255,110,0.12);border-bottom:1px solid rgba(61,255,110,0.12);padding:9px 0;overflow:hidden}
+.ticker-label{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;background:rgba(61,255,110,0.1);border-right:1px solid rgba(61,255,110,0.18);padding:0 18px;font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--fel);z-index:2;white-space:nowrap}
+.ticker-track{display:flex;animation:tickScroll 50s linear infinite;width:max-content}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{white-space:nowrap;padding:0 55px;font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:var(--text-dim);display:flex;align-items:center;gap:9px}
+.t-name{color:var(--fire-bright)} .t-boss{color:var(--gold)} .t-fel{color:var(--fel)}
+@keyframes tickScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* ===== TYPOGRAPHY ===== */
-.font-cinzel { font-family: 'Cinzel', serif; }
-.font-mono { font-family: 'Share Tech Mono', monospace; }
+/* PROGRESSION */
+.progression-section{position:relative;z-index:1;background:var(--dark0)}
+.tier-block{margin-bottom:52px}
+.tier-header{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.tier-badge{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:30px;border:1px solid;white-space:nowrap}
+.tier-badge.cleared{background:rgba(61,255,110,0.1);border-color:var(--fel);color:var(--fel)}
+.tier-badge.unreleased{background:rgba(60,50,70,0.06);border-color:#2a2040;color:#3a3050}
+.tier-name{font-family:'Cinzel',serif;font-size:1.35rem;font-weight:700;letter-spacing:2px}
+.tier-fraction{font-family:'Share Tech Mono',monospace;font-size:0.85rem;color:var(--text-dim);margin-left:auto}
+.prog-bar{height:4px;background:rgba(255,255,255,0.04);border-radius:2px;overflow:hidden;margin-bottom:16px}
+.prog-fill{height:100%;border-radius:2px}
+.pf-fel{background:linear-gradient(90deg,var(--fel-dark),var(--fel));box-shadow:0 0 8px var(--fel)}
+.pf-lock{background:#131020}
+.boss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:10px}
+.boss-card{background:rgba(12,8,20,0.8);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:15px 9px;text-align:center;transition:all 0.3s;position:relative;overflow:hidden}
+.boss-card.killed{border-color:rgba(61,255,110,0.28);background:rgba(61,255,110,0.04)}
+.boss-card.killed::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--fel),transparent)}
+.boss-card.killed:hover{border-color:var(--fel);box-shadow:0 0 20px rgba(61,255,110,0.18);transform:translateY(-4px)}
+.boss-icon{font-size:1.75rem;margin-bottom:7px;display:block;line-height:1}
+.boss-name{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.5px;text-transform:uppercase;line-height:1.3;margin-bottom:5px;color:var(--text)}
+.boss-status{font-family:'Share Tech Mono',monospace;font-size:0.52rem;letter-spacing:1px}
+.boss-card.killed .boss-status{color:var(--fel)}
+/* Locked phase block */
+.phase-lock-block{background:rgba(8,5,15,0.65);border:1px solid rgba(255,255,255,0.04);border-radius:12px;padding:26px 22px;position:relative;overflow:hidden}
+.phase-lock-block::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 10px,rgba(255,255,255,0.007) 10px,rgba(255,255,255,0.007) 11px)}
+.unreleased-pill{display:inline-flex;align-items:center;gap:9px;font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:#2e2448;margin-bottom:14px;padding:7px 18px;border:1px solid #19122a;border-radius:30px;background:rgba(0,0,0,0.25)}
+.locked-chips{display:flex;flex-wrap:wrap;gap:8px}
+.lchip{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:1px;text-transform:uppercase;padding:4px 13px;border-radius:20px;border:1px solid rgba(35,25,55,0.6);color:#22183a;background:rgba(0,0,0,0.15)}
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--dark1); }
-::-webkit-scrollbar-thumb { background: var(--nether); border-radius: 3px; }
+/* ABOUT */
+.about-section{position:relative;z-index:1;background:var(--dark1)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.about-text p{font-size:1.08rem;line-height:1.8;color:var(--text);margin-bottom:18px}
+.callout{border-left:3px solid var(--fire);padding:14px 22px;background:rgba(244,140,6,0.05);border-radius:0 8px 8px 0;font-style:italic;color:var(--fire-bright);font-size:1.08rem;margin:22px 0}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.pillar-card{background:rgba(12,8,20,0.9);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:20px 16px;transition:all 0.3s}
+.pillar-card:hover{border-color:rgba(244,140,6,0.3);background:rgba(244,140,6,0.04);transform:translateY(-4px)}
+.pillar-icon{font-size:1.7rem;margin-bottom:9px;display:block}
+.pillar-title{font-family:'Cinzel',serif;font-size:0.77rem;letter-spacing:2px;text-transform:uppercase;color:var(--fire-bright);margin-bottom:5px}
+.pillar-body{font-size:0.86rem;color:var(--text-dim);line-height:1.5}
 
-/* ===== UTILITY ===== */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
-.section-pad { padding: 80px 0; }
-.fire { color: var(--fire); }
-.fel { color: var(--fel); }
-.gold { color: var(--gold); }
-.nether { color: var(--nether); }
-.glow-fire { text-shadow: 0 0 20px var(--fire), 0 0 40px rgba(244,140,6,0.4); }
-.glow-fel { text-shadow: 0 0 20px var(--fel), 0 0 40px rgba(61,255,110,0.3); }
-.glow-nether { text-shadow: 0 0 20px var(--nether); }
+/* SCHEDULE */
+.schedule-section{position:relative;z-index:1;background:var(--dark2)}
+.schedule-grid{display:grid;grid-template-columns:2fr 1fr;gap:36px;align-items:start}
+.raid-days{display:flex;flex-direction:column;gap:9px}
+.raid-day{display:flex;align-items:center;gap:18px;background:rgba(12,8,20,0.8);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:16px 20px;transition:all 0.3s}
+.raid-day.main-day{border-color:rgba(244,140,6,0.28);background:rgba(244,140,6,0.04)}
+.raid-day:hover{transform:translateX(5px);border-color:rgba(244,140,6,0.5)}
+.day-name{font-family:'Cinzel',serif;font-size:0.95rem;font-weight:700;letter-spacing:2px;min-width:85px;color:var(--fire-bright)}
+.day-time{font-family:'Share Tech Mono',monospace;font-size:0.82rem;color:var(--text-dim)}
+.day-type{margin-left:auto;font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;padding:4px 11px;border-radius:20px;white-space:nowrap}
+.day-type.core{background:rgba(244,140,6,0.14);color:var(--fire);border:1px solid rgba(244,140,6,0.28)}
+.day-type.optional{background:rgba(61,255,110,0.07);color:var(--fel);border:1px solid rgba(61,255,110,0.18)}
+.sched-info{display:flex;flex-direction:column;gap:11px}
+.info-card{background:rgba(12,8,20,0.8);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:16px}
+.info-card-title{font-family:'Cinzel',serif;font-size:0.67rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:5px}
+.info-card-val{font-size:0.92rem;color:var(--text);line-height:1.5}
 
-/* ===== DIVIDERS ===== */
-.divider {
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--nether), var(--fire), var(--fel), transparent);
-  margin: 0;
-  position: relative;
-  z-index: 1;
-}
+/* LOOT */
+.loot-section{position:relative;z-index:1;background:var(--dark1)}
+.loot-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.loot-main{font-size:1.05rem;line-height:1.8;color:var(--text);margin-bottom:22px}
+.loot-list{list-style:none;display:flex;flex-direction:column;gap:11px}
+.loot-list li{display:flex;align-items:flex-start;gap:11px;font-size:0.93rem;line-height:1.5}
+.loot-list li::before{content:'⚡';color:var(--fel);flex-shrink:0;margin-top:2px}
+.loot-vis{background:rgba(12,8,20,0.9);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:26px}
+.loot-vis-title{font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.loot-factor{margin-bottom:18px}
+.loot-fh{display:flex;justify-content:space-between;margin-bottom:7px}
+.loot-fn{font-size:0.86rem;color:var(--text)}
+.loot-fp{font-family:'Share Tech Mono',monospace;font-size:0.82rem;color:var(--fire)}
+.loot-bar{height:7px;background:rgba(255,255,255,0.04);border-radius:4px;overflow:hidden}
+.loot-fill{height:100%;border-radius:4px;animation:barIn 1.5s cubic-bezier(0.25,1,0.5,1) both}
+@keyframes barIn{from{width:0!important}}
+.lf-a{background:linear-gradient(90deg,var(--nether-dark),var(--nether));width:95%}
+.lf-b{background:linear-gradient(90deg,#1a6622,var(--fel));width:80%}
+.lf-c{background:linear-gradient(90deg,#7a3000,var(--fire));width:75%}
+.lf-d{background:linear-gradient(90deg,#4a3800,var(--gold));width:60%}
 
-/* ===== SECTION HEADER ===== */
-.section-title {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 900;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  position: relative;
-  display: inline-block;
-}
-.section-title::after {
-  content: '';
-  display: block;
-  height: 3px;
-  background: linear-gradient(90deg, var(--fire), var(--fel), transparent);
-  margin-top: 10px;
-  border-radius: 2px;
-}
-.section-sub {
-  color: var(--text-dim);
-  font-size: 1.1rem;
-  font-style: italic;
-  margin-bottom: 48px;
-  margin-top: 4px;
-}
+/* RECRUITMENT */
+.recruit-section{position:relative;z-index:1;background:var(--dark2)}
+.class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:11px;margin-bottom:24px}
+.class-card{background:rgba(12,8,20,0.8);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:15px 17px;display:flex;align-items:center;gap:13px;transition:all 0.3s}
+.class-card:hover{transform:translateY(-3px)}
+.class-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;box-shadow:0 0 7px currentColor}
+.class-info{flex:1}
+.class-name{font-family:'Cinzel',serif;font-size:0.8rem;letter-spacing:1px;font-weight:700;text-transform:uppercase}
+.class-spec{font-size:0.76rem;color:var(--text-dim);margin-top:1px}
+.class-prio{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:2px;padding:3px 9px;border-radius:20px;text-transform:uppercase;border:1px solid;white-space:nowrap}
+.prio-high{color:var(--fire);border-color:rgba(244,140,6,0.38);background:rgba(244,140,6,0.09)}
+.prio-med{color:#b8a0d0;border-color:rgba(184,160,208,0.28);background:rgba(184,160,208,0.05)}
+.prio-closed{color:#3a3050;border-color:rgba(50,40,60,0.4);background:rgba(30,20,40,0.04)}
+.recruit-note{text-align:center;background:rgba(61,255,110,0.04);border:1px solid rgba(61,255,110,0.13);border-radius:10px;padding:16px 26px;font-style:italic;color:var(--text-dim);font-size:1rem}
+.recruit-note strong{color:var(--fel)}
 
-/* ===== HEADER / NAV ===== */
-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: rgba(3,2,10,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(244,140,6,0.3);
-  padding: 0 24px;
-}
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-}
-.logo {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-.logo-name {
-  font-family: 'Cinzel', serif;
-  font-size: 1.6rem;
-  font-weight: 900;
-  letter-spacing: 6px;
-  color: var(--fire-bright);
-  text-shadow: 0 0 20px var(--fire), 0 0 40px rgba(244,140,6,0.3);
-  line-height: 1;
-  text-transform: uppercase;
-}
-.logo-sub {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--fel);
-  letter-spacing: 3px;
-  text-shadow: 0 0 8px var(--fel);
-}
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-nav a {
-  font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 4px;
-  transition: all 0.2s;
-  border: 1px solid transparent;
-}
-nav a:hover {
-  color: var(--fire-bright);
-  border-color: rgba(244,140,6,0.4);
-  background: rgba(244,140,6,0.06);
-  text-shadow: 0 0 10px var(--fire);
-}
-.nav-cta {
-  background: linear-gradient(135deg, var(--fire), #d97c00) !important;
-  color: #0a0710 !important;
-  font-weight: 700 !important;
-  border-color: transparent !important;
-  box-shadow: 0 0 15px rgba(244,140,6,0.4);
-}
-.nav-cta:hover {
-  box-shadow: 0 0 25px rgba(244,140,6,0.8) !important;
-  transform: translateY(-1px);
-  text-shadow: none !important;
-}
+/* APPLY */
+.apply-section{position:relative;z-index:1;background:var(--dark1)}
+.apply-inner{max-width:720px;margin:0 auto;text-align:center}
+.apply-card{background:rgba(12,8,20,0.9);border:1px solid rgba(244,140,6,0.18);border-radius:16px;padding:46px 38px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(244,140,6,0.05)}
+.apply-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--fire),var(--fel),transparent)}
+.apply-title{font-family:'Cinzel',serif;font-size:1.9rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;color:var(--fire-bright);text-shadow:0 0 20px var(--fire)}
+.apply-desc{color:var(--text-dim);font-style:italic;font-size:1.02rem;line-height:1.7;margin-bottom:30px}
+.apply-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
+.officer-grid{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:30px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.04)}
+.officer-card{text-align:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:17px 22px}
+.officer-icon{font-size:1.7rem;color:var(--gold);margin-bottom:7px;display:block;filter:drop-shadow(0 0 6px var(--gold))}
+.officer-name{font-family:'Cinzel',serif;font-size:0.95rem;font-weight:700;letter-spacing:2px;color:var(--gold-bright)}
+.officer-role{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:2px;color:var(--text-dim);margin-top:4px;text-transform:uppercase}
+.officer-btag{font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:var(--text-dim);margin-top:5px}
 
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  padding-top: 64px;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 100% 80% at 50% 60%, rgba(123,47,255,0.15) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 40% at 30% 30%, rgba(244,140,6,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 70% 70%, rgba(61,255,110,0.06) 0%, transparent 60%);
-  z-index: -1;
-}
-.hero-portal {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(600px, 90vw);
-  height: min(600px, 90vw);
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center,
-    rgba(123,47,255,0.3) 0%,
-    rgba(61,10,140,0.2) 30%,
-    rgba(0,0,0,0) 70%);
-  border: 1px solid rgba(123,47,255,0.2);
-  box-shadow:
-    inset 0 0 80px rgba(123,47,255,0.2),
-    0 0 120px rgba(123,47,255,0.1);
-  animation: portalPulse 4s ease-in-out infinite;
-  z-index: -1;
-}
-@keyframes portalPulse {
-  0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.7; }
-  50% { transform: translate(-50%,-50%) scale(1.05); opacity: 1; }
-}
-.hero-ring {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(680px, 95vw);
-  height: min(680px, 95vw);
-  border-radius: 50%;
-  border: 1px solid rgba(244,140,6,0.15);
-  animation: portalRing 6s linear infinite;
-  z-index: -1;
-}
-.hero-ring::before {
-  content: '';
-  position: absolute;
-  top: -3px; left: 50%;
-  width: 6px; height: 6px;
-  background: var(--fire);
-  border-radius: 50%;
-  box-shadow: 0 0 12px var(--fire);
-  transform: translateX(-50%);
-}
-@keyframes portalRing {
-  from { transform: translate(-50%,-50%) rotate(0deg); }
-  to { transform: translate(-50%,-50%) rotate(360deg); }
-}
+/* FOOTER */
+footer{background:var(--dark0);border-top:1px solid rgba(244,140,6,0.18);padding:30px 24px;text-align:center;position:relative;z-index:1}
+.footer-logo{font-family:'Cinzel',serif;font-size:1.25rem;letter-spacing:6px;font-weight:900;color:var(--fire-bright);text-shadow:0 0 15px var(--fire);margin-bottom:7px}
+.footer-sub{font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;margin-bottom:13px}
+.footer-copy{font-size:0.76rem;color:#1e1630}
+.particles-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.particle{position:absolute;border-radius:50%;animation:floatP linear infinite;opacity:0}
+@keyframes floatP{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:0.5}100%{transform:translateY(-80px) scale(1);opacity:0}}
 
-.hero-eyebrow {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 5px;
-  color: var(--fel);
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.3s ease forwards;
-}
-.hero-title {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  font-weight: 900;
-  line-height: 0.9;
-  text-transform: uppercase;
-  letter-spacing: 8px;
-  margin-bottom: 16px;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.5s ease forwards;
-}
-.hero-title .line1 { color: var(--fire-bright); text-shadow: 0 0 30px var(--fire), 0 0 80px rgba(244,140,6,0.3); }
-.hero-title .line2 {
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  color: var(--text-dim);
-  letter-spacing: 12px;
-  display: block;
-  margin-top: 8px;
-}
-.hero-desc {
-  font-size: 1.2rem;
-  color: var(--text-dim);
-  font-style: italic;
-  max-width: 600px;
-  margin: 0 auto 40px;
-  line-height: 1.7;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.7s ease forwards;
-}
-.hero-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.9s ease forwards;
-}
-.hero-stats {
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  margin-top: 60px;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.8s 1.1s ease forwards;
-}
-.hero-stat {
-  text-align: center;
-}
-.hero-stat-num {
-  font-family: 'Cinzel', serif;
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--fire-bright);
-  text-shadow: 0 0 15px var(--fire);
-  line-height: 1;
-}
-.hero-stat-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 3px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-top: 4px;
-}
-.stat-dot {
-  color: rgba(255,255,255,0.1);
-  font-size: 1.5rem;
-  align-self: center;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== BUTTONS ===== */
-.btn {
-  font-family: 'Cinzel', serif;
-  font-size: 0.8rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-weight: 700;
-  padding: 14px 32px;
-  border-radius: 4px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  transition: left 0.5s;
-}
-.btn:hover::before { left: 100%; }
-
-.btn-fire {
-  background: linear-gradient(135deg, var(--fire) 0%, #b56800 100%);
-  color: #0a0710;
-  box-shadow: 0 0 20px rgba(244,140,6,0.4), inset 0 1px 0 rgba(255,200,100,0.3);
-}
-.btn-fire:hover {
-  box-shadow: 0 0 40px rgba(244,140,6,0.8), inset 0 1px 0 rgba(255,200,100,0.3);
-  transform: translateY(-2px);
-}
-.btn-outline-fire {
-  background: transparent;
-  color: var(--fire);
-  border: 1px solid var(--fire);
-  box-shadow: 0 0 10px rgba(244,140,6,0.2);
-}
-.btn-outline-fire:hover {
-  background: rgba(244,140,6,0.1);
-  box-shadow: 0 0 25px rgba(244,140,6,0.5);
-  transform: translateY(-2px);
-}
-.btn-fel {
-  background: transparent;
-  color: var(--fel);
-  border: 1px solid var(--fel);
-  box-shadow: 0 0 10px rgba(61,255,110,0.2);
-}
-.btn-fel:hover {
-  background: rgba(61,255,110,0.08);
-  box-shadow: 0 0 25px rgba(61,255,110,0.5);
-  transform: translateY(-2px);
-}
-
-/* ===== PROGRESSION SECTION ===== */
-.progression-section {
-  position: relative;
-  z-index: 1;
-  background: linear-gradient(180deg, var(--dark0) 0%, var(--dark1) 100%);
-}
-.tier-block {
-  margin-bottom: 60px;
-}
-.tier-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 28px;
-}
-.tier-badge {
-  font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  padding: 6px 16px;
-  border-radius: 30px;
-  border: 1px solid;
-  white-space: nowrap;
-}
-.tier-badge.cleared { background: rgba(61,255,110,0.1); border-color: var(--fel); color: var(--fel); }
-.tier-badge.prog { background: rgba(244,140,6,0.1); border-color: var(--fire); color: var(--fire); }
-.tier-badge.locked { background: rgba(120,120,120,0.1); border-color: #555; color: #777; }
-
-.tier-name {
-  font-family: 'Cinzel', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-.tier-fraction {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.9rem;
-  color: var(--text-dim);
-  margin-left: auto;
-}
-
-/* Boss grid */
-.boss-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 12px;
-}
-.boss-card {
-  background: rgba(15,11,26,0.8);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 8px;
-  padding: 16px 12px;
-  text-align: center;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.boss-card.killed {
-  border-color: rgba(61,255,110,0.3);
-  background: rgba(61,255,110,0.04);
-}
-.boss-card.killed::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--fel), transparent);
-}
-.boss-card.prog-kill {
-  border-color: rgba(244,140,6,0.4);
-  background: rgba(244,140,6,0.04);
-}
-.boss-card.prog-kill::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--fire), transparent);
-}
-.boss-card.locked-boss {
-  opacity: 0.35;
-}
-.boss-icon {
-  font-size: 1.8rem;
-  margin-bottom: 8px;
-  display: block;
-  line-height: 1;
-}
-.boss-name {
-  font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  line-height: 1.3;
-  margin-bottom: 6px;
-}
-.boss-status {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 1px;
-}
-.boss-card.killed .boss-status { color: var(--fel); }
-.boss-card.prog-kill .boss-status { color: var(--fire); }
-.boss-card.locked-boss .boss-status { color: #555; }
-
-/* Progress bar */
-.tier-progress-wrap {
-  margin-top: 16px;
-  margin-bottom: 4px;
-}
-.tier-progress-bar {
-  height: 4px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.tier-progress-fill {
-  height: 100%;
-  border-radius: 2px;
-  transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-.fill-fel { background: linear-gradient(90deg, var(--fel-dark), var(--fel)); box-shadow: 0 0 8px var(--fel); }
-.fill-fire { background: linear-gradient(90deg, #7a3000, var(--fire)); box-shadow: 0 0 8px var(--fire); }
-.fill-lock { background: #333; }
-
-/* ===== ABOUT CARDS ===== */
-.about-section {
-  position: relative;
-  z-index: 1;
-  background: var(--dark1);
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-.about-text p {
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: var(--text);
-  margin-bottom: 20px;
-}
-.about-text .callout {
-  border-left: 3px solid var(--fire);
-  padding: 16px 24px;
-  background: rgba(244,140,6,0.05);
-  border-radius: 0 8px 8px 0;
-  font-style: italic;
-  color: var(--fire-bright);
-  font-size: 1.1rem;
-  margin: 24px 0;
-}
-.pillars {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.pillar-card {
-  background: rgba(15,11,26,0.9);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 10px;
-  padding: 24px 20px;
-  transition: all 0.3s;
-}
-.pillar-card:hover {
-  border-color: rgba(244,140,6,0.3);
-  background: rgba(244,140,6,0.04);
-  transform: translateY(-4px);
-}
-.pillar-icon {
-  font-size: 1.8rem;
-  margin-bottom: 12px;
-  display: block;
-}
-.pillar-title {
-  font-family: 'Cinzel', serif;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--fire-bright);
-  margin-bottom: 8px;
-}
-.pillar-body {
-  font-size: 0.9rem;
-  color: var(--text-dim);
-  line-height: 1.5;
-}
-
-/* ===== SCHEDULE ===== */
-.schedule-section {
-  position: relative;
-  z-index: 1;
-  background: var(--dark2);
-}
-.schedule-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-.raid-days {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.raid-day {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: rgba(15,11,26,0.8);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 10px;
-  padding: 20px 24px;
-  transition: all 0.3s;
-}
-.raid-day.main-day {
-  border-color: rgba(244,140,6,0.35);
-  background: rgba(244,140,6,0.04);
-}
-.raid-day:hover {
-  transform: translateX(6px);
-  border-color: rgba(244,140,6,0.5);
-}
-.day-name {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  min-width: 100px;
-  color: var(--fire-bright);
-}
-.day-time {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.9rem;
-  color: var(--text-dim);
-}
-.day-type {
-  margin-left: auto;
-  font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 20px;
-}
-.day-type.core { background: rgba(244,140,6,0.15); color: var(--fire); border: 1px solid rgba(244,140,6,0.3); }
-.day-type.optional { background: rgba(61,255,110,0.08); color: var(--fel); border: 1px solid rgba(61,255,110,0.2); }
-
-.schedule-info {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.info-card {
-  background: rgba(15,11,26,0.8);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 10px;
-  padding: 20px;
-}
-.info-card-title {
-  font-family: 'Cinzel', serif;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 8px;
-}
-.info-card-val {
-  font-size: 1.1rem;
-  color: var(--text);
-}
-
-/* ===== LOOT ===== */
-.loot-section {
-  position: relative;
-  z-index: 1;
-  background: var(--dark1);
-}
-.loot-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-.loot-main {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--text);
-  margin-bottom: 24px;
-}
-.loot-principles {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.loot-principles li {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-.loot-principles li::before {
-  content: '⚡';
-  color: var(--fel);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.loot-vis {
-  background: rgba(15,11,26,0.9);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  padding: 28px;
-}
-.loot-vis-title {
-  font-family: 'Cinzel', serif;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 24px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.loot-factor {
-  margin-bottom: 20px;
-}
-.loot-factor-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-.loot-factor-name { font-size: 0.9rem; color: var(--text); }
-.loot-factor-pct {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.85rem;
-  color: var(--fire);
-}
-.loot-bar {
-  height: 8px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 4px;
-  overflow: hidden;
-}
-.loot-bar-fill {
-  height: 100%;
-  border-radius: 4px;
-  animation: barGrow 1.5s cubic-bezier(0.25,1,0.5,1) both;
-}
-@keyframes barGrow {
-  from { width: 0 !important; }
-}
-.loot-bar-fill.att { background: linear-gradient(90deg, var(--nether-dark), var(--nether)); width: 95%; }
-.loot-bar-fill.perf { background: linear-gradient(90deg, #1a6622, var(--fel)); width: 80%; }
-.loot-bar-fill.prep { background: linear-gradient(90deg, #7a3000, var(--fire)); width: 75%; }
-.loot-bar-fill.att2 { background: linear-gradient(90deg, #4a3800, var(--gold)); width: 60%; }
-
-/* ===== RECRUITMENT ===== */
-.recruit-section {
-  position: relative;
-  z-index: 1;
-  background: var(--dark2);
-}
-.class-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 14px;
-  margin-bottom: 32px;
-}
-.class-card {
-  background: rgba(15,11,26,0.8);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 10px;
-  padding: 18px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  transition: all 0.3s;
-}
-.class-card:hover { transform: translateY(-3px); }
-.class-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  box-shadow: 0 0 8px currentColor;
-}
-.class-info { flex: 1; }
-.class-name {
-  font-family: 'Cinzel', serif;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.class-spec {
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  margin-top: 1px;
-}
-.class-prio {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  border: 1px solid;
-}
-.prio-high { color: var(--fire); border-color: rgba(244,140,6,0.4); background: rgba(244,140,6,0.1); }
-.prio-med { color: #b8a0d0; border-color: rgba(184,160,208,0.3); background: rgba(184,160,208,0.06); }
-.prio-closed { color: #555; border-color: rgba(80,80,80,0.4); background: rgba(80,80,80,0.05); }
-
-.recruit-note {
-  text-align: center;
-  background: rgba(61,255,110,0.04);
-  border: 1px solid rgba(61,255,110,0.15);
-  border-radius: 10px;
-  padding: 20px 28px;
-  font-style: italic;
-  color: var(--text-dim);
-  font-size: 1.05rem;
-}
-.recruit-note strong { color: var(--fel); }
-
-/* ===== APPLY ===== */
-.apply-section {
-  position: relative;
-  z-index: 1;
-  background: var(--dark1);
-}
-.apply-inner {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-}
-.apply-card {
-  background: rgba(15,11,26,0.9);
-  border: 1px solid rgba(244,140,6,0.2);
-  border-radius: 16px;
-  padding: 48px 40px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 60px rgba(244,140,6,0.06);
-}
-.apply-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--fire), var(--fel), transparent);
-}
-.apply-title {
-  font-family: 'Cinzel', serif;
-  font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  color: var(--fire-bright);
-  text-shadow: 0 0 20px var(--fire);
-}
-.apply-desc {
-  color: var(--text-dim);
-  font-style: italic;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin-bottom: 36px;
-}
-.apply-buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
-}
-.officer-grid {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 36px;
-  padding-top: 36px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.officer-card {
-  text-align: center;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 10px;
-  padding: 20px 28px;
-}
-.officer-icon {
-  font-size: 1.8rem;
-  color: var(--gold);
-  margin-bottom: 8px;
-  display: block;
-  filter: drop-shadow(0 0 6px var(--gold));
-}
-.officer-name {
-  font-family: 'Cinzel', serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--gold-bright);
-}
-.officer-role {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  color: var(--text-dim);
-  margin-top: 4px;
-  text-transform: uppercase;
-}
-.officer-btag {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  margin-top: 6px;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  background: var(--dark0);
-  border-top: 1px solid rgba(244,140,6,0.2);
-  padding: 32px 24px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-.footer-logo {
-  font-family: 'Cinzel', serif;
-  font-size: 1.3rem;
-  letter-spacing: 6px;
-  font-weight: 900;
-  color: var(--fire-bright);
-  text-shadow: 0 0 15px var(--fire);
-  margin-bottom: 8px;
-}
-.footer-sub {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 3px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.footer-copy {
-  font-size: 0.8rem;
-  color: #3d3050;
-}
-
-/* ===== SECTION BG VARIATIONS ===== */
-section { position: relative; z-index: 1; }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  .about-grid, .schedule-grid, .loot-grid { grid-template-columns: 1fr; }
-  .pillars { grid-template-columns: 1fr 1fr; }
-  nav ul { gap: 2px; }
-  nav a { padding: 6px 10px; font-size: 0.65rem; }
-}
-@media (max-width: 600px) {
-  .pillars { grid-template-columns: 1fr; }
-  .boss-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
-  .hero-title { font-size: 2.8rem; }
-  .nav-links-hide { display: none; }
-  .apply-card { padding: 32px 20px; }
-}
-
-/* ===== FLOATING PARTICLES ===== */
-.particles-container {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  animation: floatParticle linear infinite;
-  opacity: 0;
-}
-@keyframes floatParticle {
-  0% { transform: translateY(100vh) scale(0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 0.5; }
-  100% { transform: translateY(-100px) scale(1); opacity: 0; }
-}
-
-/* ===== GLOW SEPARATOR ===== */
-.glow-sep {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(123,47,255,0.5), transparent);
-  position: relative;
-  z-index: 1;
-}
-
-/* ===== NUMBERS / COUNTER ANIMATION ===== */
-.count-num {
-  display: inline-block;
-  transition: all 0.3s;
-}
+/* RESPONSIVE */
+@media(max-width:900px){.about-grid,.schedule-grid,.loot-grid{grid-template-columns:1fr}.countdown-inner{justify-content:center}.cd-status{align-items:center}}
+@media(max-width:660px){.pillars{grid-template-columns:1fr}.hero-title{font-size:2.8rem}.clock-num{font-size:1.5rem}.clock-unit{min-width:58px;padding:8px 11px}nav .nav-hide{display:none}.ticker-label{display:none}.ticker-track{padding-left:16px}.apply-card{padding:30px 18px}}
 </style>
 </head>
 <body>
 
-<!-- Starfield -->
 <canvas id="starfield"></canvas>
-
-<!-- Floating particles -->
 <div class="particles-container" id="particles"></div>
 
-<!-- ===== HEADER ===== -->
+<!-- HEADER -->
 <header>
   <div class="nav-inner">
     <div class="logo">
       <span class="logo-name">Eradication</span>
-      <span class="logo-sub">⚡ US-Nightslayer · Horde · TBC ⚡</span>
+      <span class="logo-sub">⚡ US-Nightslayer · Horde · TBC Phase 1 ⚡</span>
     </div>
     <nav>
       <ul>
-        <li class="nav-links-hide"><a href="#progression">Progression</a></li>
-        <li class="nav-links-hide"><a href="#about">About</a></li>
-        <li class="nav-links-hide"><a href="#schedule">Raids</a></li>
-        <li class="nav-links-hide"><a href="#loot">Loot</a></li>
-        <li class="nav-links-hide"><a href="#recruitment">Recruitment</a></li>
+        <li class="nav-hide"><a href="#progression">Progression</a></li>
+        <li class="nav-hide"><a href="#about">About</a></li>
+        <li class="nav-hide"><a href="#schedule">Raids</a></li>
+        <li class="nav-hide"><a href="#loot">Loot</a></li>
+        <li class="nav-hide"><a href="#recruitment">Recruitment</a></li>
         <li><a href="#apply" class="nav-cta">Apply Now</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-portal"></div>
   <div class="hero-ring"></div>
+  <div class="hero-ring2"></div>
   <div class="container">
-    <p class="hero-eyebrow">US-Nightslayer &nbsp;·&nbsp; Horde &nbsp;·&nbsp; The Burning Crusade</p>
+    <p class="hero-eyebrow">US-Nightslayer &nbsp;·&nbsp; Horde &nbsp;·&nbsp; The Burning Crusade &nbsp;·&nbsp; Phase 1</p>
     <h1 class="hero-title">
       <span class="line1">Eradication</span>
       <span class="line2">Through the Dark Portal</span>
     </h1>
-    <p class="hero-desc">
-      A semi-hardcore Horde guild conquering the fires of Outland.
-      <br>Efficient progression. Mature atmosphere. Lethal execution.
-    </p>
+    <p class="hero-desc">A semi-hardcore Horde guild conquering the fires of Outland.<br>Efficient progression. Mature atmosphere. Lethal execution.</p>
     <div class="hero-buttons">
       <a href="#apply" class="btn btn-fire"><i class="fas fa-dragon"></i> Apply Now</a>
       <a href="#progression" class="btn btn-outline-fire">View Progression</a>
       <a href="#recruitment" class="btn btn-fel"><i class="fas fa-users"></i> Recruitment</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num" data-count="23">0</div>
-        <div class="hero-stat-label">Bosses Slain</div>
-      </div>
+      <div class="hero-stat"><div class="hero-stat-num" data-count="9">0</div><div class="hero-stat-label">Bosses Slain</div></div>
       <div class="stat-dot">·</div>
-      <div class="hero-stat">
-        <div class="hero-stat-num" data-count="3">0</div>
-        <div class="hero-stat-label">Raid Nights/Wk</div>
-      </div>
+      <div class="hero-stat"><div class="hero-stat-num" data-count="2">0</div><div class="hero-stat-label">Raid Nights/Wk</div></div>
       <div class="stat-dot">·</div>
-      <div class="hero-stat">
-        <div class="hero-stat-num" data-count="25">0</div>
-        <div class="hero-stat-label">Core Raiders</div>
-      </div>
+      <div class="hero-stat"><div class="hero-stat-num" data-count="25">0</div><div class="hero-stat-label">Core Raiders</div></div>
       <div class="stat-dot">·</div>
-      <div class="hero-stat">
-        <div class="hero-stat-num" data-count="97">0</div>
-        <div class="hero-stat-label">Avg Attendance%</div>
-      </div>
+      <div class="hero-stat"><div class="hero-stat-num" data-count="97">0</div><div class="hero-stat-label">Attendance %</div></div>
     </div>
   </div>
 </section>
 
+<!-- COUNTDOWN -->
+<div class="countdown-bar">
+  <div class="countdown-inner">
+    <div class="countdown-label">
+      <span class="cd-eyebrow">Next Core Raid</span>
+      <span class="cd-main">⚔ 25-Man — Karazhan / Gruul / Mag</span>
+      <span class="cd-sub" id="raidDateLabel">Loading…</span>
+    </div>
+    <div class="countdown-clock">
+      <div class="clock-unit" id="cu-d"><span class="clock-num" id="cd-d">00</span><span class="clock-label">Days</span></div>
+      <span class="clock-sep">:</span>
+      <div class="clock-unit" id="cu-h"><span class="clock-num" id="cd-h">00</span><span class="clock-label">Hours</span></div>
+      <span class="clock-sep">:</span>
+      <div class="clock-unit" id="cu-m"><span class="clock-num" id="cd-m">00</span><span class="clock-label">Mins</span></div>
+      <span class="clock-sep">:</span>
+      <div class="clock-unit" id="cu-s"><span class="clock-num" id="cd-s">00</span><span class="clock-label">Secs</span></div>
+    </div>
+    <div class="cd-status">
+      <div class="status-row"><div class="status-dot"></div><span class="status-text">Live Tracker</span></div>
+      <div class="status-date">Tuesday · 6:00 PM PST · US-Nightslayer</div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <span class="ticker-label">📜 Guild Log</span>
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
 <div class="divider"></div>
 
-<!-- ===== PROGRESSION ===== -->
+<!-- PROGRESSION -->
 <section id="progression" class="progression-section section-pad">
   <div class="container">
     <h2 class="section-title fire glow-fire">Raid Progression</h2>
-    <p class="section-sub">Forged through fire and fel — our path through Outland</p>
+    <p class="section-sub">Phase 1 is live — T4 content cleared. Future phases awaiting release.</p>
 
-    <!-- Tier 4 -->
+    <!-- PHASE 1 — ACTIVE -->
     <div class="tier-block">
       <div class="tier-header">
-        <span class="tier-badge cleared">✓ Cleared</span>
-        <span class="tier-name gold">Tier 4 — Wrath of the Lich… Burning Crusade Begins</span>
-        <span class="tier-fraction font-mono">9/9</span>
+        <span class="tier-badge cleared">✓ 9/9 Cleared</span>
+        <span class="tier-name gold">Phase 1 — Tier 4</span>
+        <span class="tier-fraction font-mono">Karazhan · Gruul's Lair · Magtheridon's Lair</span>
       </div>
-      <div class="tier-progress-wrap">
-        <div class="tier-progress-bar"><div class="tier-progress-fill fill-fel" style="width:100%"></div></div>
-      </div>
-      <div class="boss-grid" style="margin-top:16px;">
-        <div class="boss-card killed"><span class="boss-icon">🦇</span><span class="boss-name">Attumen the Huntsman</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🍷</span><span class="boss-name">Moroes</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🎭</span><span class="boss-name">Maiden of Virtue</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">👁️</span><span class="boss-name">Curator</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🌀</span><span class="boss-name">Shade of Aran</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🐉</span><span class="boss-name">Netherspite</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">⏰</span><span class="boss-name">Prince Malchezaar</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🔥</span><span class="boss-name">Gruul the Dragonkiller</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">👿</span><span class="boss-name">Magtheridon</span><span class="boss-status">DEAD</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-fel" style="width:100%"></div></div>
+      <div class="boss-grid">
+        <div class="boss-card killed"><span class="boss-icon">🦇</span><span class="boss-name">Attumen the Huntsman</span><span class="boss-status font-mono">☠ DEAD</span></div>
+        <div class="boss-card killed"><span class="boss-icon">🕯️</span><span class="boss-name">Moroes</span><span class="boss-status font-mono">☠ DEAD</span></div>
+        <div class="boss-card killed"><span class="boss-icon">🎭</span><span class="boss-name">Maiden of Virtue</span><span class="boss-status font-mono">☠ DEAD</span></div>
+        <div class="boss-card killed"><span class="boss-icon">👁️</span><span class="boss-name">The Curator</span><span class="boss-status font-mono">☠ DEAD</span></div>
+        <div class="boss-card killed"><span class="boss-icon">🌀</span><span class="boss-name">Shade of Aran</span><span class="boss-status font-mono">☠ DEAD</span></div>
+        <div class="boss-card killed"><span class="boss-icon">🐉</span><span class="boss-name">Netherspite</span><span class="boss-status font-mono">☠ DEAD</span></div>
+        <div class="boss-card killed"><span class="boss-icon">⚔️</span><span class="boss-name">Prince Malchezaar</span><span class="boss-status font-mono">☠ DEAD</span></div>
+        <div class="boss-card killed"><span class="boss-icon">🪨</span><span class="boss-name">Gruul the Dragonkiller</span><span class="boss-status font-mono">☠ DEAD</span></div>
+        <div class="boss-card killed"><span class="boss-icon">👿</span><span class="boss-name">Magtheridon</span><span class="boss-status font-mono">☠ DEAD</span></div>
       </div>
     </div>
 
-    <!-- Serpentshrine / TK -->
+    <!-- PHASE 2 — UNRELEASED -->
     <div class="tier-block">
       <div class="tier-header">
-        <span class="tier-badge prog">⚡ Progressing</span>
-        <span class="tier-name gold">Tier 5 — Serpentshrine &amp; Tempest Keep</span>
-        <span class="tier-fraction font-mono">8/12</span>
+        <span class="tier-badge unreleased">🔒 Unreleased — Phase 2</span>
+        <span class="tier-name" style="color:#2a1e40;">Tier 5 — Serpentshrine Cavern &amp; Tempest Keep</span>
       </div>
-      <div class="tier-progress-wrap">
-        <div class="tier-progress-bar"><div class="tier-progress-fill fill-fire" style="width:67%"></div></div>
-      </div>
-      <div class="boss-grid" style="margin-top:16px;">
-        <div class="boss-card killed"><span class="boss-icon">🦈</span><span class="boss-name">Hydross the Unstable</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🦑</span><span class="boss-name">The Lurker Below</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🦞</span><span class="boss-name">Leotheras the Blind</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🐠</span><span class="boss-name">Fathom-Lord Karathress</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🌊</span><span class="boss-name">Morogrim Tidewalker</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card prog-kill"><span class="boss-icon">🐍</span><span class="boss-name">Lady Vashj</span><span class="boss-status">PROG</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🤖</span><span class="boss-name">Void Reaver</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🔮</span><span class="boss-name">High Astromancer Solarian</span><span class="boss-status">DEAD</span></div>
-        <div class="boss-card prog-kill"><span class="boss-icon">🌀</span><span class="boss-name">Kael'thas Sunstrider</span><span class="boss-status">PROG</span></div>
-        <div class="boss-card prog-kill"><span class="boss-icon">🌩️</span><span class="boss-name">Al'ar</span><span class="boss-status">PROG</span></div>
-        <div class="boss-card killed"><span class="boss-icon">💨</span><span class="boss-name">Loot Reaver</span><span class="boss-status">DEAD</span></div>
+      <div class="prog-bar"><div class="prog-fill pf-lock" style="width:0%"></div></div>
+      <div class="phase-lock-block">
+        <div class="unreleased-pill"><span>⏳</span>Phase 2 not yet released — coming soon™</div>
+        <div class="locked-chips">
+          <span class="lchip">Hydross</span><span class="lchip">The Lurker Below</span><span class="lchip">Leotheras</span><span class="lchip">Fathom-Lord Karathress</span><span class="lchip">Morogrim Tidewalker</span><span class="lchip">Lady Vashj</span><span class="lchip">Void Reaver</span><span class="lchip">High Astromancer Solarian</span><span class="lchip">Al'ar</span><span class="lchip">Kael'thas Sunstrider</span>
+        </div>
       </div>
     </div>
 
-    <!-- Tier 6 -->
+    <!-- PHASE 3 — UNRELEASED -->
     <div class="tier-block">
       <div class="tier-header">
-        <span class="tier-badge locked">⚔ Not Yet</span>
-        <span class="tier-name" style="color:#555;">Tier 6 — Black Temple &amp; Hyjal</span>
-        <span class="tier-fraction font-mono" style="color:#444;">0/9</span>
+        <span class="tier-badge unreleased">🔒 Unreleased — Phase 3</span>
+        <span class="tier-name" style="color:#2a1e40;">Tier 6 — Black Temple &amp; Hyjal Summit</span>
       </div>
-      <div class="tier-progress-wrap">
-        <div class="tier-progress-bar"><div class="tier-progress-fill fill-lock" style="width:0%"></div></div>
+      <div class="prog-bar"><div class="prog-fill pf-lock" style="width:0%"></div></div>
+      <div class="phase-lock-block">
+        <div class="unreleased-pill"><span>⏳</span>Phase 3 not yet released</div>
+        <div class="locked-chips">
+          <span class="lchip">Rage Winterchill</span><span class="lchip">Anetheron</span><span class="lchip">Kaz'rogal</span><span class="lchip">Azgalor</span><span class="lchip">Archimonde</span><span class="lchip">Naj'entus</span><span class="lchip">Supremus</span><span class="lchip">Shade of Akama</span><span class="lchip">Teron Gorefiend</span><span class="lchip">Gurtogg Bloodboil</span><span class="lchip">Reliquary of Souls</span><span class="lchip">Mother Shahraz</span><span class="lchip">Illidari Council</span><span class="lchip">Illidan Stormrage</span>
+        </div>
       </div>
-      <div class="boss-grid" style="margin-top:16px;">
-        <div class="boss-card locked-boss"><span class="boss-icon">💀</span><span class="boss-name">Rage Winterchill</span><span class="boss-status">LOCKED</span></div>
-        <div class="boss-card locked-boss"><span class="boss-icon">🧟</span><span class="boss-name">Anetheron</span><span class="boss-status">LOCKED</span></div>
-        <div class="boss-card locked-boss"><span class="boss-icon">🦁</span><span class="boss-name">Kaz'rogal</span><span class="boss-status">LOCKED</span></div>
-        <div class="boss-card locked-boss"><span class="boss-icon">🐺</span><span class="boss-name">Azgalor</span><span class="boss-status">LOCKED</span></div>
-        <div class="boss-card locked-boss"><span class="boss-icon">🌋</span><span class="boss-name">Archimonde</span><span class="boss-status">LOCKED</span></div>
-        <div class="boss-card locked-boss"><span class="boss-icon">🕷️</span><span class="boss-name">High Warlord Naj'entus</span><span class="boss-status">LOCKED</span></div>
-        <div class="boss-card locked-boss"><span class="boss-icon">🦂</span><span class="boss-name">Supremus</span><span class="boss-status">LOCKED</span></div>
-        <div class="boss-card locked-boss"><span class="boss-icon">👁️</span><span class="boss-name">Shade of Akama</span><span class="boss-status">LOCKED</span></div>
-        <div class="boss-card locked-boss"><span class="boss-icon">😈</span><span class="boss-name">Illidan Stormrage</span><span class="boss-status">LOCKED</span></div>
+    </div>
+
+    <!-- PHASE 5 — UNRELEASED -->
+    <div class="tier-block" style="margin-bottom:0">
+      <div class="tier-header">
+        <span class="tier-badge unreleased">🔒 Unreleased — Phase 5</span>
+        <span class="tier-name" style="color:#2a1e40;">Sunwell Plateau</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill pf-lock" style="width:0%"></div></div>
+      <div class="phase-lock-block">
+        <div class="unreleased-pill"><span>⏳</span>The final challenge of TBC — Kil'jaeden awaits</div>
+        <div class="locked-chips">
+          <span class="lchip">Kalecgos</span><span class="lchip">Brutallus</span><span class="lchip">Felmyst</span><span class="lchip">Eredar Twins</span><span class="lchip">M'uru</span><span class="lchip">Kil'jaeden</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1172,49 +400,24 @@ section { position: relative; z-index: 1; }
 
 <div class="glow-sep"></div>
 
-<!-- ===== ABOUT ===== -->
+<!-- ABOUT -->
 <section id="about" class="about-section section-pad">
   <div class="container">
     <div class="about-grid">
       <div class="about-text">
         <h2 class="section-title fire glow-fire">About Us</h2>
         <p class="section-sub">Who we are, how we operate</p>
-        <p><span class="fire">Eradication</span> is a community of seasoned players on Nightslayer (US) dedicated to pushing through TBC content with intent and efficiency. We're semi-hardcore — adults with lives, careers, and families — but when the raid frames go up, we lock in.</p>
+        <p><span class="fire">Eradication</span> is a community of seasoned players on Nightslayer (US) dedicated to conquering TBC content with precision and intent. We're semi-hardcore — adults with lives, careers, and families — but when raid frames go up, we lock in completely.</p>
         <div class="callout">"Joke between pulls. Lock in when it counts."</div>
-        <p>Our focus is clean, efficient progression without the toxic culture that kills guilds. We expect preparation, accountability, and a willingness to improve — and we'll offer the same in return.</p>
-        <p style="margin-top:16px;">Guild founded during Classic, veteran players with top-end TBC experience. We've been through the grind and built something worth logging in for every week.</p>
+        <p>Our focus is efficient progression without the toxic culture that kills guilds. We demand preparation, accountability, and a willingness to improve — and we give the same in return. Guild formed during Classic with veteran leadership and proven TBC credentials.</p>
       </div>
       <div class="pillars">
-        <div class="pillar-card">
-          <span class="pillar-icon">⚔️</span>
-          <div class="pillar-title">Progression First</div>
-          <div class="pillar-body">Smart pulls, fast wipes, consistent improvement. We log in to kill bosses.</div>
-        </div>
-        <div class="pillar-card">
-          <span class="pillar-icon">🧠</span>
-          <div class="pillar-title">Preparation</div>
-          <div class="pillar-body">Show up consumable-ready, enchanted, and with fight knowledge. No hand-holding.</div>
-        </div>
-        <div class="pillar-card">
-          <span class="pillar-icon">🤝</span>
-          <div class="pillar-title">Low Drama</div>
-          <div class="pillar-body">Zero tolerance for toxicity. Strong community with healthy culture.</div>
-        </div>
-        <div class="pillar-card">
-          <span class="pillar-icon">📈</span>
-          <div class="pillar-title">Growth Mindset</div>
-          <div class="pillar-body">Take feedback, log parse, improve. We celebrate player growth as a team win.</div>
-        </div>
-        <div class="pillar-card">
-          <span class="pillar-icon">👑</span>
-          <div class="pillar-title">Veteran Leadership</div>
-          <div class="pillar-body">Officers with real TBC experience and a bias for clear communication.</div>
-        </div>
-        <div class="pillar-card">
-          <span class="pillar-icon">🏆</span>
-          <div class="pillar-title">Long Haul</div>
-          <div class="pillar-body">Building a guild for all of TBC and beyond — not just a flash-in-the-pan roster.</div>
-        </div>
+        <div class="pillar-card"><span class="pillar-icon">⚔️</span><div class="pillar-title">Progression First</div><div class="pillar-body">Smart pulls, fast resets, consistent improvement. We log in to kill bosses.</div></div>
+        <div class="pillar-card"><span class="pillar-icon">🧠</span><div class="pillar-title">Preparation</div><div class="pillar-body">Show up consumable-ready, enchanted, and knowing the fight. No hand-holding.</div></div>
+        <div class="pillar-card"><span class="pillar-icon">🤝</span><div class="pillar-title">Low Drama</div><div class="pillar-body">Zero tolerance for toxicity. Strong community with a mature culture.</div></div>
+        <div class="pillar-card"><span class="pillar-icon">📈</span><div class="pillar-title">Growth Mindset</div><div class="pillar-body">Take feedback, review logs, improve. Team wins are everyone's wins.</div></div>
+        <div class="pillar-card"><span class="pillar-icon">👑</span><div class="pillar-title">Veteran Leadership</div><div class="pillar-body">Officers with real TBC experience and a bias toward clear, direct communication.</div></div>
+        <div class="pillar-card"><span class="pillar-icon">🏆</span><div class="pillar-title">Long Haul</div><div class="pillar-body">Building for all of TBC — every phase, every tier. Not a flash-in-the-pan roster.</div></div>
       </div>
     </div>
   </div>
@@ -1222,61 +425,23 @@ section { position: relative; z-index: 1; }
 
 <div class="divider"></div>
 
-<!-- ===== SCHEDULE ===== -->
+<!-- SCHEDULE -->
 <section id="schedule" class="schedule-section section-pad">
   <div class="container">
     <h2 class="section-title fire glow-fire">Raid Schedule</h2>
-    <p class="section-sub">All times Eastern (Server Time)</p>
+    <p class="section-sub">All times Pacific — US-Nightslayer (PST server time)</p>
     <div class="schedule-grid">
-      <div>
-        <div class="raid-days">
-          <div class="raid-day main-day">
-            <div>
-              <div class="day-name">Tuesday</div>
-              <div class="day-time font-mono">8:00 PM – 11:00 PM EST</div>
-            </div>
-            <span class="day-type core">Core Raid</span>
-          </div>
-          <div class="raid-day main-day">
-            <div>
-              <div class="day-name">Thursday</div>
-              <div class="day-time font-mono">8:00 PM – 11:00 PM EST</div>
-            </div>
-            <span class="day-type core">Core Raid</span>
-          </div>
-          <div class="raid-day">
-            <div>
-              <div class="day-name">Sunday</div>
-              <div class="day-time font-mono">7:00 PM – 10:00 PM EST</div>
-            </div>
-            <span class="day-type optional">Optional / Alt</span>
-          </div>
-          <div class="raid-day">
-            <div>
-              <div class="day-name">Off-Nights</div>
-              <div class="day-time font-mono">Farm / Heroics / Community</div>
-            </div>
-            <span class="day-type optional">Community</span>
-          </div>
-        </div>
+      <div class="raid-days">
+        <div class="raid-day main-day"><div><div class="day-name">Tuesday</div><div class="day-time font-mono">6:00 PM – 9:00 PM PST</div></div><span class="day-type core">25-Man Core</span></div>
+        <div class="raid-day main-day"><div><div class="day-name">Thursday</div><div class="day-time font-mono">6:00 PM – 9:00 PM PST</div></div><span class="day-type core">25-Man Core</span></div>
+        <div class="raid-day"><div><div class="day-name">Saturday</div><div class="day-time font-mono">6:00 PM – 9:00 PM PST</div></div><span class="day-type optional">10-Man / Alt</span></div>
+        <div class="raid-day"><div><div class="day-name">Off-Nights</div><div class="day-time font-mono">Heroics · Farming · Community</div></div><span class="day-type optional">Community</span></div>
       </div>
-      <div class="schedule-info">
-        <div class="info-card">
-          <div class="info-card-title">Invite Time</div>
-          <div class="info-card-val">Invites go out <span class="fire">15 minutes early</span>. First pull is on time — always.</div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-title">Attendance Requirement</div>
-          <div class="info-card-val">Raiders are expected to maintain <span class="fire">80%+ attendance</span>. Life happens — just communicate.</div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-title">Consumables</div>
-          <div class="info-card-val">Flasks, potions, food buffs — <span class="fire">non-negotiable</span>. We bring fish feasts; you bring the rest.</div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-title">AddOns Required</div>
-          <div class="info-card-val">DBM / BigWigs, WeakAuras, Details!/Recount, and class-specific essentials.</div>
-        </div>
+      <div class="sched-info">
+        <div class="info-card"><div class="info-card-title">Invite Time</div><div class="info-card-val">Invites 15 min early. <span class="fire">First pull is on time — always.</span></div></div>
+        <div class="info-card"><div class="info-card-title">Attendance Req.</div><div class="info-card-val">Maintain <span class="fire">80%+</span> attendance. Life happens — communicate early.</div></div>
+        <div class="info-card"><div class="info-card-title">Consumables</div><div class="info-card-val">Flasks, pots, food — <span class="fire">mandatory</span>. We provide feasts; bring your own flask.</div></div>
+        <div class="info-card"><div class="info-card-title">Required AddOns</div><div class="info-card-val">DBM / BigWigs · WeakAuras · Details!</div></div>
       </div>
     </div>
   </div>
@@ -1284,54 +449,30 @@ section { position: relative; z-index: 1; }
 
 <div class="glow-sep"></div>
 
-<!-- ===== LOOT ===== -->
+<!-- LOOT -->
 <section id="loot" class="loot-section section-pad">
   <div class="container">
     <h2 class="section-title fire glow-fire">Loot System</h2>
     <p class="section-sub">Fair, transparent, progression-minded</p>
     <div class="loot-grid">
       <div>
-        <p class="loot-main">We use a <strong class="fire">Loot Council</strong> system managed through <strong class="gold">ThatsMyBis</strong>. All wishlist data is visible to raiders — there are no backroom deals. Loot decisions are made collaboratively by the officer team with the guild's long-term progression as the guiding principle.</p>
-        <ul class="loot-principles">
+        <p class="loot-main">We use a <strong class="fire">Loot Council</strong> system tracked through <strong class="gold">ThatsMyBis</strong>. All wishlist data is visible to every raider — no backroom deals. Decisions are made by officers with the guild's long-term progression as the north star.</p>
+        <ul class="loot-list">
           <li>Gear goes where it benefits the raid most — not to the loudest voice</li>
-          <li>Wishlist transparency via ThatsMyBis — your priorities are on record</li>
-          <li>Consistent raiders with high performance accumulate priority over time</li>
-          <li>New members enter a 2-week trial period before full loot eligibility</li>
-          <li>Disputes handled privately with officers — no drama on raid night</li>
-          <li>Disenchanting &amp; sharding for the guild bank is always an option</li>
+          <li>Wishlist transparency via ThatsMyBis — priorities are on the record</li>
+          <li>Consistent attendance with high performance builds priority over time</li>
+          <li>New members serve a 2-week trial before full loot eligibility</li>
+          <li>Disputes handled privately with officers — zero drama on raid night</li>
+          <li>Disenchanting for the guild bank is always on the table</li>
         </ul>
       </div>
       <div class="loot-vis">
-        <div class="loot-vis-title">⚖️ Loot Council Weighting</div>
-        <div class="loot-factor">
-          <div class="loot-factor-header">
-            <span class="loot-factor-name">Attendance &amp; Reliability</span>
-            <span class="loot-factor-pct">30%</span>
-          </div>
-          <div class="loot-bar"><div class="loot-bar-fill att"></div></div>
-        </div>
-        <div class="loot-factor">
-          <div class="loot-factor-header">
-            <span class="loot-factor-name">Raid Performance</span>
-            <span class="loot-factor-pct">25%</span>
-          </div>
-          <div class="loot-bar"><div class="loot-bar-fill perf"></div></div>
-        </div>
-        <div class="loot-factor">
-          <div class="loot-factor-header">
-            <span class="loot-factor-name">Upgrade Impact on Raid</span>
-            <span class="loot-factor-pct">25%</span>
-          </div>
-          <div class="loot-bar"><div class="loot-bar-fill prep"></div></div>
-        </div>
-        <div class="loot-factor">
-          <div class="loot-factor-header">
-            <span class="loot-factor-name">Attitude &amp; Contribution</span>
-            <span class="loot-factor-pct">20%</span>
-          </div>
-          <div class="loot-bar"><div class="loot-bar-fill att2"></div></div>
-        </div>
-        <p style="font-size:0.8rem; color: var(--text-dim); margin-top:20px; font-style:italic;">Tracked automatically. Discussed weekly by officer council before major items.</p>
+        <div class="loot-vis-title">⚖️ Council Weighting Factors</div>
+        <div class="loot-factor"><div class="loot-fh"><span class="loot-fn">Attendance &amp; Reliability</span><span class="loot-fp">30%</span></div><div class="loot-bar"><div class="loot-fill lf-a"></div></div></div>
+        <div class="loot-factor"><div class="loot-fh"><span class="loot-fn">Raid Performance</span><span class="loot-fp">25%</span></div><div class="loot-bar"><div class="loot-fill lf-b"></div></div></div>
+        <div class="loot-factor"><div class="loot-fh"><span class="loot-fn">Upgrade Impact on Raid</span><span class="loot-fp">25%</span></div><div class="loot-bar"><div class="loot-fill lf-c"></div></div></div>
+        <div class="loot-factor"><div class="loot-fh"><span class="loot-fn">Attitude &amp; Contribution</span><span class="loot-fp">20%</span></div><div class="loot-bar"><div class="loot-fill lf-d"></div></div></div>
+        <p style="font-size:0.78rem;color:var(--text-dim);margin-top:14px;font-style:italic;">Reviewed weekly by the officer council before major items drop.</p>
       </div>
     </div>
   </div>
@@ -1339,278 +480,179 @@ section { position: relative; z-index: 1; }
 
 <div class="divider"></div>
 
-<!-- ===== RECRUITMENT ===== -->
+<!-- RECRUITMENT -->
 <section id="recruitment" class="recruit-section section-pad">
   <div class="container">
     <h2 class="section-title fire glow-fire">Recruitment</h2>
-    <p class="section-sub">Seeking the finest fighters Outland has to offer</p>
+    <p class="section-sub">Seeking the finest of Outland — Phase 1 roster needs</p>
     <div class="class-grid">
-
-      <div class="class-card" style="border-color: rgba(198,155,58,0.25);">
-        <div class="class-dot" style="background: var(--warrior); color: var(--warrior);"></div>
-        <div class="class-info">
-          <div class="class-name" style="color: var(--warrior);">Warrior</div>
-          <div class="class-spec">Protection (Tank)</div>
-        </div>
-        <span class="class-prio prio-high">High</span>
-      </div>
-
-      <div class="class-card" style="border-color: rgba(255,100,50,0.25);">
-        <div class="class-dot" style="background: var(--druid); color: var(--druid);"></div>
-        <div class="class-info">
-          <div class="class-name" style="color: var(--druid);">Druid</div>
-          <div class="class-spec">Feral (Tank)</div>
-        </div>
-        <span class="class-prio prio-med">Medium</span>
-      </div>
-
-      <div class="class-card" style="border-color: rgba(0,112,221,0.25);">
-        <div class="class-dot" style="background: var(--shaman); color: var(--shaman);"></div>
-        <div class="class-info">
-          <div class="class-name" style="color: var(--shaman);">Shaman</div>
-          <div class="class-spec">Restoration</div>
-        </div>
-        <span class="class-prio prio-high">High</span>
-      </div>
-
-      <div class="class-card" style="border-color: rgba(255,255,255,0.12);">
-        <div class="class-dot" style="background: var(--priest); color: var(--priest);"></div>
-        <div class="class-info">
-          <div class="class-name" style="color: var(--priest);">Priest</div>
-          <div class="class-spec">Holy / Discipline</div>
-        </div>
-        <span class="class-prio prio-high">High</span>
-      </div>
-
-      <div class="class-card" style="border-color: rgba(244,140,186,0.2);">
-        <div class="class-dot" style="background: var(--paladin); color: var(--paladin);"></div>
-        <div class="class-info">
-          <div class="class-name" style="color: var(--paladin);">Paladin</div>
-          <div class="class-spec">Holy</div>
-        </div>
-        <span class="class-prio prio-med">Medium</span>
-      </div>
-
-      <div class="class-card" style="border-color: rgba(135,136,238,0.25);">
-        <div class="class-dot" style="background: var(--warlock); color: var(--warlock);"></div>
-        <div class="class-info">
-          <div class="class-name" style="color: var(--warlock);">Warlock</div>
-          <div class="class-spec">Any Spec</div>
-        </div>
-        <span class="class-prio prio-high">High</span>
-      </div>
-
-      <div class="class-card" style="border-color: rgba(170,211,114,0.25);">
-        <div class="class-dot" style="background: var(--hunter); color: var(--hunter);"></div>
-        <div class="class-info">
-          <div class="class-name" style="color: var(--hunter);">Hunter</div>
-          <div class="class-spec">BM / Marks</div>
-        </div>
-        <span class="class-prio prio-high">High</span>
-      </div>
-
-      <div class="class-card" style="border-color: rgba(63,199,235,0.25);">
-        <div class="class-dot" style="background: var(--mage); color: var(--mage);"></div>
-        <div class="class-info">
-          <div class="class-name" style="color: var(--mage);">Mage</div>
-          <div class="class-spec">Arcane / Fire</div>
-        </div>
-        <span class="class-prio prio-med">Medium</span>
-      </div>
-
-      <div class="class-card" style="border-color: rgba(255,244,104,0.15); opacity:0.5;">
-        <div class="class-dot" style="background: var(--rogue); color: var(--rogue);"></div>
-        <div class="class-info">
-          <div class="class-name" style="color: var(--rogue);">Rogue</div>
-          <div class="class-spec">Any Spec</div>
-        </div>
-        <span class="class-prio prio-closed">Closed</span>
-      </div>
-
+      <div class="class-card" style="border-color:rgba(198,155,58,0.22)"><div class="class-dot" style="background:var(--warrior)"></div><div class="class-info"><div class="class-name" style="color:var(--warrior)">Warrior</div><div class="class-spec">Protection (Tank)</div></div><span class="class-prio prio-high">High</span></div>
+      <div class="class-card" style="border-color:rgba(255,100,50,0.22)"><div class="class-dot" style="background:var(--druid)"></div><div class="class-info"><div class="class-name" style="color:var(--druid)">Druid</div><div class="class-spec">Feral (Tank)</div></div><span class="class-prio prio-med">Medium</span></div>
+      <div class="class-card" style="border-color:rgba(0,112,221,0.22)"><div class="class-dot" style="background:var(--shaman)"></div><div class="class-info"><div class="class-name" style="color:var(--shaman)">Shaman</div><div class="class-spec">Restoration</div></div><span class="class-prio prio-high">High</span></div>
+      <div class="class-card" style="border-color:rgba(255,255,255,0.1)"><div class="class-dot" style="background:var(--priest)"></div><div class="class-info"><div class="class-name" style="color:var(--priest)">Priest</div><div class="class-spec">Holy / Discipline</div></div><span class="class-prio prio-high">High</span></div>
+      <div class="class-card" style="border-color:rgba(244,140,186,0.18)"><div class="class-dot" style="background:var(--paladin)"></div><div class="class-info"><div class="class-name" style="color:var(--paladin)">Paladin</div><div class="class-spec">Holy</div></div><span class="class-prio prio-med">Medium</span></div>
+      <div class="class-card" style="border-color:rgba(135,136,238,0.22)"><div class="class-dot" style="background:var(--warlock)"></div><div class="class-info"><div class="class-name" style="color:var(--warlock)">Warlock</div><div class="class-spec">Any Spec</div></div><span class="class-prio prio-high">High</span></div>
+      <div class="class-card" style="border-color:rgba(170,211,114,0.22)"><div class="class-dot" style="background:var(--hunter)"></div><div class="class-info"><div class="class-name" style="color:var(--hunter)">Hunter</div><div class="class-spec">BM / Marksmanship</div></div><span class="class-prio prio-high">High</span></div>
+      <div class="class-card" style="border-color:rgba(63,199,235,0.22)"><div class="class-dot" style="background:var(--mage)"></div><div class="class-info"><div class="class-name" style="color:var(--mage)">Mage</div><div class="class-spec">Arcane / Fire</div></div><span class="class-prio prio-med">Medium</span></div>
+      <div class="class-card" style="opacity:0.4"><div class="class-dot" style="background:var(--rogue)"></div><div class="class-info"><div class="class-name" style="color:var(--rogue)">Rogue</div><div class="class-spec">Any Spec</div></div><span class="class-prio prio-closed">Closed</span></div>
     </div>
-    <div class="recruit-note">
-      <strong>Exceptional players of any class are always encouraged to apply.</strong><br>
-      If you're skilled, show up prepared, and have the right attitude — reach out. We'll find a spot.
-    </div>
+    <div class="recruit-note"><strong>Exceptional players of any class are always encouraged to apply.</strong><br>Skilled, prepared, and drama-free? We'll find a place for you.</div>
   </div>
 </section>
 
 <div class="glow-sep"></div>
 
-<!-- ===== APPLY ===== -->
+<!-- APPLY -->
 <section id="apply" class="apply-section section-pad">
   <div class="container">
     <div class="apply-inner">
       <div class="apply-card">
         <h2 class="apply-title">Step Through<br>the Dark Portal</h2>
-        <p class="apply-desc">Ready to join one of Nightslayer's top progressive guilds? We want dedicated players who are serious about content and good to be around. Fill out our app on Discord or reach an officer in-game.</p>
+        <p class="apply-desc">Ready to join one of Nightslayer's top progressive guilds? We want dedicated players who take content seriously and are a joy to play alongside. Hit us on Discord or find an officer in-game.</p>
         <div class="apply-buttons">
-          <a href="#" class="btn btn-fire"><i class="fab fa-discord"></i> Join Discord &amp; Apply</a>
-          <a href="#" class="btn btn-outline-fire"><i class="fas fa-scroll"></i> View App Template</a>
+          <a href="#" class="btn btn-fire"><i class="fab fa-discord"></i> Discord &amp; Apply</a>
+          <a href="#" class="btn btn-outline-fire"><i class="fas fa-scroll"></i> App Template</a>
         </div>
-        <p style="font-family:'Share Tech Mono',monospace; font-size:0.7rem; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; margin-bottom: 0;">Or message an officer in-game</p>
+        <p style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase">Or whisper an officer in-game</p>
         <div class="officer-grid">
-          <div class="officer-card">
-            <span class="officer-icon">👑</span>
-            <div class="officer-name">Thrallmar</div>
-            <div class="officer-role">Guild Master</div>
-            <div class="officer-btag">Erad#1234</div>
-          </div>
-          <div class="officer-card">
-            <span class="officer-icon">⚔️</span>
-            <div class="officer-name">Hellfire</div>
-            <div class="officer-role">Raid Leader</div>
-            <div class="officer-btag">Erad#5678</div>
-          </div>
-          <div class="officer-card">
-            <span class="officer-icon">📜</span>
-            <div class="officer-name">Vashara</div>
-            <div class="officer-role">Recruitment Officer</div>
-            <div class="officer-btag">Erad#9012</div>
-          </div>
+          <div class="officer-card"><span class="officer-icon">👑</span><div class="officer-name">Thrallmar</div><div class="officer-role">Guild Master</div><div class="officer-btag">Erad#1234</div></div>
+          <div class="officer-card"><span class="officer-icon">⚔️</span><div class="officer-name">Hellfire</div><div class="officer-role">Raid Leader</div><div class="officer-btag">Erad#5678</div></div>
+          <div class="officer-card"><span class="officer-icon">📜</span><div class="officer-name">Vashara</div><div class="officer-role">Recruitment</div><div class="officer-btag">Erad#9012</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Eradication</div>
-  <div class="footer-sub">US-Nightslayer · Horde · The Burning Crusade Classic</div>
-  <p class="footer-copy">© 2026 Eradication &nbsp;·&nbsp; World of Warcraft and Blizzard Entertainment trademarks are property of Blizzard Entertainment, Inc. &nbsp;·&nbsp; <span style="color:#2a1f38;">For the Horde.</span></p>
+  <div class="footer-sub">US-Nightslayer · Horde · The Burning Crusade Classic · Phase 1</div>
+  <p class="footer-copy">© 2026 Eradication &nbsp;·&nbsp; World of Warcraft and Blizzard Entertainment are trademarks of Blizzard Entertainment, Inc. &nbsp;·&nbsp; <span style="color:#100c1e">For the Horde.</span></p>
 </footer>
 
 <script>
-// ===== STARFIELD CANVAS =====
-const canvas = document.getElementById('starfield');
-const ctx = canvas.getContext('2d');
-let stars = [];
-let w, h;
+// ===== STARFIELD =====
+const canvas=document.getElementById('starfield'),ctx=canvas.getContext('2d');
+let stars=[],W,H;
+function rsz(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+function initS(){
+  stars=[];
+  const c=['#9b7bb5','#b58f9f','#f48c06','#3dff6e','#7b2fff','#ffffff','#d4a373'];
+  for(let i=0;i<Math.floor(W*H/4200);i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+0.2,a:Math.random()*0.55+0.1,c:c[~~(Math.random()*c.length)],t:Math.random()*Math.PI*2,s:Math.random()*0.016+0.004})
+}
+function drawS(){
+  ctx.clearRect(0,0,W,H);
+  stars.forEach(s=>{s.t+=s.s;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=s.c;ctx.globalAlpha=s.a*(0.35+0.65*Math.sin(s.t));ctx.fill()});
+  ctx.globalAlpha=1;requestAnimationFrame(drawS)
+}
+rsz();initS();drawS();
+window.addEventListener('resize',()=>{rsz();initS()});
 
-function resize() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
+// ===== PARTICLES =====
+const pc=document.getElementById('particles');
+setInterval(()=>{
+  const p=document.createElement('div');p.className='particle';
+  const s=Math.random()*4+2,f=Math.random()>.4;
+  p.style.cssText=`width:${s}px;height:${s}px;background:${f?'#f48c06':'#3dff6e'};left:${Math.random()*100}%;animation-duration:${Math.random()*11+7}s;animation-delay:${Math.random()*3}s;box-shadow:0 0 ${s*2}px ${f?'#f48c06':'#3dff6e'}`;
+  pc.appendChild(p);setTimeout(()=>p.remove(),17000);
+},360);
+
+// ===== COUNTDOWN — next Tuesday 6pm PST =====
+function nextTuesdayPST(){
+  // Work in UTC. PST = UTC-8. Tuesday 18:00 PST = Tuesday 26:00 UTC = Wednesday 02:00 UTC
+  const now=new Date();
+  // Get "now" expressed in PST by shifting
+  const pstMs=now.getTime()-(8*3600000); // ms value at PST
+  const pstNow=new Date(pstMs);
+  // In PST, what day/hour is it?
+  const pstDay=pstNow.getUTCDay(); // 0=Sun, 2=Tue
+  const pstHour=pstNow.getUTCHours();
+  const pstMin=pstNow.getUTCMinutes();
+  // Days until next Tuesday 18:00 PST
+  let d=(2-pstDay+7)%7;
+  if(d===0 && (pstHour<18||(pstHour===18&&pstMin===0)))d=0;
+  else if(d===0)d=7;
+  // Build target in PST timezone (as UTC representation)
+  const tgt=new Date(pstMs);
+  tgt.setUTCDate(pstNow.getUTCDate()+d);
+  tgt.setUTCHours(18,0,0,0);
+  // Convert back to real UTC
+  return new Date(tgt.getTime()+(8*3600000));
 }
 
-function initStars() {
-  stars = [];
-  const count = Math.floor((w * h) / 4000);
-  const colors = ['#9b7bb5','#b58f9f','#f48c06','#3dff6e','#7b2fff','#ffffff','#d4a373'];
-  for (let i = 0; i < count; i++) {
-    stars.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.5 + 0.2,
-      alpha: Math.random() * 0.6 + 0.1,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      twinkle: Math.random() * Math.PI * 2,
-      speed: Math.random() * 0.02 + 0.005,
-    });
-  }
-}
-
-function drawStars() {
-  ctx.clearRect(0, 0, w, h);
-  stars.forEach(s => {
-    s.twinkle += s.speed;
-    const a = s.alpha * (0.5 + 0.5 * Math.sin(s.twinkle));
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = s.color;
-    ctx.globalAlpha = a;
-    ctx.fill();
-  });
-  ctx.globalAlpha = 1;
-  requestAnimationFrame(drawStars);
-}
-
-resize();
-initStars();
-drawStars();
-window.addEventListener('resize', () => { resize(); initStars(); });
-
-// ===== FLOATING FEL PARTICLES =====
-const pContainer = document.getElementById('particles');
-function createParticle() {
-  const p = document.createElement('div');
-  p.classList.add('particle');
-  const size = Math.random() * 4 + 2;
-  const isFire = Math.random() > 0.5;
-  p.style.cssText = `
-    width: ${size}px;
-    height: ${size}px;
-    background: ${isFire ? '#f48c06' : '#3dff6e'};
-    left: ${Math.random() * 100}%;
-    animation-duration: ${Math.random() * 12 + 8}s;
-    animation-delay: ${Math.random() * 6}s;
-    box-shadow: 0 0 ${size * 2}px ${isFire ? '#f48c06' : '#3dff6e'};
-  `;
-  pContainer.appendChild(p);
-  setTimeout(() => p.remove(), 18000);
-}
-setInterval(createParticle, 400);
-
-// ===== COUNTER ANIMATION =====
-function animateCounter(el, target) {
-  let start = 0;
-  const duration = 1800;
-  const startTime = performance.now();
-  function tick(now) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(ease * target) + (el.dataset.suffix || '');
-    if (progress < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-// Observe hero stats
-const counters = document.querySelectorAll('[data-count]');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      animateCounter(e.target, parseInt(e.target.dataset.count));
-      observer.unobserve(e.target);
+let prevNums={d:-1,h:-1,m:-1,s:-1};
+function pad(n){return String(n).padStart(2,'0')}
+function tick(){
+  const tgt=nextTuesdayPST(),now=new Date();
+  let diff=Math.max(0,tgt-now);
+  const d=Math.floor(diff/86400000);diff-=d*86400000;
+  const h=Math.floor(diff/3600000);diff-=h*3600000;
+  const m=Math.floor(diff/60000);diff-=m*60000;
+  const s=Math.floor(diff/1000);
+  const cur={d,h,m,s};
+  for(const k in cur){
+    const el=document.getElementById('cd-'+k);
+    const str=pad(cur[k]);
+    if(el.textContent!==str){
+      el.textContent=str;
+      el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');
     }
-  });
-}, { threshold: 0.5 });
-counters.forEach(c => observer.observe(c));
+  }
+  // Glow when < 30min
+  const close=d===0&&h===0&&m<30;
+  ['cu-d','cu-h','cu-m','cu-s'].forEach(id=>document.getElementById(id).classList.toggle('imminnet',close));
+  // Date label
+  const opts={weekday:'long',month:'long',day:'numeric',timeZone:'America/Los_Angeles'};
+  document.getElementById('raidDateLabel').textContent=tgt.toLocaleDateString('en-US',opts)+' · 6:00 PM PST';
+}
+tick();setInterval(tick,1000);
+
+// ===== TICKER =====
+const tickerData=[
+  {n:'Eradication',a:'has achieved',b:'Full T4 Clear — 9/9',e:'🏆 Phase 1 Complete'},
+  {n:'Zulthas',a:'logged a parse of',b:'95th on Attumen',e:'🔥 Top Parse'},
+  {n:'Eradication',a:'has killed',b:'Prince Malchezaar',e:'Nightbane on notice 👁️'},
+  {n:'Hellfire',a:'obtained',b:"Warbringer's Chestguard",e:''},
+  {n:'Eradication',a:'has killed',b:'Gruul the Dragonkiller',e:'First Kill 💀'},
+  {n:'Vashara',a:'recruiting',b:'Holy Priest · Resto Shaman',e:'Apply in Discord'},
+  {n:'Eradication',a:'has killed',b:'Magtheridon',e:'Cube team flawless ✓'},
+  {n:'Thrallmar',a:'awarded',b:'T4 Gloves to Zulthas',e:'Loot Council'},
+  {n:'Eradication',a:'next raid:',b:'Tuesday 6 PM PST',e:'⚔️ Be ready'},
+  {n:'Eradication',a:'Phase 2 target:',b:'Serpentshrine & TK',e:'When released 🌀'},
+];
+(function buildTicker(){
+  const t=document.getElementById('tickerTrack');
+  const arr=[...tickerData,...tickerData];
+  t.innerHTML=arr.map(d=>`<span class="ticker-item"><span class="t-name">${d.n}</span><span style="color:#2a1e40">·</span><span>${d.a}</span><span class="t-boss">${d.b}</span>${d.e?`<span class="t-fel">[${d.e}]</span>`:''}<span style="color:#1e1630;padding:0 20px">///</span></span>`).join('');
+})();
+
+// ===== COUNTERS =====
+function animC(el,tgt){
+  const dur=1800,st=performance.now();
+  (function tick(now){const p=Math.min((now-st)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt);if(p<1)requestAnimationFrame(tick)})(performance.now());
+}
+const co=new IntersectionObserver(ens=>{ens.forEach(e=>{if(e.isIntersecting){animC(e.target,+e.target.dataset.count);co.unobserve(e.target)}})},{threshold:0.5});
+document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
 
 // ===== SCROLL REVEAL =====
-const revealEls = document.querySelectorAll('.boss-card, .class-card, .pillar-card, .info-card, .raid-day');
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => {
-        e.target.style.opacity = '1';
-        e.target.style.transform = e.target.style.transform.replace('translateY(20px)', 'translateY(0)');
-      }, (e.target.dataset.delay || 0) * 40);
-      revealObs.unobserve(e.target);
+const rv=document.querySelectorAll('.boss-card.killed,.class-card,.pillar-card,.info-card,.raid-day,.officer-card');
+const ro=new IntersectionObserver(ens=>{
+  ens.forEach(e=>{
+    if(e.isIntersecting){
+      setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform=(e.target.style.transform||'').replace('translateY(22px)','')},+(e.target.dataset.ri||0)*48);
+      ro.unobserve(e.target);
     }
   });
-}, { threshold: 0.1 });
-revealEls.forEach((el, i) => {
-  el.style.opacity = '0';
-  el.style.transform += ' translateY(20px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, border-color 0.3s, background 0.3s';
-  el.dataset.delay = i % 8;
-  revealObs.observe(el);
-});
+},{threshold:0.07});
+rv.forEach((el,i)=>{el.style.opacity='0';el.style.transition='opacity 0.5s ease,transform 0.5s ease,box-shadow 0.3s,border-color 0.3s';el.style.transform=(el.style.transform||'')+' translateY(22px)';el.dataset.ri=i%10;ro.observe(el)});
 
-// ===== SMOOTH NAV HIGHLIGHT =====
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a[href^="#"]');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.id;
-  });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--fire-bright)' : '';
-  });
-}, { passive: true });
+// ===== ACTIVE NAV =====
+const secs=document.querySelectorAll('section[id]'),nls=document.querySelectorAll('nav a[href^="#"]');
+window.addEventListener('scroll',()=>{
+  let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-130)cur=s.id});
+  nls.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--fire-bright)':''});
+},{passive:true});
 </script>
 </body>
 </html>

@@ -1,423 +1,666 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Eradication – TBC Guild | US-Nightslayer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-:root {
-  --fire:#f48c06; --fire-bright:#ffc44d; --fel:#3dff6e; --fel-dark:#1a8c3a;
-  --nether:#7b2fff; --nether-dark:#3a0080;
-  --dark0:#03020a; --dark1:#07050f; --dark2:#0f0b1a; --dark3:#1a1228;
-  --text:#e8dff5; --text-dim:#9a8bb5;
-  --gold:#c8a84b; --gold-bright:#ffd770;
-  --warrior:#C69B3A; --paladin:#F48CBA; --hunter:#AAD372; --rogue:#FFF468;
-  --priest:#FFFFFF; --shaman:#0070DD; --mage:#3FC7EB; --warlock:#8788EE; --druid:#FF7C0A;
+:root{
+  --fire:#f48c06;--fire-b:#ffc44d;--fel:#3dff6e;--fel-d:#1a8c3a;
+  --nether:#7b2fff;--nd:#3a0080;--blood:#cc2222;
+  --d0:#03020a;--d1:#07050f;--d2:#0f0b1a;--d3:#1a1228;
+  --text:#e8dff5;--dim:#9a8bb5;--gold:#c8a84b;--gb:#ffd770;
+  --warrior:#C69B3A;--paladin:#F48CBA;--hunter:#AAD372;--rogue:#FFF468;
+  --priest:#FFFFFF;--shaman:#0070DD;--mage:#3FC7EB;--warlock:#8788EE;--druid:#FF7C0A;
 }
-*{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
-body{font-family:'Crimson Text',Georgia,serif;background:var(--dark0);color:var(--text);min-height:100vh;overflow-x:hidden}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Crimson Text',Georgia,serif;background:var(--d0);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* Grain overlay */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.028;pointer-events:none;z-index:9000;mix-blend-mode:overlay}
+
 #starfield{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
-::-webkit-scrollbar{width:6px} ::-webkit-scrollbar-track{background:var(--dark1)} ::-webkit-scrollbar-thumb{background:var(--nether);border-radius:3px}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--d0)}::-webkit-scrollbar-thumb{background:var(--nether);border-radius:3px}
+.z1{position:relative;z-index:1}
 .container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-.section-pad{padding:80px 0}
-.fire{color:var(--fire)} .fel{color:var(--fel)} .gold{color:var(--gold)}
-.glow-fire{text-shadow:0 0 20px var(--fire),0 0 40px rgba(244,140,6,0.4)}
+.sp{padding:80px 0}
+.fire{color:var(--fire)}.fel{color:var(--fel)}.gold{color:var(--gold)}
+.gf{text-shadow:0 0 18px var(--fire),0 0 36px rgba(244,140,6,.4)}
 .divider{height:2px;background:linear-gradient(90deg,transparent,var(--nether),var(--fire),var(--fel),transparent);position:relative;z-index:1}
-.glow-sep{height:1px;background:linear-gradient(90deg,transparent,rgba(123,47,255,0.5),transparent);position:relative;z-index:1}
-.section-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;display:inline-block}
-.section-title::after{content:'';display:block;height:3px;background:linear-gradient(90deg,var(--fire),var(--fel),transparent);margin-top:10px;border-radius:2px}
-.section-sub{color:var(--text-dim);font-size:1.1rem;font-style:italic;margin-bottom:48px;margin-top:4px}
+.gsep{height:1px;background:linear-gradient(90deg,transparent,rgba(123,47,255,.4),transparent);position:relative;z-index:1}
+.stitle{font-family:'Cinzel',serif;font-size:clamp(1.7rem,4vw,2.6rem);font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.stitle::after{content:'';display:block;height:3px;background:linear-gradient(90deg,var(--fire),var(--fel),transparent);margin-top:9px;border-radius:2px}
+.ssub{color:var(--dim);font-size:1rem;font-style:italic;margin-bottom:44px;margin-top:4px}
+.font-mono{font-family:'Share Tech Mono',monospace}
 
-/* HEADER */
-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(3,2,10,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(244,140,6,0.3);padding:0 24px}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{display:flex;flex-direction:column;gap:1px}
-.logo-name{font-family:'Cinzel',serif;font-size:1.6rem;font-weight:900;letter-spacing:6px;color:var(--fire-bright);text-shadow:0 0 20px var(--fire),0 0 40px rgba(244,140,6,0.3);line-height:1;text-transform:uppercase}
-.logo-sub{font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:var(--fel);letter-spacing:3px;text-shadow:0 0 8px var(--fel)}
-nav ul{list-style:none;display:flex;gap:4px;align-items:center}
-nav a{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);text-decoration:none;padding:7px 12px;border-radius:4px;transition:all 0.2s;border:1px solid transparent}
-nav a:hover{color:var(--fire-bright);border-color:rgba(244,140,6,0.4);background:rgba(244,140,6,0.06);text-shadow:0 0 10px var(--fire)}
-.nav-cta{background:linear-gradient(135deg,var(--fire),#d97c00)!important;color:#0a0710!important;font-weight:700!important;border-color:transparent!important;box-shadow:0 0 15px rgba(244,140,6,0.4)}
-.nav-cta:hover{box-shadow:0 0 30px rgba(244,140,6,0.9)!important;transform:translateY(-1px);text-shadow:none!important}
+/* ── HEADER ── */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(3,2,10,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(244,140,6,.25)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 24px}
+.logo{display:flex;flex-direction:column;gap:1px;cursor:pointer;user-select:none;text-decoration:none}
+.logo-name{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:900;letter-spacing:6px;color:var(--fire-b);text-shadow:0 0 18px var(--fire);line-height:1;text-transform:uppercase}
+.logo-sub{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--fel);letter-spacing:3px;text-shadow:0 0 7px var(--fel)}
+nav ul{list-style:none;display:flex;gap:2px;align-items:center}
+nav a{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);text-decoration:none;padding:6px 10px;border-radius:4px;transition:all .2s;border:1px solid transparent}
+nav a:hover,nav a.active{color:var(--fire-b);border-color:rgba(244,140,6,.35);background:rgba(244,140,6,.06);text-shadow:0 0 10px var(--fire)}
+.ncta{background:linear-gradient(135deg,var(--fire),#c97000)!important;color:#060208!important;font-weight:700!important;border-color:transparent!important;box-shadow:0 0 14px rgba(244,140,6,.4)}
+.ncta:hover{box-shadow:0 0 28px rgba(244,140,6,.85)!important;transform:translateY(-1px);text-shadow:none!important;color:#060208!important}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;overflow:hidden;padding-top:64px}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 100% 80% at 50% 60%,rgba(123,47,255,0.15) 0%,transparent 65%),radial-gradient(ellipse 60% 40% at 30% 30%,rgba(244,140,6,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 70% 70%,rgba(61,255,110,0.06) 0%,transparent 60%);z-index:-1}
-.hero-portal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(580px,88vw);height:min(580px,88vw);border-radius:50%;background:radial-gradient(ellipse at center,rgba(123,47,255,0.28) 0%,rgba(61,10,140,0.18) 30%,transparent 70%);border:1px solid rgba(123,47,255,0.2);box-shadow:inset 0 0 80px rgba(123,47,255,0.18),0 0 120px rgba(123,47,255,0.08);animation:portalPulse 4s ease-in-out infinite;z-index:-1}
-@keyframes portalPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.7}50%{transform:translate(-50%,-50%) scale(1.05);opacity:1}}
-.hero-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(660px,93vw);height:min(660px,93vw);border-radius:50%;border:1px solid rgba(244,140,6,0.12);animation:ring1 9s linear infinite;z-index:-1}
-.hero-ring::before{content:'';position:absolute;top:-5px;left:50%;width:10px;height:10px;background:var(--fire);border-radius:50%;box-shadow:0 0 18px 5px var(--fire),0 0 35px var(--fire);transform:translateX(-50%)}
-.hero-ring2{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(730px,98vw);height:min(730px,98vw);border-radius:50%;border:1px solid rgba(61,255,110,0.07);animation:ring1 15s linear infinite reverse;z-index:-1}
-.hero-ring2::before{content:'';position:absolute;bottom:-4px;right:28%;width:7px;height:7px;background:var(--fel);border-radius:50%;box-shadow:0 0 12px 4px var(--fel)}
-@keyframes ring1{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
-.hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:0.72rem;letter-spacing:5px;color:var(--fel);text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fadeUp 0.8s 0.3s ease forwards}
-.hero-title{font-family:'Cinzel',serif;font-size:clamp(3.5rem,10vw,7rem);font-weight:900;line-height:0.9;text-transform:uppercase;letter-spacing:8px;margin-bottom:16px;opacity:0;animation:fadeUp 0.8s 0.5s ease forwards}
-.hero-title .line1{color:var(--fire-bright);text-shadow:0 0 30px var(--fire),0 0 80px rgba(244,140,6,0.3)}
-.hero-title .line2{font-size:clamp(1.1rem,3vw,1.9rem);color:var(--text-dim);letter-spacing:12px;display:block;margin-top:8px}
-.hero-desc{font-size:1.2rem;color:var(--text-dim);font-style:italic;max-width:600px;margin:0 auto 36px;line-height:1.7;opacity:0;animation:fadeUp 0.8s 0.7s ease forwards}
-.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 0.9s ease forwards}
-.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:56px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 1.1s ease forwards}
-.hero-stat{text-align:center}
-.hero-stat-num{font-family:'Cinzel',serif;font-size:2.5rem;font-weight:900;color:var(--fire-bright);text-shadow:0 0 15px var(--fire);line-height:1}
-.hero-stat-label{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;margin-top:4px}
-.stat-dot{color:rgba(255,255,255,0.1);font-size:1.5rem;align-self:center}
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;overflow:hidden;padding-top:60px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 110% 80% at 50% 55%,rgba(123,47,255,.18) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 20% 20%,rgba(244,140,6,.09) 0%,transparent 55%),radial-gradient(ellipse 50% 40% at 80% 75%,rgba(61,255,110,.07) 0%,transparent 55%);z-index:-1}
+/* Animated hex grid background */
+.hex-bg{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98'%3E%3Cpath d='M28 0L56 14v28L28 56 0 42V14z' fill='none' stroke='rgba(123,47,255,0.07)' stroke-width='1'/%3E%3C/svg%3E");background-size:56px 98px;z-index:-1;animation:hexDrift 40s linear infinite;opacity:.6}
+@keyframes hexDrift{from{background-position:0 0}to{background-position:56px 196px}}
+.portal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(550px,85vw);height:min(550px,85vw);border-radius:50%;background:radial-gradient(ellipse at center,rgba(123,47,255,.28) 0%,rgba(61,10,140,.18) 35%,transparent 70%);border:1px solid rgba(123,47,255,.2);box-shadow:inset 0 0 70px rgba(123,47,255,.18),0 0 100px rgba(123,47,255,.08);animation:portalP 4s ease-in-out infinite;z-index:-1}
+@keyframes portalP{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.7}50%{transform:translate(-50%,-50%) scale(1.06);opacity:1}}
+.ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid;animation:ringR linear infinite;z-index:-1}
+.r1{width:min(630px,90vw);height:min(630px,90vw);border-color:rgba(244,140,6,.12);animation-duration:9s}
+.r1::before,.r1::after{content:'';position:absolute;border-radius:50%;top:-6px;width:12px;height:12px;box-shadow:0 0 18px 5px var(--fire);background:var(--fire)}
+.r1::before{left:50%;transform:translateX(-50%)}
+.r1::after{right:50%;bottom:-6px;top:auto;transform:translateX(50%);background:rgba(244,140,6,.6);box-shadow:0 0 10px 3px rgba(244,140,6,.5)}
+.r2{width:min(700px,95vw);height:min(700px,95vw);border-color:rgba(61,255,110,.07);animation-duration:16s;animation-direction:reverse}
+.r2::before{content:'';position:absolute;bottom:-5px;right:25%;width:8px;height:8px;background:var(--fel);border-radius:50%;box-shadow:0 0 12px 4px var(--fel)}
+.r3{width:min(780px,99vw);height:min(780px,99vw);border-color:rgba(123,47,255,.04);animation-duration:25s}
+@keyframes ringR{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.h-eye{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:5px;color:var(--fel);text-transform:uppercase;margin-bottom:18px;opacity:0;animation:fup .8s .3s forwards}
+.h-title{font-family:'Cinzel',serif;font-size:clamp(3rem,10vw,6.5rem);font-weight:900;line-height:.88;text-transform:uppercase;letter-spacing:8px;margin-bottom:14px;opacity:0;animation:fup .8s .5s forwards}
+.h-title .l1{color:var(--fire-b);text-shadow:0 0 25px var(--fire),0 0 60px rgba(244,140,6,.28)}
+.h-title .l2{font-size:clamp(1rem,2.8vw,1.75rem);color:var(--dim);letter-spacing:10px;display:block;margin-top:8px}
+.h-desc{font-size:1.1rem;color:var(--dim);font-style:italic;max-width:560px;margin:0 auto 32px;line-height:1.75;opacity:0;animation:fup .8s .7s forwards}
+.h-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fup .8s .9s forwards}
+.h-stats{display:flex;gap:32px;justify-content:center;margin-top:48px;flex-wrap:wrap;opacity:0;animation:fup .8s 1.1s forwards}
+.hstat{text-align:center}
+.hn{font-family:'Cinzel',serif;font-size:2.3rem;font-weight:900;color:var(--fire-b);text-shadow:0 0 14px var(--fire);line-height:1}
+.hl{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:3px;color:var(--dim);text-transform:uppercase;margin-top:4px}
+.sdot{color:rgba(255,255,255,.1);font-size:1.3rem;align-self:center}
+@keyframes fup{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
 
-/* BUTTONS */
-.btn{font-family:'Cinzel',serif;font-size:0.78rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;padding:13px 30px;border-radius:4px;text-decoration:none;border:none;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px}
-.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);transition:left 0.5s}
+/* ── BUTTONS ── */
+.btn{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;padding:11px 26px;border-radius:4px;text-decoration:none;border:none;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:8px}
+.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transition:left .5s}
 .btn:hover::before{left:100%}
-.btn-fire{background:linear-gradient(135deg,var(--fire) 0%,#b56800 100%);color:#0a0710;box-shadow:0 0 20px rgba(244,140,6,0.4),inset 0 1px 0 rgba(255,200,100,0.3)}
-.btn-fire:hover{box-shadow:0 0 40px rgba(244,140,6,0.8);transform:translateY(-2px)}
-.btn-outline-fire{background:transparent;color:var(--fire);border:1px solid var(--fire);box-shadow:0 0 10px rgba(244,140,6,0.2)}
-.btn-outline-fire:hover{background:rgba(244,140,6,0.08);box-shadow:0 0 25px rgba(244,140,6,0.5);transform:translateY(-2px)}
-.btn-fel{background:transparent;color:var(--fel);border:1px solid var(--fel);box-shadow:0 0 10px rgba(61,255,110,0.2)}
-.btn-fel:hover{background:rgba(61,255,110,0.07);box-shadow:0 0 25px rgba(61,255,110,0.5);transform:translateY(-2px)}
+.btn-fire{background:linear-gradient(135deg,#ff9a1a,#c07000);color:#060208;box-shadow:0 0 18px rgba(244,140,6,.4),inset 0 1px 0 rgba(255,200,80,.25)}
+.btn-fire:hover{box-shadow:0 0 36px rgba(244,140,6,.85);transform:translateY(-2px)}
+.btn-of{background:transparent;color:var(--fire);border:1px solid var(--fire);box-shadow:0 0 8px rgba(244,140,6,.18)}
+.btn-of:hover{background:rgba(244,140,6,.08);box-shadow:0 0 20px rgba(244,140,6,.45);transform:translateY(-2px)}
+.btn-fel{background:transparent;color:var(--fel);border:1px solid var(--fel);box-shadow:0 0 8px rgba(61,255,110,.18)}
+.btn-fel:hover{background:rgba(61,255,110,.07);box-shadow:0 0 20px rgba(61,255,110,.45);transform:translateY(-2px)}
+.btn-disc{background:linear-gradient(135deg,#5865F2,#4350d0);color:#fff;box-shadow:0 0 18px rgba(88,101,242,.38)}
+.btn-disc:hover{box-shadow:0 0 32px rgba(88,101,242,.75);transform:translateY(-2px)}
 
-/* COUNTDOWN */
-.countdown-bar{position:relative;z-index:1;background:linear-gradient(135deg,rgba(8,4,18,0.97),rgba(18,6,36,0.97));border-top:1px solid rgba(244,140,6,0.22);border-bottom:1px solid rgba(244,140,6,0.22);overflow:hidden}
-.countdown-bar::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(244,140,6,0.04),transparent);animation:scan 7s ease-in-out infinite}
-@keyframes scan{0%{left:-100%}100%{left:200%}}
-.countdown-inner{max-width:1200px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.countdown-label{display:flex;flex-direction:column;gap:2px;min-width:200px}
-.cd-eyebrow{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:4px;color:var(--text-dim);text-transform:uppercase}
-.cd-main{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;letter-spacing:3px;color:var(--fire-bright);text-shadow:0 0 12px var(--fire)}
-.cd-sub{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;color:var(--text-dim)}
-.countdown-clock{display:flex;align-items:center;gap:6px}
-.clock-unit{display:flex;flex-direction:column;align-items:center;background:rgba(0,0,0,0.55);border:1px solid rgba(244,140,6,0.18);border-radius:8px;padding:10px 18px;min-width:76px;position:relative;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s}
-.clock-unit::after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(244,140,6,0.08)}
-.clock-num{font-family:'Share Tech Mono',monospace;font-size:2rem;font-weight:700;color:var(--fire-bright);text-shadow:0 0 15px var(--fire),0 0 30px rgba(244,140,6,0.35);line-height:1;transition:transform 0.15s,opacity 0.15s}
-.clock-num.tick{animation:numTick 0.18s ease}
-@keyframes numTick{0%{transform:translateY(-6px);opacity:0}100%{transform:translateY(0);opacity:1}}
-.clock-label{font-family:'Share Tech Mono',monospace;font-size:0.52rem;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase;margin-top:4px}
-.clock-sep{font-family:'Share Tech Mono',monospace;font-size:1.8rem;color:var(--fire);opacity:0.45;padding:0 2px;animation:blink2 1s step-end infinite}
-@keyframes blink2{0%,100%{opacity:0.45}50%{opacity:0.1}}
-.cd-status{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
-.status-row{display:flex;align-items:center;gap:8px}
-.status-dot{width:8px;height:8px;border-radius:50%;background:var(--fel);box-shadow:0 0 8px var(--fel);animation:dotpulse 2s ease-in-out infinite}
-@keyframes dotpulse{0%,100%{box-shadow:0 0 8px var(--fel);transform:scale(1)}50%{box-shadow:0 0 16px var(--fel),0 0 30px rgba(61,255,110,0.4);transform:scale(1.2)}}
-.status-text{font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase}
-.status-date{font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:1px;color:var(--text-dim)}
-.clock-unit.imminnet{border-color:rgba(244,140,6,0.65);animation:unitglow 1.5s ease-in-out infinite}
-@keyframes unitglow{0%,100%{box-shadow:none}50%{box-shadow:0 0 20px rgba(244,140,6,0.4)}}
+/* ── STATUS BAR ── */
+.sbar{position:relative;z-index:1;background:linear-gradient(90deg,rgba(5,2,12,.98),rgba(12,6,26,.98),rgba(5,2,12,.98));border-top:1px solid rgba(244,140,6,.18);border-bottom:1px solid rgba(244,140,6,.18);overflow:hidden}
+.sbar::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(244,140,6,.04),transparent);animation:sbarscan 8s ease-in-out infinite}
+@keyframes sbarscan{0%{left:-60%}100%{left:120%}}
+.sbar-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch}
+.sb{padding:16px 20px;display:flex;flex-direction:column;gap:3px}
+.sb-mid{border-left:1px solid rgba(255,255,255,.05);border-right:1px solid rgba(255,255,255,.05);padding:16px 28px;display:flex;align-items:center;justify-content:center}
+.sb-eye{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:4px;color:var(--dim);text-transform:uppercase}
+.sb-main{font-family:'Cinzel',serif;font-size:.88rem;font-weight:700;letter-spacing:2px;color:var(--fire-b);text-shadow:0 0 10px var(--fire)}
+.sb-clk{font-family:'Share Tech Mono',monospace;font-size:1.45rem;font-weight:700;color:var(--fire-b);text-shadow:0 0 12px var(--fire),0 0 24px rgba(244,140,6,.3);letter-spacing:2px;transition:text-shadow .3s}
+.sb-clk.close{animation:clockGlow 1s ease-in-out infinite}
+@keyframes clockGlow{0%,100%{text-shadow:0 0 12px var(--fire),0 0 24px rgba(244,140,6,.3)}50%{text-shadow:0 0 24px var(--fire),0 0 48px rgba(244,140,6,.6),0 0 70px rgba(244,140,6,.25)}}
+.sb-note{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:1px;color:var(--dim)}
+.sb-tz{font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.5px;color:rgba(154,139,181,.55);margin-top:2px;line-height:1.5}
+.sb-right .sb-main{color:#80d8f0;text-shadow:0 0 10px #3fc7eb}
+.sb-right .sb-clk{color:#80d8f0;text-shadow:0 0 12px #3fc7eb,0 0 24px rgba(63,199,235,.3)}
+.dot-live{width:8px;height:8px;border-radius:50%;background:var(--fel);box-shadow:0 0 8px var(--fel);animation:dlive 2s ease-in-out infinite}
+@keyframes dlive{0%,100%{box-shadow:0 0 8px var(--fel)}50%{box-shadow:0 0 18px var(--fel),0 0 30px rgba(61,255,110,.35);transform:scale(1.15)}}
 
-/* TICKER */
-.ticker-wrap{position:relative;z-index:1;background:rgba(0,0,0,0.55);border-top:1px solid rgba(61,255,110,0.12);border-bottom:1px solid rgba(61,255,110,0.12);padding:9px 0;overflow:hidden}
-.ticker-label{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;background:rgba(61,255,110,0.1);border-right:1px solid rgba(61,255,110,0.18);padding:0 18px;font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--fel);z-index:2;white-space:nowrap}
-.ticker-track{display:flex;animation:tickScroll 50s linear infinite;width:max-content}
-.ticker-track:hover{animation-play-state:paused}
-.ticker-item{white-space:nowrap;padding:0 55px;font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:var(--text-dim);display:flex;align-items:center;gap:9px}
-.t-name{color:var(--fire-bright)} .t-boss{color:var(--gold)} .t-fel{color:var(--fel)}
-@keyframes tickScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* ── TICKER ── */
+.ticker{position:relative;z-index:1;background:rgba(0,0,0,.5);border-top:1px solid rgba(61,255,110,.09);border-bottom:1px solid rgba(61,255,110,.09);padding:8px 0;overflow:hidden}
+.tlbl{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;background:rgba(61,255,110,.09);border-right:1px solid rgba(61,255,110,.13);padding:0 15px;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--fel);z-index:2;white-space:nowrap}
+.ttrack{display:flex;animation:tscroll 55s linear infinite;width:max-content;padding-left:110px}
+.ttrack:hover{animation-play-state:paused}
+.titem{white-space:nowrap;padding:0 50px;font-family:'Share Tech Mono',monospace;font-size:.64rem;color:var(--dim);display:flex;align-items:center;gap:8px}
+.tn{color:var(--fire-b)}.tb{color:var(--gold)}.tg{color:var(--fel)}
+@keyframes tscroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* PROGRESSION */
-.progression-section{position:relative;z-index:1;background:var(--dark0)}
+/* ── BOSS CARDS ── */
+.prog-sec{position:relative;z-index:1;background:var(--d0)}
 .tier-block{margin-bottom:52px}
-.tier-header{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap}
-.tier-badge{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:30px;border:1px solid;white-space:nowrap}
-.tier-badge.cleared{background:rgba(61,255,110,0.1);border-color:var(--fel);color:var(--fel)}
-.tier-badge.unreleased{background:rgba(60,50,70,0.06);border-color:#2a2040;color:#3a3050}
-.tier-name{font-family:'Cinzel',serif;font-size:1.35rem;font-weight:700;letter-spacing:2px}
-.tier-fraction{font-family:'Share Tech Mono',monospace;font-size:0.85rem;color:var(--text-dim);margin-left:auto}
-.prog-bar{height:4px;background:rgba(255,255,255,0.04);border-radius:2px;overflow:hidden;margin-bottom:16px}
-.prog-fill{height:100%;border-radius:2px}
-.pf-fel{background:linear-gradient(90deg,var(--fel-dark),var(--fel));box-shadow:0 0 8px var(--fel)}
-.pf-lock{background:#131020}
-.boss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:10px}
-.boss-card{background:rgba(12,8,20,0.8);border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:15px 9px;text-align:center;transition:all 0.3s;position:relative;overflow:hidden}
-.boss-card.killed{border-color:rgba(61,255,110,0.28);background:rgba(61,255,110,0.04)}
-.boss-card.killed::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--fel),transparent)}
-.boss-card.killed:hover{border-color:var(--fel);box-shadow:0 0 20px rgba(61,255,110,0.18);transform:translateY(-4px)}
-.boss-icon{font-size:1.75rem;margin-bottom:7px;display:block;line-height:1}
-.boss-name{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.5px;text-transform:uppercase;line-height:1.3;margin-bottom:5px;color:var(--text)}
-.boss-status{font-family:'Share Tech Mono',monospace;font-size:0.52rem;letter-spacing:1px}
-.boss-card.killed .boss-status{color:var(--fel)}
-/* Locked phase block */
-.phase-lock-block{background:rgba(8,5,15,0.65);border:1px solid rgba(255,255,255,0.04);border-radius:12px;padding:26px 22px;position:relative;overflow:hidden}
-.phase-lock-block::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 10px,rgba(255,255,255,0.007) 10px,rgba(255,255,255,0.007) 11px)}
-.unreleased-pill{display:inline-flex;align-items:center;gap:9px;font-family:'Share Tech Mono',monospace;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:#2e2448;margin-bottom:14px;padding:7px 18px;border:1px solid #19122a;border-radius:30px;background:rgba(0,0,0,0.25)}
-.locked-chips{display:flex;flex-wrap:wrap;gap:8px}
-.lchip{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:1px;text-transform:uppercase;padding:4px 13px;border-radius:20px;border:1px solid rgba(35,25,55,0.6);color:#22183a;background:rgba(0,0,0,0.15)}
+.tier-hdr{display:flex;align-items:center;gap:13px;margin-bottom:10px;flex-wrap:wrap}
+.tbadge{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:30px;border:1px solid;white-space:nowrap}
+.tbc{background:rgba(61,255,110,.1);border-color:var(--fel);color:var(--fel)}
+.tbl{background:rgba(40,28,60,.06);border-color:#251d38;color:#2f2048}
+.tname{font-family:'Cinzel',serif;font-size:1.25rem;font-weight:700;letter-spacing:2px}
+.tfrac{font-family:'Share Tech Mono',monospace;font-size:.8rem;color:var(--dim);margin-left:auto}
+.pbar{height:3px;background:rgba(255,255,255,.04);border-radius:2px;overflow:hidden;margin-bottom:15px}
+.pf{height:100%;border-radius:2px}
+.pf-fel{background:linear-gradient(90deg,var(--fel-d),var(--fel));box-shadow:0 0 8px var(--fel)}
+.pf-lock{background:#0c0918}
 
-/* ABOUT */
-.about-section{position:relative;z-index:1;background:var(--dark1)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.about-text p{font-size:1.08rem;line-height:1.8;color:var(--text);margin-bottom:18px}
-.callout{border-left:3px solid var(--fire);padding:14px 22px;background:rgba(244,140,6,0.05);border-radius:0 8px 8px 0;font-style:italic;color:var(--fire-bright);font-size:1.08rem;margin:22px 0}
-.pillars{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.pillar-card{background:rgba(12,8,20,0.9);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:20px 16px;transition:all 0.3s}
-.pillar-card:hover{border-color:rgba(244,140,6,0.3);background:rgba(244,140,6,0.04);transform:translateY(-4px)}
-.pillar-icon{font-size:1.7rem;margin-bottom:9px;display:block}
-.pillar-title{font-family:'Cinzel',serif;font-size:0.77rem;letter-spacing:2px;text-transform:uppercase;color:var(--fire-bright);margin-bottom:5px}
-.pillar-body{font-size:0.86rem;color:var(--text-dim);line-height:1.5}
+.boss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px}
 
-/* SCHEDULE */
-.schedule-section{position:relative;z-index:1;background:var(--dark2)}
-.schedule-grid{display:grid;grid-template-columns:2fr 1fr;gap:36px;align-items:start}
-.raid-days{display:flex;flex-direction:column;gap:9px}
-.raid-day{display:flex;align-items:center;gap:18px;background:rgba(12,8,20,0.8);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:16px 20px;transition:all 0.3s}
-.raid-day.main-day{border-color:rgba(244,140,6,0.28);background:rgba(244,140,6,0.04)}
-.raid-day:hover{transform:translateX(5px);border-color:rgba(244,140,6,0.5)}
-.day-name{font-family:'Cinzel',serif;font-size:0.95rem;font-weight:700;letter-spacing:2px;min-width:85px;color:var(--fire-bright)}
-.day-time{font-family:'Share Tech Mono',monospace;font-size:0.82rem;color:var(--text-dim)}
-.day-type{margin-left:auto;font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;padding:4px 11px;border-radius:20px;white-space:nowrap}
-.day-type.core{background:rgba(244,140,6,0.14);color:var(--fire);border:1px solid rgba(244,140,6,0.28)}
-.day-type.optional{background:rgba(61,255,110,0.07);color:var(--fel);border:1px solid rgba(61,255,110,0.18)}
-.sched-info{display:flex;flex-direction:column;gap:11px}
-.info-card{background:rgba(12,8,20,0.8);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:16px}
-.info-card-title{font-family:'Cinzel',serif;font-size:0.67rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:5px}
-.info-card-val{font-size:0.92rem;color:var(--text);line-height:1.5}
+.boss-card{border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:all .35s;cursor:default;position:relative}
+.boss-card.killed{border-color:rgba(61,255,110,.28)}
+.boss-card.killed:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,.7),0 0 20px rgba(61,255,110,.2);border-color:var(--fel);z-index:2}
+.boss-card.locked{opacity:.22;cursor:not-allowed;filter:saturate(.15) brightness(.5)}
+.boss-card.locked:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,.06)}
 
-/* LOOT */
-.loot-section{position:relative;z-index:1;background:var(--dark1)}
-.loot-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-.loot-main{font-size:1.05rem;line-height:1.8;color:var(--text);margin-bottom:22px}
-.loot-list{list-style:none;display:flex;flex-direction:column;gap:11px}
-.loot-list li{display:flex;align-items:flex-start;gap:11px;font-size:0.93rem;line-height:1.5}
-.loot-list li::before{content:'⚡';color:var(--fel);flex-shrink:0;margin-top:2px}
-.loot-vis{background:rgba(12,8,20,0.9);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:26px}
-.loot-vis-title{font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,0.05)}
-.loot-factor{margin-bottom:18px}
-.loot-fh{display:flex;justify-content:space-between;margin-bottom:7px}
-.loot-fn{font-size:0.86rem;color:var(--text)}
-.loot-fp{font-family:'Share Tech Mono',monospace;font-size:0.82rem;color:var(--fire)}
-.loot-bar{height:7px;background:rgba(255,255,255,0.04);border-radius:4px;overflow:hidden}
-.loot-fill{height:100%;border-radius:4px;animation:barIn 1.5s cubic-bezier(0.25,1,0.5,1) both}
-@keyframes barIn{from{width:0!important}}
-.lf-a{background:linear-gradient(90deg,var(--nether-dark),var(--nether));width:95%}
-.lf-b{background:linear-gradient(90deg,#1a6622,var(--fel));width:80%}
-.lf-c{background:linear-gradient(90deg,#7a3000,var(--fire));width:75%}
-.lf-d{background:linear-gradient(90deg,#4a3800,var(--gold));width:60%}
+/* Portrait area */
+.bport{width:100%;aspect-ratio:4/3;position:relative;overflow:hidden}
+.bport-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.bport-glow{position:absolute;inset:0;opacity:.55}
+.bport-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 35%,rgba(0,0,0,.65) 100%)}
+.bport-scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px);pointer-events:none}
+.bport-emote{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2.2rem;z-index:3;filter:drop-shadow(0 0 8px rgba(0,0,0,.9));line-height:1}
+.bkill-badge{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.7);border:1px solid var(--fel);border-radius:4px;padding:2px 6px;font-family:'Share Tech Mono',monospace;font-size:.46rem;color:var(--fel);z-index:4;letter-spacing:1px}
+.bport-overlay-lock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:5}
+.bport-overlay-lock i{font-size:1.4rem;color:rgba(60,50,80,.5)}
+/* Kill shimmer on hover */
+.boss-card.killed:hover .bport-bg{filter:brightness(1.15) saturate(1.3)}
 
-/* RECRUITMENT */
-.recruit-section{position:relative;z-index:1;background:var(--dark2)}
-.class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:11px;margin-bottom:24px}
-.class-card{background:rgba(12,8,20,0.8);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:15px 17px;display:flex;align-items:center;gap:13px;transition:all 0.3s}
-.class-card:hover{transform:translateY(-3px)}
-.class-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;box-shadow:0 0 7px currentColor}
-.class-info{flex:1}
-.class-name{font-family:'Cinzel',serif;font-size:0.8rem;letter-spacing:1px;font-weight:700;text-transform:uppercase}
-.class-spec{font-size:0.76rem;color:var(--text-dim);margin-top:1px}
-.class-prio{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:2px;padding:3px 9px;border-radius:20px;text-transform:uppercase;border:1px solid;white-space:nowrap}
-.prio-high{color:var(--fire);border-color:rgba(244,140,6,0.38);background:rgba(244,140,6,0.09)}
-.prio-med{color:#b8a0d0;border-color:rgba(184,160,208,0.28);background:rgba(184,160,208,0.05)}
-.prio-closed{color:#3a3050;border-color:rgba(50,40,60,0.4);background:rgba(30,20,40,0.04)}
-.recruit-note{text-align:center;background:rgba(61,255,110,0.04);border:1px solid rgba(61,255,110,0.13);border-radius:10px;padding:16px 26px;font-style:italic;color:var(--text-dim);font-size:1rem}
-.recruit-note strong{color:var(--fel)}
+.binfo{padding:8px 10px 10px;background:rgba(0,0,0,.45)}
+.bname{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.5px;text-transform:uppercase;line-height:1.3;color:var(--text);display:block;margin-bottom:3px}
+.bstat{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:1px;display:block}
+.boss-card.killed .bstat{color:var(--fel)}
+.boss-card.locked .bname{color:#252035}
+.boss-card.locked .bstat{color:#1e1730}
 
-/* APPLY */
-.apply-section{position:relative;z-index:1;background:var(--dark1)}
-.apply-inner{max-width:720px;margin:0 auto;text-align:center}
-.apply-card{background:rgba(12,8,20,0.9);border:1px solid rgba(244,140,6,0.18);border-radius:16px;padding:46px 38px;position:relative;overflow:hidden;box-shadow:0 0 60px rgba(244,140,6,0.05)}
-.apply-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--fire),var(--fel),transparent)}
-.apply-title{font-family:'Cinzel',serif;font-size:1.9rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;color:var(--fire-bright);text-shadow:0 0 20px var(--fire)}
-.apply-desc{color:var(--text-dim);font-style:italic;font-size:1.02rem;line-height:1.7;margin-bottom:30px}
-.apply-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
-.officer-grid{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:30px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.04)}
-.officer-card{text-align:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:17px 22px}
-.officer-icon{font-size:1.7rem;color:var(--gold);margin-bottom:7px;display:block;filter:drop-shadow(0 0 6px var(--gold))}
-.officer-name{font-family:'Cinzel',serif;font-size:0.95rem;font-weight:700;letter-spacing:2px;color:var(--gold-bright)}
-.officer-role{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:2px;color:var(--text-dim);margin-top:4px;text-transform:uppercase}
-.officer-btag{font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:var(--text-dim);margin-top:5px}
+/* Phase locked block */
+.phase-hdr{display:flex;align-items:center;gap:13px;margin-bottom:9px;flex-wrap:wrap;opacity:.35}
+.phase-hdr .tname{color:#1e1530}
+.phase-hdr .tfrac{color:#170f28}
+.phase-note{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:#201840;margin-bottom:13px;display:flex;align-items:center;gap:8px}
 
-/* FOOTER */
-footer{background:var(--dark0);border-top:1px solid rgba(244,140,6,0.18);padding:30px 24px;text-align:center;position:relative;z-index:1}
-.footer-logo{font-family:'Cinzel',serif;font-size:1.25rem;letter-spacing:6px;font-weight:900;color:var(--fire-bright);text-shadow:0 0 15px var(--fire);margin-bottom:7px}
-.footer-sub{font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;margin-bottom:13px}
-.footer-copy{font-size:0.76rem;color:#1e1630}
-.particles-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
-.particle{position:absolute;border-radius:50%;animation:floatP linear infinite;opacity:0}
-@keyframes floatP{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:0.5}100%{transform:translateY(-80px) scale(1);opacity:0}}
+/* ── ABOUT ── */
+.about-sec{position:relative;z-index:1;background:var(--d1)}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.at p{font-size:1.02rem;line-height:1.82;color:var(--text);margin-bottom:16px}
+.callout{border-left:3px solid var(--fire);padding:13px 20px;background:rgba(244,140,6,.05);border-radius:0 8px 8px 0;font-style:italic;color:var(--fire-b);font-size:1.05rem;margin:20px 0}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pc{background:rgba(8,5,16,.9);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:20px 16px;transition:all .3s;position:relative;overflow:hidden}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--fire),transparent);opacity:0;transition:opacity .3s}
+.pc:hover{border-color:rgba(244,140,6,.3);transform:translateY(-4px)}
+.pc:hover::before{opacity:1}
+.pc-icon{font-size:1.6rem;margin-bottom:9px;display:block}
+.pc-title{font-family:'Cinzel',serif;font-size:.74rem;letter-spacing:2px;text-transform:uppercase;color:var(--fire-b);margin-bottom:5px}
+.pc-body{font-size:.85rem;color:var(--dim);line-height:1.5}
 
-/* RESPONSIVE */
-@media(max-width:900px){.about-grid,.schedule-grid,.loot-grid{grid-template-columns:1fr}.countdown-inner{justify-content:center}.cd-status{align-items:center}}
-@media(max-width:660px){.pillars{grid-template-columns:1fr}.hero-title{font-size:2.8rem}.clock-num{font-size:1.5rem}.clock-unit{min-width:58px;padding:8px 11px}nav .nav-hide{display:none}.ticker-label{display:none}.ticker-track{padding-left:16px}.apply-card{padding:30px 18px}}
+/* ── SCHEDULE ── */
+.sched-sec{position:relative;z-index:1;background:var(--d2)}
+.sg{display:grid;grid-template-columns:2fr 1fr;gap:36px;align-items:start}
+.rdays{display:flex;flex-direction:column;gap:9px}
+.rday{display:flex;align-items:flex-start;gap:16px;background:rgba(8,5,16,.8);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:14px 18px;transition:all .3s;position:relative;overflow:hidden}
+.rday::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;border-radius:3px 0 0 3px;transition:background .3s}
+.rday.main{border-color:rgba(244,140,6,.25);background:rgba(244,140,6,.04)}
+.rday.main::after{background:linear-gradient(180deg,var(--fire),rgba(244,140,6,.3))}
+.rday:hover{transform:translateX(5px);border-color:rgba(244,140,6,.45)}
+.rday-name{font-family:'Cinzel',serif;font-size:.9rem;font-weight:700;letter-spacing:2px;min-width:80px;color:var(--fire-b)}
+.rday-details{flex:1}
+.rday-time{font-family:'Share Tech Mono',monospace;font-size:.78rem;color:var(--text)}
+.rday-tz{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.5px;color:rgba(154,139,181,.5);margin-top:3px;line-height:1.65}
+.rday-type{margin-left:auto;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:2px;text-transform:uppercase;padding:3px 9px;border-radius:20px;white-space:nowrap;align-self:flex-start}
+.rdt-core{background:rgba(244,140,6,.13);color:var(--fire);border:1px solid rgba(244,140,6,.26)}
+.rdt-opt{background:rgba(61,255,110,.07);color:var(--fel);border:1px solid rgba(61,255,110,.16)}
+.si{display:flex;flex-direction:column;gap:10px}
+.ic{background:rgba(8,5,16,.8);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:15px;transition:border-color .3s}
+.ic:hover{border-color:rgba(244,140,6,.2)}
+.ic-t{font-family:'Cinzel',serif;font-size:.63rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+.ic-v{font-size:.9rem;color:var(--text);line-height:1.5}
+
+/* ── LOOT ── */
+.loot-sec{position:relative;z-index:1;background:var(--d1)}
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.loot-main{font-size:1rem;line-height:1.82;color:var(--text);margin-bottom:20px}
+.lsteps{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.lstep{display:flex;align-items:flex-start;gap:12px;background:rgba(8,5,16,.7);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:12px 15px;transition:all .3s}
+.lstep:hover{border-color:rgba(244,140,6,.22);background:rgba(244,140,6,.03)}
+.lsnum{font-family:'Cinzel',serif;font-size:1.15rem;font-weight:900;color:var(--fire);min-width:26px;line-height:1}
+.lsbody{font-size:.88rem;line-height:1.5;color:var(--text)}
+.lsbody strong{color:var(--fire-b)}
+.res-block{background:rgba(8,5,16,.95);border:1px solid rgba(200,168,75,.16);border-radius:12px;padding:20px;position:relative;overflow:hidden}
+.res-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.res-title{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05)}
+.res-items{display:flex;flex-direction:column;gap:10px}
+.ri{display:flex;align-items:center;gap:10px;font-size:.86rem;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border:1px solid rgba(255,255,255,.04);transition:all .3s}
+.ri:hover{border-color:rgba(200,168,75,.2);background:rgba(200,168,75,.03)}
+.ri-icon{font-size:1.05rem;flex-shrink:0}
+.ri-name{color:var(--gb);flex:1}
+.ri-sub{font-size:.74rem;color:var(--dim);display:block;margin-top:1px}
+.ri-rule{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:1px;color:var(--dim);padding:2px 7px;border-radius:10px;border:1px solid rgba(255,255,255,.08);white-space:nowrap}
+.sr-box{background:rgba(61,255,110,.04);border:1px solid rgba(61,255,110,.13);border-radius:8px;padding:12px 15px;margin-top:18px;display:flex;align-items:center;gap:11px}
+.sr-box i{color:var(--fel);font-size:1rem}
+.sr-box p{font-size:.87rem;color:var(--dim)}
+.sr-box strong{color:var(--fel)}
+
+/* ── RECRUITMENT ── */
+.rec-sec{position:relative;z-index:1;background:var(--d2)}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:11px;margin-bottom:22px}
+.ccard{background:rgba(8,5,16,.8);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:13px 15px;display:flex;align-items:center;gap:12px;transition:all .3s;position:relative;overflow:hidden}
+.ccard::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px}
+.ccard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.cdot{width:10px;height:10px;border-radius:50%;flex-shrink:0;box-shadow:0 0 7px currentColor}
+.ci{flex:1}
+.cn{font-family:'Cinzel',serif;font-size:.77rem;letter-spacing:1px;font-weight:700;text-transform:uppercase}
+.cs{font-size:.73rem;color:var(--dim);margin-top:1px}
+.cprio{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:2px;padding:2px 8px;border-radius:20px;text-transform:uppercase;border:1px solid;white-space:nowrap}
+.ph{color:var(--fire);border-color:rgba(244,140,6,.35);background:rgba(244,140,6,.09)}
+.pm{color:#b8a0d0;border-color:rgba(184,160,208,.25);background:rgba(184,160,208,.05)}
+.pc2{color:#352845;border-color:rgba(50,38,60,.35);background:transparent}
+.rnote{text-align:center;background:rgba(61,255,110,.04);border:1px solid rgba(61,255,110,.11);border-radius:10px;padding:14px 22px;font-style:italic;color:var(--dim);font-size:.95rem}
+.rnote strong{color:var(--fel)}
+
+/* ── CONTACT ── */
+.contact-sec{position:relative;z-index:1;background:var(--d0)}
+.ccgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:34px}
+.cct{background:rgba(8,5,16,.9);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:30px 24px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.cct::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transition:opacity .3s}
+.cct.disc::before{background:linear-gradient(90deg,transparent,#5865F2,transparent)}
+.cct.mail::before{background:linear-gradient(90deg,transparent,var(--fire),transparent)}
+.cct.logs::before{background:linear-gradient(90deg,transparent,var(--fel),transparent)}
+.cct:hover{transform:translateY(-6px)}
+.cct.disc:hover{border-color:rgba(88,101,242,.3);box-shadow:0 16px 48px rgba(88,101,242,.1)}
+.cct.mail:hover{border-color:rgba(244,140,6,.3);box-shadow:0 16px 48px rgba(244,140,6,.08)}
+.cct.logs:hover{border-color:rgba(61,255,110,.25);box-shadow:0 16px 48px rgba(61,255,110,.07)}
+.cc-ic{font-size:2.3rem;margin-bottom:13px;display:block}
+.cc-ic.di{color:#7289da;filter:drop-shadow(0 0 12px #5865F2)}
+.cc-ic.mi{color:var(--fire);filter:drop-shadow(0 0 12px var(--fire))}
+.cc-ic.li{color:var(--fel);filter:drop-shadow(0 0 12px var(--fel))}
+.cc-title{font-family:'Cinzel',serif;font-size:.98rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.cc-desc{font-size:.88rem;color:var(--dim);line-height:1.65;margin-bottom:20px}
+.cc-detail{font-family:'Share Tech Mono',monospace;font-size:.66rem;letter-spacing:.5px;color:var(--dim);margin-top:14px}
+.orow{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;padding-top:28px;border-top:1px solid rgba(255,255,255,.04)}
+.oc{text-align:center;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:15px 20px;transition:all .3s}
+.oc:hover{border-color:rgba(200,168,75,.25);transform:translateY(-3px)}
+.oi{font-size:1.6rem;color:var(--gold);margin-bottom:7px;display:block;filter:drop-shadow(0 0 6px var(--gold))}
+.on{font-family:'Cinzel',serif;font-size:.88rem;font-weight:700;letter-spacing:2px;color:var(--gb)}
+.or{font-family:'Share Tech Mono',monospace;font-size:.54rem;letter-spacing:2px;color:var(--dim);margin-top:3px;text-transform:uppercase}
+.ob{font-family:'Share Tech Mono',monospace;font-size:.64rem;color:var(--dim);margin-top:4px}
+
+/* ── FOOTER ── */
+footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.15);padding:26px 24px;text-align:center;position:relative;z-index:1}
+.flogo{font-family:'Cinzel',serif;font-size:1.15rem;letter-spacing:6px;font-weight:900;color:var(--fire-b);text-shadow:0 0 14px var(--fire);margin-bottom:6px}
+.fsub{font-family:'Share Tech Mono',monospace;font-size:.56rem;letter-spacing:3px;color:var(--dim);text-transform:uppercase;margin-bottom:10px}
+.fcopy{font-size:.72rem;color:#14102a}
+.hbtn{cursor:pointer;transition:all .2s;display:inline-block}
+.hbtn:hover{color:var(--blood)!important;text-shadow:0 0 12px var(--blood)}
+
+/* ── PARTICLES ── */
+.pcwrap{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.ptcl{position:absolute;border-radius:50%;animation:fpup linear infinite;opacity:0}
+@keyframes fpup{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.4}100%{transform:translateY(-60px) scale(1);opacity:0}}
+
+/* ── LEEROY ── */
+#leeroy{position:fixed;top:48%;transform:translateY(-50%);left:-300px;z-index:9998;font-size:2.2rem;white-space:nowrap;font-family:'Cinzel',serif;pointer-events:none;opacity:0;display:none}
+#leeroy.go{display:block;opacity:1;animation:lcharge 2.8s linear forwards}
+@keyframes lcharge{0%{left:-300px}100%{left:calc(100vw + 300px)}}
+#leeroy-cry{position:fixed;top:43%;left:50%;transform:translate(-50%,-50%);z-index:9999;font-family:'Cinzel',serif;font-size:clamp(1.4rem,4vw,2.4rem);font-weight:900;color:var(--fire-b);text-shadow:0 0 30px var(--fire);letter-spacing:3px;text-align:center;opacity:0;pointer-events:none;display:none}
+#leeroy-cry.go{display:block;animation:lcry 2.8s ease forwards}
+@keyframes lcry{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}12%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.9)}}
+
+/* ── ACHIEVEMENT TOAST ── */
+.ach{position:fixed;bottom:80px;right:-340px;z-index:9990;background:rgba(8,5,14,.97);border:1px solid var(--gold);border-radius:10px;padding:13px 17px;display:flex;align-items:center;gap:13px;transition:right .5s cubic-bezier(.25,1,.5,1);max-width:310px;box-shadow:0 0 30px rgba(200,168,75,.15)}
+.ach.show{right:20px}
+.ach-ic{font-size:1.7rem;flex-shrink:0}
+.ach-lbl{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.ach-nm{font-family:'Cinzel',serif;font-size:.82rem;font-weight:700;color:var(--gb);letter-spacing:1px}
+.ach-ds{font-size:.76rem;color:var(--dim);margin-top:2px}
+
+/* ── MURLOC ── */
+#murloc{position:fixed;bottom:20px;right:20px;z-index:990;cursor:pointer;font-size:1.75rem;opacity:0;transform:translateX(50px);transition:all .4s;user-select:none}
+#murloc:hover{transform:translateX(0) scale(1.25) rotate(-8deg)!important}
+#murloc.vis{opacity:1;transform:translateX(0)}
+.mbubble{position:fixed;bottom:64px;right:20px;z-index:990;background:rgba(8,5,14,.95);border:1px solid var(--fel);border-radius:8px;padding:7px 13px;font-family:'Share Tech Mono',monospace;font-size:.66rem;color:var(--fel);opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
+.mbubble.show{opacity:1}
+
+/* ── MODALS ── */
+.modal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.9);opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
+.modal.open{opacity:1;pointer-events:all}
+.mbox{background:rgba(8,5,16,.98);border:2px solid var(--fire);border-radius:16px;padding:44px 48px;text-align:center;max-width:500px;width:90%;position:relative;transform:scale(.85);transition:transform .3s;box-shadow:0 0 60px rgba(244,140,6,.15)}
+.modal.open .mbox{transform:scale(1)}
+.mbox.nether-box{border-color:var(--nether);box-shadow:0 0 60px rgba(123,47,255,.2)}
+.mtitle{font-family:'Cinzel',serif;font-size:1.85rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;color:var(--fire-b);text-shadow:0 0 25px var(--fire),0 0 50px rgba(244,140,6,.3);margin-bottom:10px}
+.msub{font-size:1rem;color:var(--dim);font-style:italic;margin-bottom:20px}
+.mclose{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:3px;background:rgba(244,140,6,.14);border:1px solid var(--fire);color:var(--fire);padding:8px 20px;border-radius:4px;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.mclose:hover{background:rgba(244,140,6,.28)}
+.memoji{font-size:3.2rem;display:block;margin-bottom:14px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:920px){.ag,.sg,.lg,.ccgrid{grid-template-columns:1fr}.sbar-inner{grid-template-columns:1fr 1fr}.sb-mid{display:none}.pillars{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.pillars{grid-template-columns:1fr}.h-title{font-size:2.7rem}nav .nh{display:none}.ccgrid{grid-template-columns:1fr}.tlbl{display:none}.ttrack{padding-left:10px}}
 </style>
 </head>
 <body>
 
 <canvas id="starfield"></canvas>
-<div class="particles-container" id="particles"></div>
+<div class="pcwrap" id="pcwrap"></div>
+
+<!-- LEEROY -->
+<div id="leeroy">🐔 LEEEEEEROY JENKINSSS!!!</div>
+<div id="leeroy-cry">LEEEEEEROY<br>JENKINS!!!</div>
+
+<!-- ACHIEVEMENT -->
+<div class="ach" id="ach">
+  <span class="ach-ic" id="achIc">🏆</span>
+  <div><div class="ach-lbl">Achievement Unlocked</div><div class="ach-nm" id="achNm">—</div><div class="ach-ds" id="achDs">—</div></div>
+</div>
+
+<!-- MURLOC -->
+<div id="murloc" title="Mrgl?">🐡</div>
+<div class="mbubble" id="mbub">Mrgl mrgl mrgl!</div>
+
+<!-- ILLIDAN MODAL -->
+<div class="modal" id="mIllidan">
+  <div class="mbox nether-box">
+    <span class="memoji">😈</span>
+    <div class="mtitle" style="color:#9f6aff;text-shadow:0 0 25px var(--nether)">You Are Not<br>Prepared!</div>
+    <p class="msub">Illidan Stormrage — Black Temple · Phase 3</p>
+    <p style="color:var(--dim);font-size:.9rem;margin-bottom:22px;line-height:1.7">"You are not prepared for what awaits you in the Black Temple."<br><em>— Illidan Stormrage</em></p>
+    <button class="mclose" onclick="closeM('mIllidan')">Retreat to Safety</button>
+  </div>
+</div>
+
+<!-- CUBE MODAL -->
+<div class="modal" id="mCube">
+  <div class="mbox">
+    <span class="memoji">🧊</span>
+    <div class="mtitle">Click The Cubes!</div>
+    <p class="msub">Magtheridon's Lair · The Banishing Ritual</p>
+    <div id="cubeRow" style="display:flex;gap:13px;justify-content:center;margin:18px 0;flex-wrap:wrap"></div>
+    <p id="cubeMsg" style="font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:2px;color:var(--dim);margin-bottom:18px">Click all 5 cubes simultaneously — coordinate your clicks!</p>
+    <button class="mclose" id="cubeDone" style="display:none" onclick="closeM('mCube')">Magtheridon Defeated! 🎉</button>
+  </div>
+</div>
 
 <!-- HEADER -->
 <header>
   <div class="nav-inner">
-    <div class="logo">
+    <a class="logo" id="logoEl" href="#">
       <span class="logo-name">Eradication</span>
       <span class="logo-sub">⚡ US-Nightslayer · Horde · TBC Phase 1 ⚡</span>
-    </div>
-    <nav>
-      <ul>
-        <li class="nav-hide"><a href="#progression">Progression</a></li>
-        <li class="nav-hide"><a href="#about">About</a></li>
-        <li class="nav-hide"><a href="#schedule">Raids</a></li>
-        <li class="nav-hide"><a href="#loot">Loot</a></li>
-        <li class="nav-hide"><a href="#recruitment">Recruitment</a></li>
-        <li><a href="#apply" class="nav-cta">Apply Now</a></li>
-      </ul>
-    </nav>
+    </a>
+    <nav><ul>
+      <li class="nh"><a href="#progression">Progression</a></li>
+      <li class="nh"><a href="#about">About</a></li>
+      <li class="nh"><a href="#schedule">Raids</a></li>
+      <li class="nh"><a href="#loot">Loot</a></li>
+      <li class="nh"><a href="#recruitment">Recruitment</a></li>
+      <li class="nh"><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="ncta">Apply Now</a></li>
+    </ul></nav>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="home">
   <div class="hero-bg"></div>
-  <div class="hero-portal"></div>
-  <div class="hero-ring"></div>
-  <div class="hero-ring2"></div>
+  <div class="hex-bg"></div>
+  <div class="portal"></div>
+  <div class="ring r1"></div>
+  <div class="ring r2"></div>
+  <div class="ring r3"></div>
   <div class="container">
-    <p class="hero-eyebrow">US-Nightslayer &nbsp;·&nbsp; Horde &nbsp;·&nbsp; The Burning Crusade &nbsp;·&nbsp; Phase 1</p>
-    <h1 class="hero-title">
-      <span class="line1">Eradication</span>
-      <span class="line2">Through the Dark Portal</span>
+    <p class="h-eye">US-Nightslayer &nbsp;·&nbsp; Horde &nbsp;·&nbsp; The Burning Crusade &nbsp;·&nbsp; Phase 1</p>
+    <h1 class="h-title">
+      <span class="l1">Eradication</span>
+      <span class="l2">Through the Dark Portal</span>
     </h1>
-    <p class="hero-desc">A semi-hardcore Horde guild conquering the fires of Outland.<br>Efficient progression. Mature atmosphere. Lethal execution.</p>
-    <div class="hero-buttons">
-      <a href="#apply" class="btn btn-fire"><i class="fas fa-dragon"></i> Apply Now</a>
-      <a href="#progression" class="btn btn-outline-fire">View Progression</a>
+    <p class="h-desc">A semi-hardcore Horde guild forged in Classic, conquering Outland's fires.<br>Efficient progression. Mature atmosphere. Lethal execution.</p>
+    <div class="h-btns">
+      <a href="#contact" class="btn btn-fire"><i class="fab fa-discord"></i> Apply Now</a>
+      <a href="#progression" class="btn btn-of">View Progression</a>
       <a href="#recruitment" class="btn btn-fel"><i class="fas fa-users"></i> Recruitment</a>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-num" data-count="9">0</div><div class="hero-stat-label">Bosses Slain</div></div>
-      <div class="stat-dot">·</div>
-      <div class="hero-stat"><div class="hero-stat-num" data-count="2">0</div><div class="hero-stat-label">Raid Nights/Wk</div></div>
-      <div class="stat-dot">·</div>
-      <div class="hero-stat"><div class="hero-stat-num" data-count="25">0</div><div class="hero-stat-label">Core Raiders</div></div>
-      <div class="stat-dot">·</div>
-      <div class="hero-stat"><div class="hero-stat-num" data-count="97">0</div><div class="hero-stat-label">Attendance %</div></div>
+    <div class="h-stats">
+      <div class="hstat"><div class="hn" data-count="9">0</div><div class="hl">Bosses Slain</div></div>
+      <div class="sdot">·</div>
+      <div class="hstat"><div class="hn" data-count="2">0</div><div class="hl">Raid Nights/Wk</div></div>
+      <div class="sdot">·</div>
+      <div class="hstat"><div class="hn" data-count="25">0</div><div class="hl">Core Raiders</div></div>
+      <div class="sdot">·</div>
+      <div class="hstat"><div class="hn" data-count="97">0</div><div class="hl">Attendance %</div></div>
     </div>
   </div>
 </section>
 
-<!-- COUNTDOWN -->
-<div class="countdown-bar">
-  <div class="countdown-inner">
-    <div class="countdown-label">
-      <span class="cd-eyebrow">Next Core Raid</span>
-      <span class="cd-main">⚔ 25-Man — Karazhan / Gruul / Mag</span>
-      <span class="cd-sub" id="raidDateLabel">Loading…</span>
+<!-- STATUS BAR -->
+<div class="sbar z1">
+  <div class="sbar-inner">
+    <div class="sb">
+      <span class="sb-eye">Next Core Raid</span>
+      <span class="sb-main">⚔ 25-Man · Kara / Gruul / Mag</span>
+      <span class="sb-clk" id="raidClk">--:--:--</span>
+      <span class="sb-note" id="raidDate">Loading…</span>
+      <span class="sb-tz">9:00 PM EST · 8:00 PM CST · 7:00 PM MST · 2:00 AM GMT · 1:00 PM AEST+1</span>
     </div>
-    <div class="countdown-clock">
-      <div class="clock-unit" id="cu-d"><span class="clock-num" id="cd-d">00</span><span class="clock-label">Days</span></div>
-      <span class="clock-sep">:</span>
-      <div class="clock-unit" id="cu-h"><span class="clock-num" id="cd-h">00</span><span class="clock-label">Hours</span></div>
-      <span class="clock-sep">:</span>
-      <div class="clock-unit" id="cu-m"><span class="clock-num" id="cd-m">00</span><span class="clock-label">Mins</span></div>
-      <span class="clock-sep">:</span>
-      <div class="clock-unit" id="cu-s"><span class="clock-num" id="cd-s">00</span><span class="clock-label">Secs</span></div>
+    <div class="sb-mid">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="display:flex;align-items:center;gap:7px"><div class="dot-live"></div><span style="font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:2px;color:var(--dim);text-transform:uppercase">Server Online</span></div>
+        <div style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;color:rgba(154,139,181,.4);text-transform:uppercase">US-Nightslayer</div>
+      </div>
     </div>
-    <div class="cd-status">
-      <div class="status-row"><div class="status-dot"></div><span class="status-text">Live Tracker</span></div>
-      <div class="status-date">Tuesday · 6:00 PM PST · US-Nightslayer</div>
+    <div class="sb sb-right" style="text-align:right;align-items:flex-end">
+      <span class="sb-eye">Daily Heroic Reset</span>
+      <span class="sb-main">🏰 Heroics &amp; Daily Quests</span>
+      <span class="sb-clk" id="heroicClk">--:--:--</span>
+      <span class="sb-note" id="heroicDate">Resets daily · 3:00 AM PST</span>
+      <span class="sb-tz">6:00 AM EST · 5:00 AM CST · 4:00 AM MST · 11:00 AM GMT · 9:00 PM AEST</span>
     </div>
   </div>
 </div>
 
 <!-- TICKER -->
-<div class="ticker-wrap">
-  <span class="ticker-label">📜 Guild Log</span>
-  <div class="ticker-track" id="tickerTrack"></div>
+<div class="ticker">
+  <span class="tlbl">📜 Guild Log</span>
+  <div class="ttrack" id="ttrack"></div>
 </div>
 
 <div class="divider"></div>
 
 <!-- PROGRESSION -->
-<section id="progression" class="progression-section section-pad">
+<section id="progression" class="prog-sec sp">
   <div class="container">
-    <h2 class="section-title fire glow-fire">Raid Progression</h2>
-    <p class="section-sub">Phase 1 is live — T4 content cleared. Future phases awaiting release.</p>
+    <h2 class="stitle fire gf">Raid Progression</h2>
+    <p class="ssub">Phase 1 live — Tier 4 cleared. Future phases sealed behind the Nether.</p>
 
-    <!-- PHASE 1 — ACTIVE -->
+    <!-- T4 ACTIVE -->
     <div class="tier-block">
-      <div class="tier-header">
-        <span class="tier-badge cleared">✓ 9/9 Cleared</span>
-        <span class="tier-name gold">Phase 1 — Tier 4</span>
-        <span class="tier-fraction font-mono">Karazhan · Gruul's Lair · Magtheridon's Lair</span>
+      <div class="tier-hdr">
+        <span class="tbadge tbc">✓ 9/9 Cleared</span>
+        <span class="tname gold">Phase 1 — Tier 4</span>
+        <span class="tfrac font-mono">Karazhan · Gruul's Lair · Magtheridon's Lair</span>
       </div>
-      <div class="prog-bar"><div class="prog-fill pf-fel" style="width:100%"></div></div>
+      <div class="pbar"><div class="pf pf-fel" style="width:100%"></div></div>
+      <div class="boss-grid" id="t4g">
+
+        <div class="boss-card killed" id="bAttumen">
+          <div class="bport">
+            <div class="bport-bg" style="background:linear-gradient(135deg,#3d1a60 0%,#1a0835 40%,#060212 100%)"></div>
+            <div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(140,60,255,.6) 0%,transparent 70%)"></div>
+            <div class="bport-vignette"></div><div class="bport-scan"></div>
+            <span class="bport-emote">🦇</span>
+            <span class="bkill-badge">☠ DEAD</span>
+          </div>
+          <div class="binfo"><span class="bname">Attumen the Huntsman</span><span class="bstat">☠ DEAD</span></div>
+        </div>
+
+        <div class="boss-card killed">
+          <div class="bport">
+            <div class="bport-bg" style="background:linear-gradient(135deg,#1e1040 0%,#0c0620 40%,#030108 100%)"></div>
+            <div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(80,50,160,.5) 0%,transparent 70%)"></div>
+            <div class="bport-vignette"></div><div class="bport-scan"></div>
+            <span class="bport-emote">🕯️</span>
+            <span class="bkill-badge">☠ DEAD</span>
+          </div>
+          <div class="binfo"><span class="bname">Moroes</span><span class="bstat">☠ DEAD</span></div>
+        </div>
+
+        <div class="boss-card killed">
+          <div class="bport">
+            <div class="bport-bg" style="background:linear-gradient(135deg,#3a1045 0%,#180825 40%,#060108 100%)"></div>
+            <div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,186,.5) 0%,transparent 70%)"></div>
+            <div class="bport-vignette"></div><div class="bport-scan"></div>
+            <span class="bport-emote">🎭</span>
+            <span class="bkill-badge">☠ DEAD</span>
+          </div>
+          <div class="binfo"><span class="bname">Maiden of Virtue</span><span class="bstat">☠ DEAD</span></div>
+        </div>
+
+        <div class="boss-card killed">
+          <div class="bport">
+            <div class="bport-bg" style="background:linear-gradient(135deg,#10203a 0%,#06101e 40%,#010408 100%)"></div>
+            <div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(63,199,235,.5) 0%,transparent 70%)"></div>
+            <div class="bport-vignette"></div><div class="bport-scan"></div>
+            <span class="bport-emote">👁️</span>
+            <span class="bkill-badge">☠ DEAD</span>
+          </div>
+          <div class="binfo"><span class="bname">The Curator</span><span class="bstat">☠ DEAD</span></div>
+        </div>
+
+        <div class="boss-card killed">
+          <div class="bport">
+            <div class="bport-bg" style="background:linear-gradient(135deg,#3d1080 0%,#19043a 40%,#060010 100%)"></div>
+            <div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(123,47,255,.65) 0%,transparent 70%)"></div>
+            <div class="bport-vignette"></div><div class="bport-scan"></div>
+            <span class="bport-emote">🌀</span>
+            <span class="bkill-badge">☠ DEAD</span>
+          </div>
+          <div class="binfo"><span class="bname">Shade of Aran</span><span class="bstat">☠ DEAD</span></div>
+        </div>
+
+        <div class="boss-card killed">
+          <div class="bport">
+            <div class="bport-bg" style="background:linear-gradient(135deg,#0f3018 0%,#061408 40%,#010502 100%)"></div>
+            <div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(61,255,110,.4) 0%,transparent 70%)"></div>
+            <div class="bport-vignette"></div><div class="bport-scan"></div>
+            <span class="bport-emote">🐉</span>
+            <span class="bkill-badge">☠ DEAD</span>
+          </div>
+          <div class="binfo"><span class="bname">Netherspite</span><span class="bstat">☠ DEAD</span></div>
+        </div>
+
+        <div class="boss-card killed" id="bPrince">
+          <div class="bport">
+            <div class="bport-bg" style="background:linear-gradient(135deg,#3a0808 0%,#1a0202 40%,#060000 100%)"></div>
+            <div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(220,30,30,.5) 0%,transparent 70%)"></div>
+            <div class="bport-vignette"></div><div class="bport-scan"></div>
+            <span class="bport-emote">⚔️</span>
+            <span class="bkill-badge">☠ DEAD</span>
+          </div>
+          <div class="binfo"><span class="bname">Prince Malchezaar</span><span class="bstat">☠ DEAD</span></div>
+        </div>
+
+        <div class="boss-card killed">
+          <div class="bport">
+            <div class="bport-bg" style="background:linear-gradient(135deg,#3a2010 0%,#1a0e06 40%,#060402 100%)"></div>
+            <div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(200,168,75,.45) 0%,transparent 70%)"></div>
+            <div class="bport-vignette"></div><div class="bport-scan"></div>
+            <span class="bport-emote">🪨</span>
+            <span class="bkill-badge">☠ DEAD</span>
+          </div>
+          <div class="binfo"><span class="bname">Gruul the Dragonkiller</span><span class="bstat">☠ DEAD</span></div>
+        </div>
+
+        <div class="boss-card killed" id="bMag">
+          <div class="bport">
+            <div class="bport-bg" style="background:linear-gradient(135deg,#4a1000 0%,#220800 40%,#0c0200 100%)"></div>
+            <div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,6,.6) 0%,transparent 70%)"></div>
+            <div class="bport-vignette"></div><div class="bport-scan"></div>
+            <span class="bport-emote">👿</span>
+            <span class="bkill-badge">☠ DEAD</span>
+          </div>
+          <div class="binfo"><span class="bname">Magtheridon</span><span class="bstat">☠ DEAD</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- T5 LOCKED -->
+    <div class="tier-block">
+      <div class="phase-hdr">
+        <span class="tbadge tbl">🔒 Phase 2 — Unreleased</span>
+        <span class="tname">Tier 5 — Serpentshrine Cavern &amp; Tempest Keep</span>
+        <span class="tfrac font-mono">0/10</span>
+      </div>
+      <div class="pbar"><div class="pf pf-lock" style="width:0%"></div></div>
+      <div class="phase-note"><span>⏳</span>Phase 2 not yet released — watch #announcements</div>
       <div class="boss-grid">
-        <div class="boss-card killed"><span class="boss-icon">🦇</span><span class="boss-name">Attumen the Huntsman</span><span class="boss-status font-mono">☠ DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🕯️</span><span class="boss-name">Moroes</span><span class="boss-status font-mono">☠ DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🎭</span><span class="boss-name">Maiden of Virtue</span><span class="boss-status font-mono">☠ DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">👁️</span><span class="boss-name">The Curator</span><span class="boss-status font-mono">☠ DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🌀</span><span class="boss-name">Shade of Aran</span><span class="boss-status font-mono">☠ DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🐉</span><span class="boss-name">Netherspite</span><span class="boss-status font-mono">☠ DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">⚔️</span><span class="boss-name">Prince Malchezaar</span><span class="boss-status font-mono">☠ DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">🪨</span><span class="boss-name">Gruul the Dragonkiller</span><span class="boss-status font-mono">☠ DEAD</span></div>
-        <div class="boss-card killed"><span class="boss-icon">👿</span><span class="boss-name">Magtheridon</span><span class="boss-status font-mono">☠ DEAD</span></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#052a3d,#011018)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(0,112,221,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🌊</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Hydross the Unstable</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#062030,#020a12)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(63,199,235,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🦑</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">The Lurker Below</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#1a1050,#070418)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(135,136,238,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🗡️</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Leotheras the Blind</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#0a2535,#020d14)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(0,112,221,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🦈</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Fathom-Lord Karathress</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#052030,#010810)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(170,211,114,.35) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🐸</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Morogrim Tidewalker</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#1a0a3d,#070114)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,186,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🐍</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Lady Vashj</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#251f10,#0e0b05)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(255,215,112,.35) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🤖</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Void Reaver</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#1e180a,#0a0805)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(200,168,75,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🌟</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">High Astromancer Solarian</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#3a1800,#160900)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(255,124,10,.5) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🔥</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Al'ar</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#3a0800,#160300)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,6,.55) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">💀</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Kael'thas Sunstrider</span><span class="bstat">UNRELEASED</span></div></div>
       </div>
     </div>
 
-    <!-- PHASE 2 — UNRELEASED -->
+    <!-- T6 LOCKED -->
     <div class="tier-block">
-      <div class="tier-header">
-        <span class="tier-badge unreleased">🔒 Unreleased — Phase 2</span>
-        <span class="tier-name" style="color:#2a1e40;">Tier 5 — Serpentshrine Cavern &amp; Tempest Keep</span>
+      <div class="phase-hdr">
+        <span class="tbadge tbl">🔒 Phase 3 — Unreleased</span>
+        <span class="tname">Tier 6 — Black Temple &amp; Hyjal Summit</span>
+        <span class="tfrac font-mono">0/14</span>
       </div>
-      <div class="prog-bar"><div class="prog-fill pf-lock" style="width:0%"></div></div>
-      <div class="phase-lock-block">
-        <div class="unreleased-pill"><span>⏳</span>Phase 2 not yet released — coming soon™</div>
-        <div class="locked-chips">
-          <span class="lchip">Hydross</span><span class="lchip">The Lurker Below</span><span class="lchip">Leotheras</span><span class="lchip">Fathom-Lord Karathress</span><span class="lchip">Morogrim Tidewalker</span><span class="lchip">Lady Vashj</span><span class="lchip">Void Reaver</span><span class="lchip">High Astromancer Solarian</span><span class="lchip">Al'ar</span><span class="lchip">Kael'thas Sunstrider</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- PHASE 3 — UNRELEASED -->
-    <div class="tier-block">
-      <div class="tier-header">
-        <span class="tier-badge unreleased">🔒 Unreleased — Phase 3</span>
-        <span class="tier-name" style="color:#2a1e40;">Tier 6 — Black Temple &amp; Hyjal Summit</span>
-      </div>
-      <div class="prog-bar"><div class="prog-fill pf-lock" style="width:0%"></div></div>
-      <div class="phase-lock-block">
-        <div class="unreleased-pill"><span>⏳</span>Phase 3 not yet released</div>
-        <div class="locked-chips">
-          <span class="lchip">Rage Winterchill</span><span class="lchip">Anetheron</span><span class="lchip">Kaz'rogal</span><span class="lchip">Azgalor</span><span class="lchip">Archimonde</span><span class="lchip">Naj'entus</span><span class="lchip">Supremus</span><span class="lchip">Shade of Akama</span><span class="lchip">Teron Gorefiend</span><span class="lchip">Gurtogg Bloodboil</span><span class="lchip">Reliquary of Souls</span><span class="lchip">Mother Shahraz</span><span class="lchip">Illidari Council</span><span class="lchip">Illidan Stormrage</span>
-        </div>
+      <div class="pbar"><div class="pf pf-lock" style="width:0%"></div></div>
+      <div class="phase-note"><span>⏳</span>Phase 3 not yet released</div>
+      <div class="boss-grid">
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#101830,#050810)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(200,168,75,.35) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">❄️</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Rage Winterchill</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#1a1205,#080602)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,6,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🧟</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Anetheron</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#200810,#0c030a)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(135,136,238,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🦁</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Kaz'rogal</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#1e1008,#0a0703)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(204,34,34,.45) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🐺</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Azgalor</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#2a0a00,#0e0400)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(244,100,6,.5) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🌋</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Archimonde</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#0a0a20,#020208)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(123,47,255,.5) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🕷️</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">High Warlord Naj'entus</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#0a1505,#030802)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(61,255,110,.35) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🦂</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Supremus</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#150a2a,#060210)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(135,136,238,.45) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">👤</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Shade of Akama</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#2a0005,#0e0002)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,186,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">☠️</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Teron Gorefiend</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#200800,#0c0400)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(204,34,34,.5) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🩸</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Gurtogg Bloodboil</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#05101a,#020608)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(63,199,235,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">💧</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Reliquary of Souls</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#200510,#0a0206)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,186,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🕊️</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Mother Shahraz</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#180520,#08020a)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(123,47,255,.5) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">👥</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Illidari Council</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked" id="bIllidan"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#200535,#0a011a)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(160,108,255,.6) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">😈</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Illidan Stormrage</span><span class="bstat">UNRELEASED</span></div></div>
       </div>
     </div>
 
-    <!-- PHASE 5 — UNRELEASED -->
+    <!-- SUNWELL LOCKED -->
     <div class="tier-block" style="margin-bottom:0">
-      <div class="tier-header">
-        <span class="tier-badge unreleased">🔒 Unreleased — Phase 5</span>
-        <span class="tier-name" style="color:#2a1e40;">Sunwell Plateau</span>
+      <div class="phase-hdr">
+        <span class="tbadge tbl">🔒 Phase 5 — Unreleased</span>
+        <span class="tname">Sunwell Plateau</span>
+        <span class="tfrac font-mono">0/6</span>
       </div>
-      <div class="prog-bar"><div class="prog-fill pf-lock" style="width:0%"></div></div>
-      <div class="phase-lock-block">
-        <div class="unreleased-pill"><span>⏳</span>The final challenge of TBC — Kil'jaeden awaits</div>
-        <div class="locked-chips">
-          <span class="lchip">Kalecgos</span><span class="lchip">Brutallus</span><span class="lchip">Felmyst</span><span class="lchip">Eredar Twins</span><span class="lchip">M'uru</span><span class="lchip">Kil'jaeden</span>
-        </div>
+      <div class="pbar"><div class="pf pf-lock" style="width:0%"></div></div>
+      <div class="phase-note"><span>⏳</span>The final reckoning — Kil'jaeden awaits</div>
+      <div class="boss-grid">
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#1a1505,#080702)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(255,215,112,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🐲</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Kalecgos</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#280808,#110404)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(204,34,34,.55) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">💪</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Brutallus</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#0a1a05,#030a02)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(61,255,110,.4) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">🧚</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Felmyst</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#200a25,#0a030e)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,186,.45) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">👭</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Eredar Twins</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#05051e,#020208)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(135,136,238,.5) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">✨</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">M'uru</span><span class="bstat">UNRELEASED</span></div></div>
+        <div class="boss-card locked"><div class="bport"><div class="bport-bg" style="background:linear-gradient(135deg,#2a1500,#0e0800)"></div><div class="bport-glow" style="background:radial-gradient(ellipse at center,rgba(255,215,112,.5) 0%,transparent 70%)"></div><div class="bport-vignette"></div><span class="bport-emote">👹</span><div class="bport-overlay-lock"><i class="fas fa-lock"></i></div></div><div class="binfo"><span class="bname">Kil'jaeden</span><span class="bstat">UNRELEASED</span></div></div>
       </div>
     </div>
+
   </div>
 </section>
 
-<div class="glow-sep"></div>
+<div class="gsep"></div>
 
 <!-- ABOUT -->
-<section id="about" class="about-section section-pad">
+<section id="about" class="about-sec sp">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-text">
-        <h2 class="section-title fire glow-fire">About Us</h2>
-        <p class="section-sub">Who we are, how we operate</p>
-        <p><span class="fire">Eradication</span> is a community of seasoned players on Nightslayer (US) dedicated to conquering TBC content with precision and intent. We're semi-hardcore — adults with lives, careers, and families — but when raid frames go up, we lock in completely.</p>
+    <div class="ag">
+      <div class="at">
+        <h2 class="stitle fire gf">About Us</h2>
+        <p class="ssub">Who we are, how we operate</p>
+        <p><span class="fire">Eradication</span> is a community of seasoned players on Nightslayer (US) built to push TBC content with intent and efficiency. We're semi-hardcore — adults with lives, careers, and families — but when the raid frames go up, we lock in completely.</p>
         <div class="callout">"Joke between pulls. Lock in when it counts."</div>
-        <p>Our focus is efficient progression without the toxic culture that kills guilds. We demand preparation, accountability, and a willingness to improve — and we give the same in return. Guild formed during Classic with veteran leadership and proven TBC credentials.</p>
+        <p>Our focus is clean, efficient progression without the toxic culture that destroys guilds. We demand preparation, accountability, and a drive to improve — and we give the same in return. Forged in Classic, battle-tested, and here for every phase of TBC.</p>
       </div>
       <div class="pillars">
-        <div class="pillar-card"><span class="pillar-icon">⚔️</span><div class="pillar-title">Progression First</div><div class="pillar-body">Smart pulls, fast resets, consistent improvement. We log in to kill bosses.</div></div>
-        <div class="pillar-card"><span class="pillar-icon">🧠</span><div class="pillar-title">Preparation</div><div class="pillar-body">Show up consumable-ready, enchanted, and knowing the fight. No hand-holding.</div></div>
-        <div class="pillar-card"><span class="pillar-icon">🤝</span><div class="pillar-title">Low Drama</div><div class="pillar-body">Zero tolerance for toxicity. Strong community with a mature culture.</div></div>
-        <div class="pillar-card"><span class="pillar-icon">📈</span><div class="pillar-title">Growth Mindset</div><div class="pillar-body">Take feedback, review logs, improve. Team wins are everyone's wins.</div></div>
-        <div class="pillar-card"><span class="pillar-icon">👑</span><div class="pillar-title">Veteran Leadership</div><div class="pillar-body">Officers with real TBC experience and a bias toward clear, direct communication.</div></div>
-        <div class="pillar-card"><span class="pillar-icon">🏆</span><div class="pillar-title">Long Haul</div><div class="pillar-body">Building for all of TBC — every phase, every tier. Not a flash-in-the-pan roster.</div></div>
+        <div class="pc"><span class="pc-icon">⚔️</span><div class="pc-title">Progression First</div><div class="pc-body">Smart pulls, fast resets, relentless improvement. We log in to kill bosses.</div></div>
+        <div class="pc"><span class="pc-icon">🧠</span><div class="pc-title">Preparation</div><div class="pc-body">Consumable-ready, enchanted, fight knowledge locked. No hand-holding on pull.</div></div>
+        <div class="pc"><span class="pc-icon">🤝</span><div class="pc-title">Low Drama</div><div class="pc-body">Zero tolerance for toxicity. Strong community, mature culture — always.</div></div>
+        <div class="pc"><span class="pc-icon">📈</span><div class="pc-title">Growth Mindset</div><div class="pc-body">Parse reviews, coaching, continuous improvement. Team growth is personal growth.</div></div>
+        <div class="pc"><span class="pc-icon">👑</span><div class="pc-title">Veteran Officers</div><div class="pc-body">Leadership with real TBC experience and a bias toward clear communication.</div></div>
+        <div class="pc"><span class="pc-icon">🏆</span><div class="pc-title">Long Haul</div><div class="pc-body">We're here for every phase — T4 through Sunwell and beyond.</div></div>
       </div>
     </div>
   </div>
@@ -426,53 +669,83 @@ footer{background:var(--dark0);border-top:1px solid rgba(244,140,6,0.18);padding
 <div class="divider"></div>
 
 <!-- SCHEDULE -->
-<section id="schedule" class="schedule-section section-pad">
+<section id="schedule" class="sched-sec sp">
   <div class="container">
-    <h2 class="section-title fire glow-fire">Raid Schedule</h2>
-    <p class="section-sub">All times Pacific — US-Nightslayer (PST server time)</p>
-    <div class="schedule-grid">
-      <div class="raid-days">
-        <div class="raid-day main-day"><div><div class="day-name">Tuesday</div><div class="day-time font-mono">6:00 PM – 9:00 PM PST</div></div><span class="day-type core">25-Man Core</span></div>
-        <div class="raid-day main-day"><div><div class="day-name">Thursday</div><div class="day-time font-mono">6:00 PM – 9:00 PM PST</div></div><span class="day-type core">25-Man Core</span></div>
-        <div class="raid-day"><div><div class="day-name">Saturday</div><div class="day-time font-mono">6:00 PM – 9:00 PM PST</div></div><span class="day-type optional">10-Man / Alt</span></div>
-        <div class="raid-day"><div><div class="day-name">Off-Nights</div><div class="day-time font-mono">Heroics · Farming · Community</div></div><span class="day-type optional">Community</span></div>
+    <h2 class="stitle fire gf">Raid Schedule</h2>
+    <p class="ssub">All times Pacific (PST) — US-Nightslayer server time</p>
+    <div class="sg">
+      <div class="rdays">
+        <div class="rday main">
+          <div><div class="rday-name">Monday</div></div>
+          <div class="rday-details">
+            <div class="rday-time font-mono">6:00 PM – 9:00 PM PST</div>
+            <div class="rday-tz">9:00 PM EST &nbsp;·&nbsp; 8:00 PM CST &nbsp;·&nbsp; 7:00 PM MST<br>2:00 AM GMT &nbsp;·&nbsp; 1:00 PM AEST (Tue)</div>
+          </div>
+          <span class="rday-type rdt-core">25-Man Core</span>
+        </div>
+        <div class="rday main">
+          <div><div class="rday-name">Tuesday</div></div>
+          <div class="rday-details">
+            <div class="rday-time font-mono">6:00 PM – 9:00 PM PST</div>
+            <div class="rday-tz">9:00 PM EST &nbsp;·&nbsp; 8:00 PM CST &nbsp;·&nbsp; 7:00 PM MST<br>2:00 AM GMT &nbsp;·&nbsp; 1:00 PM AEST (Wed)</div>
+          </div>
+          <span class="rday-type rdt-core">25-Man Core</span>
+        </div>
+        <div class="rday">
+          <div><div class="rday-name">Saturday</div></div>
+          <div class="rday-details">
+            <div class="rday-time font-mono">6:00 PM – 9:00 PM PST</div>
+            <div class="rday-tz">9:00 PM EST &nbsp;·&nbsp; 8:00 PM CST &nbsp;·&nbsp; 2:00 AM GMT</div>
+          </div>
+          <span class="rday-type rdt-opt">10-Man / Alt</span>
+        </div>
+        <div class="rday">
+          <div><div class="rday-name">Off-Nights</div></div>
+          <div class="rday-details">
+            <div class="rday-time font-mono">Heroics · Farming · Community</div>
+          </div>
+          <span class="rday-type rdt-opt">Community</span>
+        </div>
       </div>
-      <div class="sched-info">
-        <div class="info-card"><div class="info-card-title">Invite Time</div><div class="info-card-val">Invites 15 min early. <span class="fire">First pull is on time — always.</span></div></div>
-        <div class="info-card"><div class="info-card-title">Attendance Req.</div><div class="info-card-val">Maintain <span class="fire">80%+</span> attendance. Life happens — communicate early.</div></div>
-        <div class="info-card"><div class="info-card-title">Consumables</div><div class="info-card-val">Flasks, pots, food — <span class="fire">mandatory</span>. We provide feasts; bring your own flask.</div></div>
-        <div class="info-card"><div class="info-card-title">Required AddOns</div><div class="info-card-val">DBM / BigWigs · WeakAuras · Details!</div></div>
+      <div class="si">
+        <div class="ic"><div class="ic-t">Invite Time</div><div class="ic-v">Invites <span class="fire">15 min before</span> first pull. Late is absent.</div></div>
+        <div class="ic"><div class="ic-t">Attendance</div><div class="ic-v">Maintain <span class="fire">80%+</span> — communicate early if absent.</div></div>
+        <div class="ic"><div class="ic-t">Consumables</div><div class="ic-v">Flasks, pots, food — <span class="fire">mandatory</span>. Feasts provided; bring your flask.</div></div>
+        <div class="ic"><div class="ic-t">Required AddOns</div><div class="ic-v">DBM · WeakAuras · Details! · Class essentials</div></div>
+        <div class="ic"><div class="ic-t">Reset Times (PST)</div><div class="ic-v">Raids: <span class="fire">Tues 8:00 AM</span> &nbsp;·&nbsp; Heroics: <span class="fire">Daily 3:00 AM</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="glow-sep"></div>
+<div class="gsep"></div>
 
 <!-- LOOT -->
-<section id="loot" class="loot-section section-pad">
+<section id="loot" class="loot-sec sp">
   <div class="container">
-    <h2 class="section-title fire glow-fire">Loot System</h2>
-    <p class="section-sub">Fair, transparent, progression-minded</p>
-    <div class="loot-grid">
+    <h2 class="stitle fire gf">Loot System</h2>
+    <p class="ssub">Soft Reserve · MS &gt; OS · Role Priority · Transparent</p>
+    <div class="lg">
       <div>
-        <p class="loot-main">We use a <strong class="fire">Loot Council</strong> system tracked through <strong class="gold">ThatsMyBis</strong>. All wishlist data is visible to every raider — no backroom deals. Decisions are made by officers with the guild's long-term progression as the north star.</p>
-        <ul class="loot-list">
-          <li>Gear goes where it benefits the raid most — not to the loudest voice</li>
-          <li>Wishlist transparency via ThatsMyBis — priorities are on the record</li>
-          <li>Consistent attendance with high performance builds priority over time</li>
-          <li>New members serve a 2-week trial before full loot eligibility</li>
-          <li>Disputes handled privately with officers — zero drama on raid night</li>
-          <li>Disenchanting for the guild bank is always on the table</li>
-        </ul>
+        <p class="loot-main">We run <strong class="fire">Soft Reserve (SR)</strong> with <strong class="fire">MS &gt; OS</strong> using <strong class="gold">SoftReserve.tech</strong>. The SR link is posted in <span class="fel">#raid-info</span> 24 hours before each raid. Every raider gets <strong>one soft reserve</strong> per lockout.</p>
+        <div class="lsteps">
+          <div class="lstep"><div class="lsnum">1</div><div class="lsbody"><strong>Claim your SR</strong> via the SoftReserve link in #raid-info before the raid begins.</div></div>
+          <div class="lstep"><div class="lsnum">2</div><div class="lsbody"><strong>SR item drops:</strong> SR holder wins if it's their main spec. Ties broken by /roll.</div></div>
+          <div class="lstep"><div class="lsnum">3</div><div class="lsbody"><strong>Non-SR items:</strong> MS open-roll beats OS. If no MS interest, OS may roll freely.</div></div>
+          <div class="lstep"><div class="lsnum">4</div><div class="lsbody"><strong>Tier tokens &amp; reserved items</strong> — Tank &amp; Healer priority on ties. See the reserved list.</div></div>
+        </div>
+        <div class="sr-box"><i class="fas fa-link"></i><p>SR link drops in <strong>#raid-info</strong> every week — check before each raid night.</p></div>
       </div>
-      <div class="loot-vis">
-        <div class="loot-vis-title">⚖️ Council Weighting Factors</div>
-        <div class="loot-factor"><div class="loot-fh"><span class="loot-fn">Attendance &amp; Reliability</span><span class="loot-fp">30%</span></div><div class="loot-bar"><div class="loot-fill lf-a"></div></div></div>
-        <div class="loot-factor"><div class="loot-fh"><span class="loot-fn">Raid Performance</span><span class="loot-fp">25%</span></div><div class="loot-bar"><div class="loot-fill lf-b"></div></div></div>
-        <div class="loot-factor"><div class="loot-fh"><span class="loot-fn">Upgrade Impact on Raid</span><span class="loot-fp">25%</span></div><div class="loot-bar"><div class="loot-fill lf-c"></div></div></div>
-        <div class="loot-factor"><div class="loot-fh"><span class="loot-fn">Attitude &amp; Contribution</span><span class="loot-fp">20%</span></div><div class="loot-bar"><div class="loot-fill lf-d"></div></div></div>
-        <p style="font-size:0.78rem;color:var(--text-dim);margin-top:14px;font-style:italic;">Reviewed weekly by the officer council before major items drop.</p>
+      <div class="res-block">
+        <div class="res-title">🔒 Reserved &amp; Role Priority Items</div>
+        <div class="res-items">
+          <div class="ri"><span class="ri-icon">🛡️</span><div><div class="ri-name">All Tier Set Tokens</div><span class="ri-sub">Tank &amp; Healer win on SR ties</span></div><span class="ri-rule">ROLE PRIO</span></div>
+          <div class="ri"><span class="ri-icon">⚔️</span><div><div class="ri-name">Gorehowl</div><span class="ri-sub">Gruul's Lair — Officer allocated</span></div><span class="ri-rule">PERFORMANCE</span></div>
+          <div class="ri"><span class="ri-icon">💎</span><div><div class="ri-name">Dragonspine Trophy</div><span class="ri-sub">Gruul's Lair — BiS physical</span></div><span class="ri-rule">PERFORMANCE</span></div>
+          <div class="ri"><span class="ri-icon">📿</span><div><div class="ri-name">Ribbon of Sacrifice</div><span class="ri-sub">Karazhan — Healer priority</span></div><span class="ri-rule">HEALER PRIO</span></div>
+          <div class="ri"><span class="ri-icon">🔮</span><div><div class="ri-name">Shadow-Cloak of Dalaran</div><span class="ri-sub">Karazhan — Progression value</span></div><span class="ri-rule">PERFORMANCE</span></div>
+        </div>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.04);font-size:.78rem;color:var(--dim);font-style:italic;line-height:1.55">Full reserved list published with the SR link weekly. No surprises on raid night — always posted in advance.</div>
       </div>
     </div>
   </div>
@@ -481,178 +754,305 @@ footer{background:var(--dark0);border-top:1px solid rgba(244,140,6,0.18);padding
 <div class="divider"></div>
 
 <!-- RECRUITMENT -->
-<section id="recruitment" class="recruit-section section-pad">
+<section id="recruitment" class="rec-sec sp">
   <div class="container">
-    <h2 class="section-title fire glow-fire">Recruitment</h2>
-    <p class="section-sub">Seeking the finest of Outland — Phase 1 roster needs</p>
-    <div class="class-grid">
-      <div class="class-card" style="border-color:rgba(198,155,58,0.22)"><div class="class-dot" style="background:var(--warrior)"></div><div class="class-info"><div class="class-name" style="color:var(--warrior)">Warrior</div><div class="class-spec">Protection (Tank)</div></div><span class="class-prio prio-high">High</span></div>
-      <div class="class-card" style="border-color:rgba(255,100,50,0.22)"><div class="class-dot" style="background:var(--druid)"></div><div class="class-info"><div class="class-name" style="color:var(--druid)">Druid</div><div class="class-spec">Feral (Tank)</div></div><span class="class-prio prio-med">Medium</span></div>
-      <div class="class-card" style="border-color:rgba(0,112,221,0.22)"><div class="class-dot" style="background:var(--shaman)"></div><div class="class-info"><div class="class-name" style="color:var(--shaman)">Shaman</div><div class="class-spec">Restoration</div></div><span class="class-prio prio-high">High</span></div>
-      <div class="class-card" style="border-color:rgba(255,255,255,0.1)"><div class="class-dot" style="background:var(--priest)"></div><div class="class-info"><div class="class-name" style="color:var(--priest)">Priest</div><div class="class-spec">Holy / Discipline</div></div><span class="class-prio prio-high">High</span></div>
-      <div class="class-card" style="border-color:rgba(244,140,186,0.18)"><div class="class-dot" style="background:var(--paladin)"></div><div class="class-info"><div class="class-name" style="color:var(--paladin)">Paladin</div><div class="class-spec">Holy</div></div><span class="class-prio prio-med">Medium</span></div>
-      <div class="class-card" style="border-color:rgba(135,136,238,0.22)"><div class="class-dot" style="background:var(--warlock)"></div><div class="class-info"><div class="class-name" style="color:var(--warlock)">Warlock</div><div class="class-spec">Any Spec</div></div><span class="class-prio prio-high">High</span></div>
-      <div class="class-card" style="border-color:rgba(170,211,114,0.22)"><div class="class-dot" style="background:var(--hunter)"></div><div class="class-info"><div class="class-name" style="color:var(--hunter)">Hunter</div><div class="class-spec">BM / Marksmanship</div></div><span class="class-prio prio-high">High</span></div>
-      <div class="class-card" style="border-color:rgba(63,199,235,0.22)"><div class="class-dot" style="background:var(--mage)"></div><div class="class-info"><div class="class-name" style="color:var(--mage)">Mage</div><div class="class-spec">Arcane / Fire</div></div><span class="class-prio prio-med">Medium</span></div>
-      <div class="class-card" style="opacity:0.4"><div class="class-dot" style="background:var(--rogue)"></div><div class="class-info"><div class="class-name" style="color:var(--rogue)">Rogue</div><div class="class-spec">Any Spec</div></div><span class="class-prio prio-closed">Closed</span></div>
+    <h2 class="stitle fire gf">Recruitment</h2>
+    <p class="ssub">Seeking the finest of Outland — Phase 1 roster needs</p>
+    <div class="cgrid">
+      <div class="ccard" style="border-color:rgba(198,155,58,.22)"><div class="cdot" style="background:var(--warrior);color:var(--warrior)"></div><div class="ci"><div class="cn" style="color:var(--warrior)">Warrior</div><div class="cs">Protection (Tank)</div></div><span class="cprio ph">High</span></div>
+      <div class="ccard" style="border-color:rgba(255,124,10,.2)"><div class="cdot" style="background:var(--druid);color:var(--druid)"></div><div class="ci"><div class="cn" style="color:var(--druid)">Druid</div><div class="cs">Feral (Tank)</div></div><span class="cprio pm">Medium</span></div>
+      <div class="ccard" style="border-color:rgba(0,112,221,.2)"><div class="cdot" style="background:var(--shaman);color:var(--shaman)"></div><div class="ci"><div class="cn" style="color:var(--shaman)">Shaman</div><div class="cs">Restoration</div></div><span class="cprio ph">High</span></div>
+      <div class="ccard" style="border-color:rgba(255,255,255,.1)"><div class="cdot" style="background:var(--priest);color:var(--priest)"></div><div class="ci"><div class="cn" style="color:var(--priest)">Priest</div><div class="cs">Holy / Discipline</div></div><span class="cprio ph">High</span></div>
+      <div class="ccard" style="border-color:rgba(244,140,186,.17)"><div class="cdot" style="background:var(--paladin);color:var(--paladin)"></div><div class="ci"><div class="cn" style="color:var(--paladin)">Paladin</div><div class="cs">Holy</div></div><span class="cprio pm">Medium</span></div>
+      <div class="ccard" style="border-color:rgba(135,136,238,.2)"><div class="cdot" style="background:var(--warlock);color:var(--warlock)"></div><div class="ci"><div class="cn" style="color:var(--warlock)">Warlock</div><div class="cs">Any Spec</div></div><span class="cprio ph">High</span></div>
+      <div class="ccard" style="border-color:rgba(170,211,114,.2)"><div class="cdot" style="background:var(--hunter);color:var(--hunter)"></div><div class="ci"><div class="cn" style="color:var(--hunter)">Hunter</div><div class="cs">BM / Marksmanship</div></div><span class="cprio ph">High</span></div>
+      <div class="ccard" style="border-color:rgba(63,199,235,.2)"><div class="cdot" style="background:var(--mage);color:var(--mage)"></div><div class="ci"><div class="cn" style="color:var(--mage)">Mage</div><div class="cs">Arcane / Fire</div></div><span class="cprio pm">Medium</span></div>
+      <div class="ccard" style="opacity:.35"><div class="cdot" style="background:var(--rogue);color:var(--rogue)"></div><div class="ci"><div class="cn" style="color:var(--rogue)">Rogue</div><div class="cs">Any Spec</div></div><span class="cprio pc2">Closed</span></div>
     </div>
-    <div class="recruit-note"><strong>Exceptional players of any class are always encouraged to apply.</strong><br>Skilled, prepared, and drama-free? We'll find a place for you.</div>
+    <div class="rnote"><strong>Exceptional players of any class are welcome to apply.</strong><br>Skilled, prepared, drama-free? Reach out and we'll make it work.</div>
   </div>
 </section>
 
-<div class="glow-sep"></div>
+<div class="gsep"></div>
 
-<!-- APPLY -->
-<section id="apply" class="apply-section section-pad">
+<!-- CONTACT -->
+<section id="contact" class="contact-sec sp">
   <div class="container">
-    <div class="apply-inner">
-      <div class="apply-card">
-        <h2 class="apply-title">Step Through<br>the Dark Portal</h2>
-        <p class="apply-desc">Ready to join one of Nightslayer's top progressive guilds? We want dedicated players who take content seriously and are a joy to play alongside. Hit us on Discord or find an officer in-game.</p>
-        <div class="apply-buttons">
-          <a href="#" class="btn btn-fire"><i class="fab fa-discord"></i> Discord &amp; Apply</a>
-          <a href="#" class="btn btn-outline-fire"><i class="fas fa-scroll"></i> App Template</a>
-        </div>
-        <p style="font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase">Or whisper an officer in-game</p>
-        <div class="officer-grid">
-          <div class="officer-card"><span class="officer-icon">👑</span><div class="officer-name">Thrallmar</div><div class="officer-role">Guild Master</div><div class="officer-btag">Erad#1234</div></div>
-          <div class="officer-card"><span class="officer-icon">⚔️</span><div class="officer-name">Hellfire</div><div class="officer-role">Raid Leader</div><div class="officer-btag">Erad#5678</div></div>
-          <div class="officer-card"><span class="officer-icon">📜</span><div class="officer-name">Vashara</div><div class="officer-role">Recruitment</div><div class="officer-btag">Erad#9012</div></div>
-        </div>
+    <h2 class="stitle fire gf">Contact &amp; Apply</h2>
+    <p class="ssub">Step through the Dark Portal — we want to hear from you</p>
+    <div class="ccgrid">
+      <div class="cct disc">
+        <span class="cc-ic di"><i class="fab fa-discord"></i></span>
+        <div class="cc-title" style="color:#8da0f5">Discord</div>
+        <div class="cc-desc">Primary hub. Apply in <strong style="color:#a8b8ff">#recruitment</strong>, get SR links in <strong style="color:#a8b8ff">#raid-info</strong>, and stay updated in <strong style="color:#a8b8ff">#announcements</strong>.</div>
+        <a href="#" class="btn btn-disc" style="justify-content:center;width:100%"><i class="fab fa-discord"></i> Join Discord</a>
+        <div class="cc-detail">discord.gg/eradication-nightslayer</div>
       </div>
+      <div class="cct mail">
+        <span class="cc-ic mi"><i class="fas fa-envelope"></i></span>
+        <div class="cc-title" style="color:var(--fire-b)">Email</div>
+        <div class="cc-desc">Include your class, spec, previous TBC experience, and a WarcraftLogs link if available. We respond within 24 hours.</div>
+        <a href="mailto:officers@eradication-nightslayer.com" class="btn btn-of" style="justify-content:center;width:100%"><i class="fas fa-envelope"></i> Send Application</a>
+        <div class="cc-detail">officers@eradication-nightslayer.com</div>
+      </div>
+      <div class="cct logs">
+        <span class="cc-ic li"><i class="fas fa-chart-bar"></i></span>
+        <div class="cc-title" style="color:var(--fel)">WarcraftLogs</div>
+        <div class="cc-desc">Review our raid parses. Strong log applicants go to the top of the queue — show us your numbers before you even apply.</div>
+        <a href="#" class="btn btn-fel" style="justify-content:center;width:100%"><i class="fas fa-external-link-alt"></i> View Our Logs</a>
+        <div class="cc-detail">warcraftlogs.com/guild/eradication</div>
+      </div>
+    </div>
+    <div class="orow">
+      <div class="oc"><span class="oi">👑</span><div class="on">Thrallmar</div><div class="or">Guild Master</div><div class="ob">Erad#1234</div></div>
+      <div class="oc"><span class="oi">⚔️</span><div class="on">Hellfire</div><div class="or">Raid Leader</div><div class="ob">Erad#5678</div></div>
+      <div class="oc"><span class="oi">📜</span><div class="on">Vashara</div><div class="or">Recruitment</div><div class="ob">Erad#9012</div></div>
+      <div class="oc"><span class="oi">⚖️</span><div class="on">Felborn</div><div class="or">Loot Officer</div><div class="ob">Erad#3456</div></div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Eradication</div>
-  <div class="footer-sub">US-Nightslayer · Horde · The Burning Crusade Classic · Phase 1</div>
-  <p class="footer-copy">© 2026 Eradication &nbsp;·&nbsp; World of Warcraft and Blizzard Entertainment are trademarks of Blizzard Entertainment, Inc. &nbsp;·&nbsp; <span style="color:#100c1e">For the Horde.</span></p>
+  <div class="flogo">Eradication</div>
+  <div class="fsub">US-Nightslayer · Horde · The Burning Crusade Classic · Phase 1</div>
+  <p class="fcopy">© 2026 Eradication &nbsp;·&nbsp; World of Warcraft &amp; Blizzard Entertainment are trademarks of Blizzard Entertainment, Inc. &nbsp;·&nbsp; <span class="hbtn" id="hordeBtn">For the Horde.</span></p>
 </footer>
 
 <script>
-// ===== STARFIELD =====
-const canvas=document.getElementById('starfield'),ctx=canvas.getContext('2d');
+// ─── STARFIELD ───
+const cv=document.getElementById('starfield'),cx=cv.getContext('2d');
 let stars=[],W,H;
-function rsz(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
-function initS(){
+function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight}
+function iS(){
   stars=[];
-  const c=['#9b7bb5','#b58f9f','#f48c06','#3dff6e','#7b2fff','#ffffff','#d4a373'];
-  for(let i=0;i<Math.floor(W*H/4200);i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+0.2,a:Math.random()*0.55+0.1,c:c[~~(Math.random()*c.length)],t:Math.random()*Math.PI*2,s:Math.random()*0.016+0.004})
+  const c=['#9b7bb5','#c09fd0','#f48c06','#3dff6e','#7b2fff','#ffffffcc','#d4a373','#ff7c0a44'];
+  const n=Math.floor(W*H/3800);
+  for(let i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.15,a:Math.random()*.6+.08,c:c[~~(Math.random()*c.length)],t:Math.random()*Math.PI*2,s:Math.random()*.015+.003});
 }
-function drawS(){
-  ctx.clearRect(0,0,W,H);
-  stars.forEach(s=>{s.t+=s.s;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=s.c;ctx.globalAlpha=s.a*(0.35+0.65*Math.sin(s.t));ctx.fill()});
-  ctx.globalAlpha=1;requestAnimationFrame(drawS)
+function dS(){
+  cx.clearRect(0,0,W,H);
+  stars.forEach(s=>{
+    s.t+=s.s;
+    const a=s.a*(.3+.7*Math.sin(s.t));
+    cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    cx.fillStyle=s.c;cx.globalAlpha=a;cx.fill();
+  });
+  cx.globalAlpha=1;
+  requestAnimationFrame(dS);
 }
-rsz();initS();drawS();
-window.addEventListener('resize',()=>{rsz();initS()});
+rsz();iS();dS();
+window.addEventListener('resize',()=>{rsz();iS()});
 
-// ===== PARTICLES =====
-const pc=document.getElementById('particles');
+// ─── PARTICLES ───
+const pw=document.getElementById('pcwrap');
 setInterval(()=>{
-  const p=document.createElement('div');p.className='particle';
-  const s=Math.random()*4+2,f=Math.random()>.4;
-  p.style.cssText=`width:${s}px;height:${s}px;background:${f?'#f48c06':'#3dff6e'};left:${Math.random()*100}%;animation-duration:${Math.random()*11+7}s;animation-delay:${Math.random()*3}s;box-shadow:0 0 ${s*2}px ${f?'#f48c06':'#3dff6e'}`;
-  pc.appendChild(p);setTimeout(()=>p.remove(),17000);
-},360);
+  const p=document.createElement('div');p.className='ptcl';
+  const s=Math.random()*3.5+1.5,f=Math.random()>.4;
+  p.style.cssText=`width:${s}px;height:${s}px;background:${f?'#f48c06':'#3dff6e'};left:${Math.random()*100}%;animation-duration:${Math.random()*11+7}s;animation-delay:${Math.random()*2.5}s;box-shadow:0 0 ${s*2}px ${f?'#f48c06':'#3dff6e'}`;
+  pw.appendChild(p);setTimeout(()=>p.remove(),16000);
+},350);
 
-// ===== COUNTDOWN — next Tuesday 6pm PST =====
-function nextTuesdayPST(){
-  // Work in UTC. PST = UTC-8. Tuesday 18:00 PST = Tuesday 26:00 UTC = Wednesday 02:00 UTC
+// ─── CLOCKS ───
+// Next Mon(1) or Tue(2) at 6pm PST — whichever is sooner
+function nextRaidPST(){
   const now=new Date();
-  // Get "now" expressed in PST by shifting
-  const pstMs=now.getTime()-(8*3600000); // ms value at PST
-  const pstNow=new Date(pstMs);
-  // In PST, what day/hour is it?
-  const pstDay=pstNow.getUTCDay(); // 0=Sun, 2=Tue
-  const pstHour=pstNow.getUTCHours();
-  const pstMin=pstNow.getUTCMinutes();
-  // Days until next Tuesday 18:00 PST
-  let d=(2-pstDay+7)%7;
-  if(d===0 && (pstHour<18||(pstHour===18&&pstMin===0)))d=0;
-  else if(d===0)d=7;
-  // Build target in PST timezone (as UTC representation)
-  const tgt=new Date(pstMs);
-  tgt.setUTCDate(pstNow.getUTCDate()+d);
-  tgt.setUTCHours(18,0,0,0);
-  // Convert back to real UTC
+  const pstNow=new Date(now.getTime()-(8*3600000)); // shift to PST
+  const day=pstNow.getUTCDay(); // 0=Sun,1=Mon,2=Tue
+  const h=pstNow.getUTCHours(),m=pstNow.getUTCMinutes();
+  const raidDays=[1,2]; // Mon, Tue
+  let best=null;
+  for(const rd of raidDays){
+    let diff=(rd-day+7)%7;
+    if(diff===0&&(h>18||(h===18&&m>0)))diff=7;
+    const tgtPST=new Date(pstNow);
+    tgtPST.setUTCDate(pstNow.getUTCDate()+diff);
+    tgtPST.setUTCHours(18,0,0,0);
+    const tgtUTC=new Date(tgtPST.getTime()+(8*3600000));
+    if(!best||tgtUTC<best)best=tgtUTC;
+  }
+  return best;
+}
+function nextDailyPST(){
+  const now=new Date();
+  const pstNow=new Date(now.getTime()-(8*3600000));
+  const tgt=new Date(pstNow);
+  tgt.setUTCHours(3,0,0,0);
+  if(pstNow.getUTCHours()>=3)tgt.setUTCDate(pstNow.getUTCDate()+1);
   return new Date(tgt.getTime()+(8*3600000));
 }
-
-let prevNums={d:-1,h:-1,m:-1,s:-1};
-function pad(n){return String(n).padStart(2,'0')}
-function tick(){
-  const tgt=nextTuesdayPST(),now=new Date();
-  let diff=Math.max(0,tgt-now);
-  const d=Math.floor(diff/86400000);diff-=d*86400000;
-  const h=Math.floor(diff/3600000);diff-=h*3600000;
-  const m=Math.floor(diff/60000);diff-=m*60000;
-  const s=Math.floor(diff/1000);
-  const cur={d,h,m,s};
-  for(const k in cur){
-    const el=document.getElementById('cd-'+k);
-    const str=pad(cur[k]);
-    if(el.textContent!==str){
-      el.textContent=str;
-      el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');
-    }
-  }
-  // Glow when < 30min
-  const close=d===0&&h===0&&m<30;
-  ['cu-d','cu-h','cu-m','cu-s'].forEach(id=>document.getElementById(id).classList.toggle('imminnet',close));
-  // Date label
-  const opts={weekday:'long',month:'long',day:'numeric',timeZone:'America/Los_Angeles'};
-  document.getElementById('raidDateLabel').textContent=tgt.toLocaleDateString('en-US',opts)+' · 6:00 PM PST';
+function fmtDiff(ms){
+  if(ms<=0)return{s:'--:--:--',close:false};
+  const d=Math.floor(ms/86400000);ms-=d*86400000;
+  const h=Math.floor(ms/3600000);ms-=h*3600000;
+  const m=Math.floor(ms/60000);ms-=m*60000;
+  const s=Math.floor(ms/1000);
+  const p=n=>String(n).padStart(2,'0');
+  return{s:d>0?`${d}d ${p(h)}h ${p(m)}m`:`${p(h)}:${p(m)}:${p(s)}`,close:(d===0&&h===0&&m<30)};
 }
-tick();setInterval(tick,1000);
+function tickClocks(){
+  const now=new Date();
+  const r=fmtDiff(nextRaidPST()-now);
+  const rc=document.getElementById('raidClk');
+  rc.textContent=r.s;
+  rc.classList.toggle('close',r.close);
+  const rTgt=nextRaidPST();
+  document.getElementById('raidDate').textContent=rTgt.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/Los_Angeles'})+' · 6:00 PM PST';
+  const h=fmtDiff(nextDailyPST()-now);
+  document.getElementById('heroicClk').textContent=h.s;
+  const hTgt=nextDailyPST();
+  document.getElementById('heroicDate').textContent='Resets '+hTgt.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/Los_Angeles'})+' · 3:00 AM PST';
+}
+tickClocks();setInterval(tickClocks,1000);
 
-// ===== TICKER =====
-const tickerData=[
-  {n:'Eradication',a:'has achieved',b:'Full T4 Clear — 9/9',e:'🏆 Phase 1 Complete'},
-  {n:'Zulthas',a:'logged a parse of',b:'95th on Attumen',e:'🔥 Top Parse'},
-  {n:'Eradication',a:'has killed',b:'Prince Malchezaar',e:'Nightbane on notice 👁️'},
+// ─── TICKER ───
+const tdata=[
+  {n:'Eradication',a:'achieved',b:'Full T4 Clear 9/9',e:'🏆 Phase 1 Complete'},
+  {n:'Zulthas',a:'logged',b:'95th parse on Attumen',e:'🔥 Top Parse'},
+  {n:'Eradication',a:'killed',b:'Magtheridon',e:'Cube team flawless ✓'},
   {n:'Hellfire',a:'obtained',b:"Warbringer's Chestguard",e:''},
-  {n:'Eradication',a:'has killed',b:'Gruul the Dragonkiller',e:'First Kill 💀'},
-  {n:'Vashara',a:'recruiting',b:'Holy Priest · Resto Shaman',e:'Apply in Discord'},
-  {n:'Eradication',a:'has killed',b:'Magtheridon',e:'Cube team flawless ✓'},
-  {n:'Thrallmar',a:'awarded',b:'T4 Gloves to Zulthas',e:'Loot Council'},
-  {n:'Eradication',a:'next raid:',b:'Tuesday 6 PM PST',e:'⚔️ Be ready'},
-  {n:'Eradication',a:'Phase 2 target:',b:'Serpentshrine & TK',e:'When released 🌀'},
+  {n:'Eradication',a:'killed',b:'Gruul the Dragonkiller',e:'First Kill 💀'},
+  {n:'Vashara',a:'seeking',b:'Holy Priest · Resto Shaman · Hunter',e:'Apply on Discord'},
+  {n:'Thrallmar',a:'announces',b:'SR link up for Monday raid',e:'Check #raid-info'},
+  {n:'Eradication',a:'raid nights:',b:'Monday & Tuesday 6 PM PST',e:'⚔️ Be ready'},
+  {n:'Felborn',a:'SR reminder:',b:'1 SR per raider per lockout',e:'MS > OS always'},
+  {n:'Eradication',a:'Phase 2 target:',b:'SSC & Tempest Keep',e:'When released 🌀'},
 ];
-(function buildTicker(){
-  const t=document.getElementById('tickerTrack');
-  const arr=[...tickerData,...tickerData];
-  t.innerHTML=arr.map(d=>`<span class="ticker-item"><span class="t-name">${d.n}</span><span style="color:#2a1e40">·</span><span>${d.a}</span><span class="t-boss">${d.b}</span>${d.e?`<span class="t-fel">[${d.e}]</span>`:''}<span style="color:#1e1630;padding:0 20px">///</span></span>`).join('');
-})();
+(()=>{const t=document.getElementById('ttrack');const a=[...tdata,...tdata];t.innerHTML=a.map(d=>`<span class="titem"><span class="tn">${d.n}</span><span style="color:#1a1228">·</span><span>${d.a}</span><span class="tb">${d.b}</span>${d.e?`<span class="tg">[${d.e}]</span>`:''}<span style="color:#12101e;padding:0 16px">///</span></span>`).join('')})();
 
-// ===== COUNTERS =====
-function animC(el,tgt){
-  const dur=1800,st=performance.now();
-  (function tick(now){const p=Math.min((now-st)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*tgt);if(p<1)requestAnimationFrame(tick)})(performance.now());
-}
-const co=new IntersectionObserver(ens=>{ens.forEach(e=>{if(e.isIntersecting){animC(e.target,+e.target.dataset.count);co.unobserve(e.target)}})},{threshold:0.5});
+// ─── COUNTERS ───
+function aC(el,t){const dur=1800,st=performance.now();(function tk(n){const p=Math.min((n-st)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*t);if(p<1)requestAnimationFrame(tk)})(performance.now())}
+const co=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){aC(e.target,+e.target.dataset.count);co.unobserve(e.target)}})},{threshold:.5});
 document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
 
-// ===== SCROLL REVEAL =====
-const rv=document.querySelectorAll('.boss-card.killed,.class-card,.pillar-card,.info-card,.raid-day,.officer-card');
-const ro=new IntersectionObserver(ens=>{
-  ens.forEach(e=>{
-    if(e.isIntersecting){
-      setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform=(e.target.style.transform||'').replace('translateY(22px)','')},+(e.target.dataset.ri||0)*48);
-      ro.unobserve(e.target);
-    }
-  });
-},{threshold:0.07});
-rv.forEach((el,i)=>{el.style.opacity='0';el.style.transition='opacity 0.5s ease,transform 0.5s ease,box-shadow 0.3s,border-color 0.3s';el.style.transform=(el.style.transform||'')+' translateY(22px)';el.dataset.ri=i%10;ro.observe(el)});
+// ─── SCROLL REVEAL ───
+const rvEls=document.querySelectorAll('.boss-card.killed,.ccard,.pc,.ic,.rday,.oc,.cct,.lstep,.ri');
+const rvObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){
+    setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform=(e.target.style.transform||'').replace(' translateY(18px)','')},+(e.target.dataset.ri||0)*42);
+    rvObs.unobserve(e.target);
+  }});
+},{threshold:.07});
+rvEls.forEach((el,i)=>{el.style.opacity='0';el.style.transition='opacity .5s ease,transform .5s ease,box-shadow .3s,border-color .3s';el.style.transform+=' translateY(18px)';el.dataset.ri=i%10;rvObs.observe(el)});
 
-// ===== ACTIVE NAV =====
+// ─── ACTIVE NAV ───
 const secs=document.querySelectorAll('section[id]'),nls=document.querySelectorAll('nav a[href^="#"]');
 window.addEventListener('scroll',()=>{
-  let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-130)cur=s.id});
-  nls.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--fire-bright)':''});
+  let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id});
+  nls.forEach(a=>{const match=a.getAttribute('href')==='#'+cur;a.classList.toggle('active',match)});
 },{passive:true});
+
+// ─── ACHIEVEMENT ───
+let achTimer;
+function showAch(ic,nm,ds){
+  clearTimeout(achTimer);
+  document.getElementById('achIc').textContent=ic;
+  document.getElementById('achNm').textContent=nm;
+  document.getElementById('achDs').textContent=ds;
+  const el=document.getElementById('ach');
+  el.classList.add('show');
+  achTimer=setTimeout(()=>el.classList.remove('show'),4500);
+}
+
+// ─── MODAL HELPERS ───
+function openM(id){document.getElementById(id).classList.add('open')}
+function closeM(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',function(e){if(e.target===this)closeM(this.id)}));
+
+// ─── EE 1: KONAMI → Illidan ───
+const konami=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
+let kp=0;
+document.addEventListener('keydown',e=>{
+  if(e.code===konami[kp]){kp++;if(kp===konami.length){openM('mIllidan');kp=0;showAch('😈','You Are Not Prepared!','Konami code discovered. Illidan is watching.')}}else kp=0;
+});
+
+// ─── EE 2: LOGO × 5 → Leeroy (disappears after anim) ───
+let lc=0,lt2;
+document.getElementById('logoEl').addEventListener('click',e=>{
+  e.preventDefault();
+  lc++;clearTimeout(lt2);lt2=setTimeout(()=>lc=0,2000);
+  if(lc>=5){
+    lc=0;
+    const l=document.getElementById('leeroy'),cr=document.getElementById('leeroy-cry');
+    // Reset first
+    l.classList.remove('go');cr.classList.remove('go');
+    void l.offsetWidth;void cr.offsetWidth;
+    // Start
+    l.classList.add('go');cr.classList.add('go');
+    showAch('🐔','LEEEEEEROY JENKINS!','Some things never change — RIP Leeroy.');
+    // Remove after animation completes (2.8s)
+    setTimeout(()=>{
+      l.classList.remove('go');
+      cr.classList.remove('go');
+    },2900);
+  }
+});
+
+// ─── EE 3: MAGTHERIDON → Cube game ───
+let cubesDone=0;
+document.getElementById('bMag').addEventListener('click',()=>{
+  cubesDone=0;
+  const row=document.getElementById('cubeRow'),msg=document.getElementById('cubeMsg'),btn=document.getElementById('cubeDone');
+  btn.style.display='none';msg.style.color='var(--dim)';msg.textContent='Click all 5 cubes — coordinate or Magtheridon enrages!';
+  row.innerHTML='';
+  for(let i=0;i<5;i++){
+    const c=document.createElement('div');
+    c.style.cssText='width:52px;height:52px;background:rgba(63,199,235,.1);border:2px solid #3fc7eb;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;cursor:pointer;transition:all .2s;box-shadow:0 0 12px rgba(63,199,235,.2)';
+    c.textContent='🧊';
+    c.onclick=function(){
+      if(this.dataset.d)return;
+      this.dataset.d='1';
+      this.style.background='rgba(61,255,110,.18)';this.style.borderColor='var(--fel)';this.style.boxShadow='0 0 18px rgba(61,255,110,.45)';this.textContent='✅';
+      cubesDone++;
+      if(cubesDone===5){msg.textContent='🎉 MAGTHERIDON DEFEATED! Perfectly coordinated!';msg.style.color='var(--fel)';btn.style.display='inline-block';showAch('🧊',"Don't Release The Cubes!",'Mag cube coordination: PERFECT');}
+    };
+    row.appendChild(c);
+  }
+  openM('mCube');
+});
+
+// ─── EE 4: ILLIDAN CARD → Modal ───
+document.getElementById('bIllidan').addEventListener('click',()=>openM('mIllidan'));
+
+// ─── EE 5: PRINCE → Infernals ───
+document.getElementById('bPrince').addEventListener('click',()=>{
+  for(let i=0;i<9;i++){
+    const el=document.createElement('div');
+    el.textContent=['💀','⚔️','🔥'][~~(Math.random()*3)];
+    el.style.cssText=`position:fixed;top:-70px;left:${5+Math.random()*90}%;font-size:${1.4+Math.random()*1.8}rem;z-index:9997;animation:infFall${i} ${.7+Math.random()*.8}s ${Math.random()*.4}s ease-in forwards;pointer-events:none`;
+    const st=document.createElement('style');
+    const rot=(Math.random()>.5?1:-1)*(180+Math.random()*360);
+    st.textContent=`@keyframes infFall${i}{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(${rot}deg);opacity:0}}`;
+    document.head.appendChild(st);document.body.appendChild(el);
+    setTimeout(()=>{el.remove();st.remove()},2200);
+  }
+  showAch('💀','INFERNALS!','Prince Malchezaar is angry with you.');
+});
+
+// ─── EE 6: MURLOC ───
+const murl=document.getElementById('murloc'),mbub=document.getElementById('mbub');
+setTimeout(()=>murl.classList.add('vis'),9000);
+murl.addEventListener('mouseenter',()=>{mbub.classList.add('show');mbub.textContent=['Mrgl mrgl mrgl!','Mrrglglglgl!','MRGGLGLGL!!!','Ngh... Mrgl?','Mrgl... mrgl.'][~~(Math.random()*5)]});
+murl.addEventListener('mouseleave',()=>mbub.classList.remove('show'));
+murl.addEventListener('click',()=>showAch('🐡','Mrgl Mrgl Mrgl!','You found the murloc lurking in the Deep.'));
+
+// ─── EE 7: FOR THE HORDE ───
+let hc=0;
+document.getElementById('hordeBtn').addEventListener('click',()=>{
+  hc++;
+  if(hc===1)showAch('🩸','For the Horde!','Lok\'tar Ogar — victory or death!');
+  if(hc>=4){openM('mIllidan');hc=0;}
+});
+
+// ─── EE 8: TYPE CODES ───
+let typed='';
+document.addEventListener('keypress',e=>{
+  typed=(typed+e.key).slice(-10).toLowerCase();
+  if(typed.endsWith('hogger'))showAch('🐗','Hogger?','He\'s still terrorizing Elwynn Forest. You\'re in Outland, traveller.');
+  if(typed.endsWith('illidan'))openM('mIllidan');
+  if(typed.endsWith('murloc')){murl.style.transform='translateX(0) scale(2.2)';setTimeout(()=>murl.style.transform='',800);showAch('🐡','Mrgl mrgl!','The murloc acknowledges your devotion.')}
+  if(typed.endsWith('leeroy')){document.getElementById('logoEl').click();document.getElementById('logoEl').click();document.getElementById('logoEl').click();document.getElementById('logoEl').click();document.getElementById('logoEl').click();}
+});
 </script>
 </body>
 </html>

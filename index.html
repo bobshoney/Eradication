@@ -442,6 +442,58 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
 .cd-bar.ip{background:linear-gradient(90deg,#2a8a4a,#3dff6e)}
 .cd-bar.hs{background:linear-gradient(90deg,#8b2fd4,#a855f7)}
 
+
+/* MINI-GAME MODALS */
+.mbox-wide{max-width:600px!important}
+.mbox-game{max-width:540px!important}
+/* Avenging Wrath / Nightbane */
+.aw-stage{position:relative;height:140px;margin:14px 0;overflow:hidden;border-radius:8px;background:linear-gradient(180deg,#1a0530 0%,#0a0218 60%,#04010e 100%);border:1px solid rgba(155,80,220,.2)}
+.aw-boss{position:absolute;bottom:8px;right:14px;font-size:3.5rem;filter:drop-shadow(0 0 12px #6b21a8);animation:bossHover 2s ease-in-out infinite}
+@keyframes bossHover{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.aw-pally{position:absolute;bottom:8px;left:14px;font-size:2.8rem;transition:all .4s}
+.aw-pally.casting{filter:drop-shadow(0 0 18px #f9a8d4) drop-shadow(0 0 40px #f48cba);transform:scale(1.18)}
+.aw-wings{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0;transition:opacity .3s;pointer-events:none}
+.aw-wings.show{opacity:1;animation:wingsFlare .6s ease forwards}
+@keyframes wingsFlare{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:.9}}
+.aw-beam{position:absolute;top:50%;left:90px;right:80px;height:6px;border-radius:3px;background:linear-gradient(90deg,#f9a8d4,#f48cba,#fbbf24);transform:scaleX(0);transform-origin:left;transition:transform .5s ease;box-shadow:0 0 14px #f48cba}
+.aw-beam.fire{transform:scaleX(1)}
+.aw-hp-bar{height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;margin:6px 0}
+.aw-hp-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#22c55e,#16a34a);transition:width .6s ease;width:100%}
+.aw-hp-fill.low{background:linear-gradient(90deg,#ef4444,#dc2626)}
+.aw-dps{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:1px;text-align:center}
+.aw-btn-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.aw-ability{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:1.5px;padding:7px 14px;border-radius:6px;border:1px solid;cursor:pointer;transition:all .2s;text-transform:uppercase;position:relative;overflow:hidden}
+.aw-ability:disabled{opacity:.35;cursor:not-allowed}
+.aw-cd-fill{position:absolute;top:0;left:0;height:100%;background:rgba(0,0,0,.45);transition:width linear}
+/* Gruul Growing Threat */
+.gruul-arena{position:relative;width:100%;height:160px;background:linear-gradient(180deg,#1a0e04 0%,#0e0802 100%);border-radius:8px;border:1px solid rgba(200,168,75,.15);overflow:hidden;margin:12px 0}
+.gruul-boss-img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:4rem;transition:all .35s;filter:drop-shadow(0 0 10px rgba(200,168,75,.5))}
+.gruul-shatter{position:absolute;inset:0;border-radius:8px;border:3px solid transparent;transition:border-color .2s}
+.gruul-shatter.warn{border-color:rgba(239,68,68,.7);animation:shatterPulse .3s ease infinite}
+@keyframes shatterPulse{0%,100%{opacity:1}50%{opacity:.4}}
+.gruul-bar{height:10px;background:rgba(255,255,255,.05);border-radius:5px;overflow:hidden;margin:6px 0}
+.gruul-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,#c69b3a,#ffd770);transition:width .25s}
+.gruul-rock{position:absolute;font-size:1.4rem;animation:rockFall .7s ease-in forwards;pointer-events:none}
+@keyframes rockFall{0%{transform:translateY(-30px) rotate(0);opacity:1}100%{transform:translateY(200px) rotate(360deg);opacity:0}}
+/* Moroes Garrote */
+.moroes-table{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.moroes-guest{border-radius:8px;border:1px solid rgba(100,70,180,.25);background:rgba(8,5,18,.8);padding:10px 6px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.moroes-guest:hover:not(.garroted):not(.cc){border-color:rgba(244,140,6,.4);background:rgba(244,140,6,.06)}
+.moroes-guest.garroted{border-color:rgba(204,34,34,.5);background:rgba(80,0,0,.3);animation:garroteP 1s ease-in-out infinite}
+@keyframes garroteP{0%,100%{box-shadow:none}50%{box-shadow:0 0 12px rgba(204,34,34,.5)}}
+.moroes-guest.cc{border-color:rgba(63,199,235,.3);background:rgba(0,50,80,.3);opacity:.6}
+.moroes-guest.dead{border-color:rgba(61,255,110,.3);background:rgba(0,30,10,.5);opacity:.5}
+.mg-icon{font-size:1.6rem;display:block;margin-bottom:4px}
+.mg-name{font-family:'Share Tech Mono',monospace;font-size:.44rem;letter-spacing:1px;color:var(--dim);display:block}
+.mg-status{font-size:.52rem;margin-top:4px;display:block;font-family:'Share Tech Mono',monospace;letter-spacing:1px}
+/* Shade of Aran — Don't move! */
+.aran-ring{position:relative;width:140px;height:140px;border-radius:50%;border:3px solid rgba(123,47,255,.3);margin:10px auto;display:flex;align-items:center;justify-content:center;transition:border-color .3s}
+.aran-ring.warning{border-color:rgba(239,68,68,.8)!important;box-shadow:0 0 20px rgba(239,68,68,.4)!important;animation:aranWarn .25s ease infinite}
+@keyframes aranWarn{0%,100%{opacity:1}50%{opacity:.5}}
+.aran-player{position:absolute;font-size:1.6rem;cursor:none;transition:none;will-change:transform}
+.aran-flame{position:absolute;font-size:1.2rem;pointer-events:none}
+.aran-msg{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:2px;color:var(--fb);min-height:22px;text-align:center}
+
 </style>
 </head>
 <body>
@@ -568,16 +620,16 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
   <div class="phase-body open" id="t4body">
     <div class="boss-grid" id="t4g">
       <div class="bc killed" id="bAttumen"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3d1a60,#1a0835,#060212)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(140,60,255,.6) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🦇</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Attumen the Huntsman</span><span class="bstat">☠ DEAD</span></div></div>
-      <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#200e45,#0c0620,#030108)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(100,70,180,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🕯️</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Moroes</span><span class="bstat">☠ DEAD</span></div></div>
+      <div class="bc killed" id="bMoroes"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#200e45,#0c0620,#030108)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(100,70,180,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🕯️</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Moroes</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3a1040,#18082a,#06010e)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(210,90,230,.5) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🎭</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Opera Event</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3a1045,#180825,#060108)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,186,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🎭</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Maiden of Virtue</span><span class="bstat">☠ DEAD</span></div></div>
-      <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#10203a,#06101e,#010408)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(63,199,235,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">👁️</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">The Curator</span><span class="bstat">☠ DEAD</span></div></div>
-      <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3d1080,#19043a,#060010)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(123,47,255,.68) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🌀</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Shade of Aran</span><span class="bstat">☠ DEAD</span></div></div>
+      <div class="bc killed" id="bCurator"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#10203a,#06101e,#010408)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(63,199,235,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">👁️</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">The Curator</span><span class="bstat">☠ DEAD</span></div></div>
+      <div class="bc killed" id="bAran"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3d1080,#19043a,#060010)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(123,47,255,.68) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🌀</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Shade of Aran</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#0f3018,#061408,#010502)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(61,255,110,.44) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🐉</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Netherspite</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed" id="bPrince"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3a0808,#1a0202,#060000)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(220,30,30,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">⚔️</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Prince Malchezaar</span><span class="bstat">☠ DEAD</span></div></div>
-      <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#1e0830,#0c0318,#04000a)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(155,80,220,.58) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🐲</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Nightbane</span><span class="bstat">☠ DEAD</span></div></div>
+      <div class="bc killed" id="bNightbane"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#1e0830,#0c0318,#04000a)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(155,80,220,.58) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🐲</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Nightbane</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#281408,#120a04,#050200)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(244,160,6,.52) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🗡️</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">High King Maulgar</span><span class="bstat">☠ DEAD</span></div></div>
-      <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3a2010,#1a0e06,#060402)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(200,168,75,.5) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🪨</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Gruul the Dragonkiller</span><span class="bstat">☠ DEAD</span></div></div>
+      <div class="bc killed" id="bGruul"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3a2010,#1a0e06,#060402)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(200,168,75,.5) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🪨</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Gruul the Dragonkiller</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed" id="bMag"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#4a1000,#220800,#0c0200)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,6,.65) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">👿</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Magtheridon</span><span class="bstat">☠ DEAD</span></div></div>
     </div>
   </div>
@@ -834,7 +886,7 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
           <div class="kara-notes">Core raider team. Full clear every lockout. Comp locked — no open slots.</div>
         </div>
       </div>
-      <div class="kara-card kara-purple">
+      <div class="kara-card kara-purple" id="karaTeamPurple" style="cursor:pointer">
         <div class="kara-card-top kara-top-purple"></div>
         <div class="kara-card-body">
           <div class="kara-badge kara-badge-purple">⚔ Active</div>
@@ -1640,6 +1692,428 @@ document.getElementById('bAttumen').addEventListener('click',()=>{
 });
 
 // EE15: TYPED CODES — add new words
+
+// ════════════════════════════════════════════════════
+// MINI-GAME: AVENGING WRATH vs NIGHTBANE
+// ════════════════════════════════════════════════════
+(function(){
+  let bossHp=100,awActive=false,fightStarted=false,fightOver=false;
+  let totalDmg=0;
+  const cds={aw:0,hs:0,how:0};
+
+  function awFloat(txt,color){
+    const el=document.createElement('div');
+    el.textContent=txt;
+    const stage=document.getElementById('awStage');
+    if(!stage)return;
+    el.style.cssText='position:absolute;top:'+(20+Math.random()*60)+'%;left:'+(20+Math.random()*50)+'%;font-family:Share Tech Mono,monospace;font-size:'+(0.7+Math.random()*.5)+'rem;color:'+color+';pointer-events:none;z-index:10;animation:floatUp 1.1s ease forwards;font-weight:700';
+    const st=document.createElement('style');
+    st.textContent='@keyframes floatUp{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-40px)}}';
+    document.head.appendChild(st);stage.appendChild(el);
+    setTimeout(()=>{el.remove();st.remove()},1200);
+  }
+
+  function awSetCd(id,secs){
+    const btn=document.getElementById('btn'+id.toUpperCase());
+    const bar=document.getElementById('cd'+id.toUpperCase());
+    if(!btn||!bar)return;
+    btn.disabled=true;
+    const start=Date.now();
+    const ms=secs*1000;
+    const t=setInterval(()=>{
+      const p=Math.min((Date.now()-start)/ms,1);
+      bar.style.width=(100-p*100)+'%';
+      if(p>=1){clearInterval(t);btn.disabled=false;bar.style.width='0'}
+    },50);
+  }
+
+  window.awAbility=function(ab){
+    if(fightOver)return;
+    if(!fightStarted){fightStarted=true;startNightbaneAttacks();}
+    let dmg=0;
+    if(ab==='aw'){
+      if(cds.aw>Date.now())return;
+      cds.aw=Date.now()+120000;
+      awActive=true;
+      document.getElementById('awWings').classList.add('show');
+      document.getElementById('awPally').classList.add('casting');
+      document.getElementById('awBeam').classList.add('fire');
+      setTimeout(()=>{
+        awActive=false;
+        document.getElementById('awWings').classList.remove('show');
+        document.getElementById('awPally').classList.remove('casting');
+        document.getElementById('awBeam').classList.remove('fire');
+      },15000);
+      awSetCd('AW',120);
+      dmg=Math.floor(800+Math.random()*400);
+      document.getElementById('awDpsLine').textContent='Avenging Wrath active! Holy damage amplified!';
+      showAch('⚡','Avenging Wrath!','Wings deployed. Nightbane is in trouble.');
+    } else if(ab==='hs'){
+      if(cds.hs>Date.now())return;
+      cds.hs=Date.now()+6000;
+      awSetCd('HS',6);
+      dmg=Math.floor((awActive?2:1)*(200+Math.random()*180));
+    } else if(ab==='how'){
+      if(bossHp>20){document.getElementById('awDpsLine').textContent='Hammer of Wrath: Boss must be below 20% HP!';return;}
+      if(cds.how>Date.now())return;
+      cds.how=Date.now()+6000;
+      awSetCd('HoW',6);
+      dmg=Math.floor((awActive?2:1)*(350+Math.random()*250));
+    }
+    if(dmg>0){
+      totalDmg+=dmg;
+      bossHp=Math.max(0,bossHp-dmg/50);
+      awFloat('-'+dmg.toLocaleString(),awActive?'#fbbf24':'#f9a8d4');
+      updateAwHp();
+    }
+    if(bossHp<=0)awWin();
+  };
+
+  function updateAwHp(){
+    const hp=document.getElementById('awHp');
+    const pct=document.getElementById('awHpPct');
+    if(!hp||!pct)return;
+    hp.style.width=Math.max(0,bossHp)+'%';
+    hp.className='aw-hp-fill'+(bossHp<20?' low':'');
+    pct.textContent=Math.ceil(bossHp)+'%';
+    if(bossHp<20){
+      document.getElementById('btnHoW').disabled=false;
+      document.getElementById('cdHoW').style.width='0';
+    }
+    document.getElementById('awDpsLine').textContent='Total damage dealt: '+totalDmg.toLocaleString()+' · Boss HP: '+Math.ceil(bossHp)+'%';
+  }
+
+  function startNightbaneAttacks(){
+    const boss=document.getElementById('awBoss');
+    if(!boss)return;
+    const atk=setInterval(()=>{
+      if(fightOver){clearInterval(atk);return;}
+      awFloat('Shadow Breath! 🔥','#9333ea');
+    },8000);
+  }
+
+  function awWin(){
+    fightOver=true;
+    document.getElementById('awBoss').textContent='💀';
+    document.getElementById('awDpsLine').style.color='var(--fel)';
+    document.getElementById('awDpsLine').textContent='NIGHTBANE DEFEATED! Total damage: '+totalDmg.toLocaleString();
+    showAch('🐲','Nightbane Slain!','Team Purple clears Karazhan. Wings were worth it.');
+  }
+
+  window.awReset=function(){
+    bossHp=100;awActive=false;fightStarted=false;fightOver=false;totalDmg=0;
+    const hp=document.getElementById('awHp');
+    const pct=document.getElementById('awHpPct');
+    const wings=document.getElementById('awWings');
+    const pally=document.getElementById('awPally');
+    const beam=document.getElementById('awBeam');
+    const boss=document.getElementById('awBoss');
+    const dps=document.getElementById('awDpsLine');
+    if(hp)hp.style.width='100%';
+    if(hp)hp.className='aw-hp-fill';
+    if(pct)pct.textContent='100%';
+    if(wings)wings.classList.remove('show');
+    if(pally)pally.classList.remove('casting');
+    if(beam)beam.classList.remove('fire');
+    if(boss)boss.textContent='🐲';
+    if(dps){dps.textContent='Press Avenging Wrath to begin the fight!';dps.style.color='var(--dim)';}
+    ['AW','HS','HoW'].forEach(id=>{
+      const btn=document.getElementById('btn'+id);
+      const bar=document.getElementById('cd'+id);
+      if(btn)btn.disabled=false;
+      if(bar)bar.style.width='0';
+    });
+  };
+})();
+
+// Hook: Team Purple card opens Avenging Wrath game
+document.getElementById('karaTeamPurple').addEventListener('click',()=>{
+  awReset();
+  openM('mAveWrath');
+  showAch('🪶','Avenging Wrath!','Team Purple: Nightbane awaits.');
+});
+// Also hook Nightbane boss card
+document.getElementById('bNightbane').addEventListener('click',()=>{
+  awReset();
+  openM('mAveWrath');
+});
+
+// ════════════════════════════════════════════════════
+// MINI-GAME: GRUUL — SURVIVE CAVE IN
+// ════════════════════════════════════════════════════
+(function(){
+  let growths=0,score=0,rockTimer=null,growthTimer=null,playing=false,shatterTimer=null;
+
+  function spawnRock(){
+    const arena=document.getElementById('gruulArena');
+    if(!arena||!playing)return;
+    const rock=document.createElement('div');
+    rock.className='gruul-rock';
+    rock.textContent=['🪨','💥','⚠️'][Math.floor(Math.random()*3)];
+    rock.style.left=(5+Math.random()*85)+'%';
+    rock.style.top='-30px';
+    rock.style.animationDuration=(0.5+Math.random()*.5)+'s';
+    arena.appendChild(rock);
+    rock.addEventListener('click',()=>{
+      if(!playing)return;
+      score+=10*(growths+1);
+      document.getElementById('gruulScore').textContent=score;
+      rock.remove();
+    });
+    setTimeout(()=>{if(rock.parentNode)rock.remove();},900);
+  }
+
+  function doShatter(){
+    if(!playing)return;
+    const s=document.getElementById('gruulShatter');
+    const msg=document.getElementById('gruulMsg');
+    if(s)s.classList.add('warn');
+    if(msg)msg.textContent='⚠️ SHATTER — RUN OUT!';
+    shatterTimer=setTimeout(()=>{
+      if(s)s.classList.remove('warn');
+      if(msg)msg.textContent='Dodge the rocks! Growths: '+growths+'/6';
+    },1200);
+  }
+
+  window.gruulStartGame=function(){
+    growths=0;score=0;playing=true;
+    const startBtn=document.getElementById('gruulStart');
+    if(startBtn){startBtn.textContent='Fighting...';startBtn.disabled=true;}
+    document.getElementById('gruulGrowths').textContent='0';
+    document.getElementById('gruulScore').textContent='0';
+    document.getElementById('gruulBossImg').textContent='🪨';
+    const bar=document.getElementById('gruulGrowthBar');
+    if(bar)bar.style.width='0%';
+
+    rockTimer=setInterval(spawnRock,600);
+    growthTimer=setInterval(()=>{
+      if(!playing)return;
+      growths++;
+      document.getElementById('gruulGrowths').textContent=growths;
+      const bar=document.getElementById('gruulGrowthBar');
+      if(bar)bar.style.width=(growths/6*100)+'%';
+      const boss=document.getElementById('gruulBossImg');
+      const sizes=['4rem','4.5rem','5rem','5.6rem','6.2rem','7rem'];
+      if(boss)boss.style.fontSize=sizes[Math.min(growths,5)];
+      score+=50;
+      document.getElementById('gruulScore').textContent=score;
+      doShatter();
+      if(growths>=6){
+        playing=false;
+        clearInterval(rockTimer);clearInterval(growthTimer);
+        const msg=document.getElementById('gruulMsg');
+        if(msg)msg.textContent='GRUUL DEFEATED! Score: '+score+' 🏆';
+        if(boss)boss.textContent='💀';
+        if(startBtn){startBtn.textContent='⚔ Fight Again';startBtn.disabled=false;}
+        showAch('🪨','Gruul Defeated!','Score: '+score+'. Loot the corpse!');
+      }
+    },3500);
+    document.getElementById('gruulMsg').textContent='Dodge the rocks! Click them to deflect!';
+  };
+
+  window.gruulStop=function(){
+    playing=false;
+    clearInterval(rockTimer);clearInterval(growthTimer);clearTimeout(shatterTimer);
+    const arena=document.getElementById('gruulArena');
+    if(arena)arena.querySelectorAll('.gruul-rock').forEach(r=>r.remove());
+    const startBtn=document.getElementById('gruulStart');
+    if(startBtn){startBtn.textContent='⚔ Start Fight';startBtn.disabled=false;}
+  };
+})();
+
+// Hook both Gruul card AND existing hook
+document.getElementById('bGruul').addEventListener('click',()=>{
+  gruulStop();
+  document.getElementById('gruulGrowths').textContent='0';
+  document.getElementById('gruulScore').textContent='0';
+  document.getElementById('gruulBossImg').textContent='🪨';
+  document.getElementById('gruulGrowthBar').style.width='0%';
+  document.getElementById('gruulMsg').textContent='Dodge the rocks! Survive the Shatter!';
+  const startBtn=document.getElementById('gruulStart');
+  if(startBtn){startBtn.textContent='⚔ Start Fight';startBtn.disabled=false;}
+  openM('mGruul');
+});
+
+// ════════════════════════════════════════════════════
+// MINI-GAME: MOROES — CC THE ADDS
+// ════════════════════════════════════════════════════
+(function(){
+  const guests=[
+    {name:'Baron Rafe',icon:'🧛',cc:'Sheep'},
+    {name:'Lady Keira',icon:'💀',cc:'Shackle'},
+    {name:'Lord Robin',icon:'🗡️',cc:'Trap'},
+    {name:'Baroness Dorothea',icon:'🩸',cc:'Fear'},
+  ];
+  let garrotedCount=0,ccCount=0,playing=false,garroteTimer=null;
+
+  window.moreosStartGame=function(){
+    playing=true;garrotedCount=0;ccCount=0;
+    const btn=document.getElementById('moreStart');
+    if(btn){btn.textContent='Fighting...';btn.disabled=true;}
+    const table=document.getElementById('moreTable');
+    if(!table)return;
+    table.innerHTML='';
+    guests.forEach((g,i)=>{
+      const div=document.createElement('div');
+      div.className='moroes-guest';
+      div.id='mg'+i;
+      div.innerHTML='<span class="mg-icon">'+g.icon+'</span><span class="mg-name">'+g.name+'</span><span class="mg-status" id="mgs'+i+'" style="color:var(--dim)">Free</span>';
+      div.onclick=()=>{
+        if(!playing||div.classList.contains('garroted')||div.classList.contains('dead'))return;
+        const s=document.getElementById('mgs'+i);
+        if(div.classList.contains('cc')){
+          div.classList.remove('cc');
+          div.style.opacity='1';
+          if(s){s.textContent='Free';s.style.color='var(--dim)';}
+          ccCount--;
+        } else {
+          div.classList.add('cc');
+          if(s){s.textContent=g.cc;s.style.color='#3fc7eb';}
+          ccCount++;
+          if(ccCount>=4){
+            playing=false;
+            clearTimeout(garroteTimer);
+            document.getElementById('moreMsg').textContent='All adds CC\'d! Moroes is vulnerable! 🏆';
+            document.querySelectorAll('.moroes-guest').forEach(g=>g.classList.add('dead'));
+            if(btn){btn.textContent='Pull Moroes';btn.disabled=false;}
+            showAch('🕯️','CC King!','All Moroes adds controlled. Textbook execution.');
+          }
+        }
+      };
+      table.appendChild(div);
+      // Random garrote timer
+      const delay=3000+i*1800+Math.random()*2000;
+      const gt=setTimeout(()=>{
+        if(!playing||div.classList.contains('cc'))return;
+        div.classList.add('garroted');
+        const s=document.getElementById('mgs'+i);
+        if(s){s.textContent='GARROTE!';s.style.color='#ef4444';}
+        garrotedCount++;
+        document.getElementById('moreMsg').textContent='Garroted! '+garrotedCount+' healers bleeding out!';
+        if(garrotedCount>=2&&playing){
+          playing=false;
+          document.getElementById('moreMsg').textContent='Too many garrotes — WIPE! Re-CC faster!';
+          if(btn){btn.textContent='Pull Moroes';btn.disabled=false;}
+        }
+      },delay);
+    });
+    document.getElementById('moreMsg').textContent='Click adds to CC them before they Garrote!';
+  };
+
+  window.moreosStop=function(){
+    playing=false;
+    clearTimeout(garroteTimer);
+    const btn=document.getElementById('moreStart');
+    if(btn){btn.textContent='Pull Moroes';btn.disabled=false;}
+  };
+})();
+
+document.getElementById('bMoroes').addEventListener('click',()=>{
+  moreosStop();
+  document.getElementById('moreTable').innerHTML='';
+  document.getElementById('moreMsg').textContent='Click the adds — Sheep, Shackle, and Trap them!';
+  const btn=document.getElementById('moreStart');
+  if(btn){btn.textContent='Pull Moroes';btn.disabled=false;}
+  openM('mMoroes');
+});
+
+// ════════════════════════════════════════════════════
+// MINI-GAME: SHADE OF ARAN — FLAME WREATH (DON'T MOVE)
+// ════════════════════════════════════════════════════
+(function(){
+  let survived=0,wiped=0,flameActive=false,moveOk=true,aranPlaying=false;
+  let flameTimer=null,checkTimer=null;
+
+  function startAran(){
+    aranPlaying=true;
+    const ring=document.getElementById('aranRing');
+    const player=document.getElementById('aranPlayer');
+    const msg=document.getElementById('aranMsg');
+    if(!ring||!player||!msg)return;
+
+    ring.style.borderColor='rgba(123,47,255,.3)';
+    ring.classList.remove('warning');
+    msg.textContent='Move inside the ring...';
+    msg.style.color='var(--fb)';
+
+    ring.onmousemove=function(e){
+      if(!aranPlaying)return;
+      const r=ring.getBoundingClientRect();
+      const x=e.clientX-r.left-r.width/2;
+      const y=e.clientY-r.top-r.height/2;
+      player.style.transform='translate(calc(-50% + '+x+'px), calc(-50% + '+y+'px))';
+      if(flameActive&&!moveOk){
+        wiped++;
+        document.getElementById('aranWipe').textContent=wiped;
+        msg.textContent='YOU MOVED! Flame Wreath exploded! WIPE!';
+        msg.style.color='var(--blood)';
+        ring.classList.add('warning');
+        flameActive=false;
+        setTimeout(()=>{ring.classList.remove('warning');msg.textContent='Try again — FREEZE when flames appear!';msg.style.color='var(--dim)';},1800);
+      }
+    };
+
+    // Schedule flame wreaths
+    function scheduleFlame(){
+      if(!aranPlaying)return;
+      flameTimer=setTimeout(()=>{
+        if(!aranPlaying)return;
+        flameActive=true;moveOk=false;
+        const msg=document.getElementById('aranMsg');
+        if(msg){msg.textContent='🔥 FLAME WREATH — DO NOT MOVE! 🔥';msg.style.color='#ef4444';}
+        // Spawn flame visuals
+        const ring=document.getElementById('aranRing');
+        const flames=[];
+        for(let i=0;i<5;i++){
+          const f=document.createElement('div');
+          f.className='aran-flame';
+          f.textContent='🔥';
+          const angle=(i/5)*Math.PI*2;
+          f.style.left=(50+38*Math.cos(angle)-12)+'%';
+          f.style.top=(50+38*Math.sin(angle)-12)+'%';
+          ring.appendChild(f);flames.push(f);
+        }
+        checkTimer=setTimeout(()=>{
+          if(!aranPlaying)return;
+          // Player survived if flameActive still true (didn't move)
+          if(flameActive){
+            survived++;
+            document.getElementById('aranSurv').textContent=survived;
+            if(msg){msg.textContent='✅ You survived Flame Wreath! +1 survival';msg.style.color='var(--fel)';}
+            if(survived>=3){
+              if(msg){msg.textContent='FLAWLESS! You never moved! 🏆';msg.style.color='var(--fel)';}
+              showAch('🌀','Flame Wreath Survived!','Did not move. Entire raid thanks you.');
+              aranPlaying=false;
+            }
+          }
+          flameActive=false;moveOk=true;
+          flames.forEach(f=>f.remove());
+          if(aranPlaying)scheduleFlame();
+        },2200);
+      },2500+Math.random()*2000);
+    }
+    scheduleFlame();
+  }
+
+  window.aranStop=function(){
+    aranPlaying=false;flameActive=false;moveOk=true;
+    clearTimeout(flameTimer);clearTimeout(checkTimer);
+    const ring=document.getElementById('aranRing');
+    if(ring){ring.onmousemove=null;ring.classList.remove('warning');}
+  };
+
+  document.getElementById('bAran').addEventListener('click',()=>{
+    aranStop();
+    survived=0;wiped=0;
+    document.getElementById('aranSurv').textContent='0';
+    document.getElementById('aranWipe').textContent='0';
+    document.getElementById('aranMsg').textContent='Move your cursor into the ring and FREEZE when flames appear';
+    document.getElementById('aranPlayer').style.transform='translate(-50%,-50%)';
+    openM('mAran');
+    setTimeout(startAran,400);
+  });
+})();
+
 // EE8: TYPED CODES
 let typed='';
 document.addEventListener('keypress',e=>{
@@ -1721,6 +2195,100 @@ document.addEventListener('keypress',e=>{
     <p style="color:var(--dim);font-size:.87rem;margin-bottom:20px;line-height:1.8">0.8% drop chance. 52 resets. Still farming.<br><em style="color:#c4a0ff">"It'll drop this week. I can feel it."</em></p>
     <div id="horseRoll" style="font-family:'Share Tech Mono',monospace;font-size:1.2rem;color:var(--dim);margin:10px 0">🎲 Roll for mount...</div>
     <button class="mclose" style="border-color:#7b2fff;color:#c4a0ff;background:rgba(123,47,255,.08)" id="rollHorse">Roll the Dice</button>
+  </div>
+</div>
+
+
+<!-- MINI-GAME: AVENGING WRATH / NIGHTBANE (Team Purple) -->
+<div class="modal" id="mAveWrath">
+  <div class="mbox mbox-wide" style="border-color:#c084fc;box-shadow:0 0 60px rgba(192,132,252,.18)">
+    <span class="memoji">🏆</span>
+    <div class="mtitle" style="color:#c084fc;text-shadow:0 0 25px #c084fc">Team Purple vs Nightbane</div>
+    <p class="msub">Karazhan · Holy Paladin DPS Check</p>
+
+    <div class="aw-stage" id="awStage">
+      <div class="aw-wings" id="awWings">✨🪶✨</div>
+      <div class="aw-beam" id="awBeam"></div>
+      <div class="aw-pally" id="awPally">🧙‍♂️</div>
+      <div class="aw-boss" id="awBoss">🐲</div>
+    </div>
+
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:4px">
+      <span style="font-family:'Share Tech Mono',monospace;font-size:.5rem;color:var(--dim);min-width:70px">NIGHTBANE HP</span>
+      <div class="aw-hp-bar" style="flex:1"><div class="aw-hp-fill" id="awHp"></div></div>
+      <span class="aw-dps" id="awHpPct" style="min-width:36px;color:var(--fb)">100%</span>
+    </div>
+    <div class="aw-dps" id="awDpsLine" style="color:var(--dim);margin-bottom:8px">Press Avenging Wrath to begin the fight!</div>
+
+    <div class="aw-btn-row">
+      <button class="aw-ability" id="btnAW" style="border-color:#f9a8d4;color:#f9a8d4;background:rgba(249,168,212,.07)" onclick="awAbility('aw')">
+        <div class="aw-cd-fill" id="cdAW" style="width:0"></div>
+        ⚡ Avenging Wrath <span style="font-size:.48rem;opacity:.7">(2m)</span>
+      </button>
+      <button class="aw-ability" id="btnHS" style="border-color:#fbbf24;color:#fbbf24;background:rgba(251,191,36,.06)" onclick="awAbility('hs')">
+        <div class="aw-cd-fill" id="cdHS" style="width:0"></div>
+        🔨 Holy Shock <span style="font-size:.48rem;opacity:.7">(6s)</span>
+      </button>
+      <button class="aw-ability" id="btnHoW" style="border-color:#fde68a;color:#fde68a;background:rgba(253,230,138,.05)" onclick="awAbility('how')">
+        <div class="aw-cd-fill" id="cdHoW" style="width:0"></div>
+        ✨ Hammer of Wrath <span style="font-size:.48rem;opacity:.7">(6s · sub 20%)</span>
+      </button>
+    </div>
+
+    <button class="mclose" style="margin-top:14px;border-color:#c084fc;color:#c084fc;background:rgba(192,132,252,.07)" onclick="awReset();closeM('mAveWrath')">Leave Combat</button>
+  </div>
+</div>
+
+<!-- MINI-GAME: GRUUL GROWTHS -->
+<div class="modal" id="mGruul">
+  <div class="mbox mbox-game" style="border-color:#c69b3a;box-shadow:0 0 60px rgba(200,168,75,.15)">
+    <span class="memoji">🪨</span>
+    <div class="mtitle" style="color:#ffd770;text-shadow:0 0 20px var(--gold)">Gruul the Dragonkiller</div>
+    <p class="msub">Survive the Cave In — Don't get hit by rocks!</p>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <span style="font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--dim)">GROWTHS: <span id="gruulGrowths" style="color:#ffd770">0</span>/6</span>
+      <span style="font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--dim)">SCORE: <span id="gruulScore" style="color:var(--fire)">0</span></span>
+    </div>
+    <div class="gruul-bar"><div class="gruul-fill" id="gruulGrowthBar" style="width:0%"></div></div>
+    <div class="gruul-arena" id="gruulArena">
+      <div class="gruul-boss-img" id="gruulBossImg">🪨</div>
+      <div class="gruul-shatter" id="gruulShatter"></div>
+    </div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--dim);text-align:center;margin-bottom:10px" id="gruulMsg">Click START to begin — dodge the rocks, survive the Shatter!</div>
+    <div style="display:flex;gap:8px;justify-content:center">
+      <button class="mclose" id="gruulStart" style="border-color:#ffd770;color:#ffd770;background:rgba(200,168,75,.08)" onclick="gruulStartGame()">⚔ Start Fight</button>
+      <button class="mclose" onclick="gruulStop();closeM('mGruul')" style="border-color:rgba(255,255,255,.15);color:var(--dim)">Wipe 💀</button>
+    </div>
+  </div>
+</div>
+
+<!-- MINI-GAME: MOROES GARROTE -->
+<div class="modal" id="mMoroes">
+  <div class="mbox mbox-game" style="border-color:#8b5cf6;box-shadow:0 0 60px rgba(139,92,246,.15)">
+    <span class="memoji">🕯️</span>
+    <div class="mtitle" style="color:#a78bfa">Moroes' Dinner Party</div>
+    <p class="msub">CC the adds before Moroes eats your healers!</p>
+    <div class="moroes-table" id="moreTable"></div>
+    <div style="font-family:'Cinzel',serif;font-size:.72rem;color:var(--dim);text-align:center;min-height:20px;margin-bottom:10px" id="moreMsg">Click the adds — Sheep, Shackle, and Trap them before they Garrote!</div>
+    <button class="mclose" id="moreStart" style="border-color:#a78bfa;color:#a78bfa;background:rgba(139,92,246,.08)" onclick="moreosStartGame()">Pull Moroes</button>
+    <button class="mclose" style="margin-left:8px;border-color:rgba(255,255,255,.1);color:var(--dim)" onclick="moreosStop();closeM('mMoroes')">Reset</button>
+  </div>
+</div>
+
+<!-- MINI-GAME: SHADE OF ARAN — DON'T MOVE -->
+<div class="modal" id="mAran">
+  <div class="mbox" style="border-color:#7b2fff;box-shadow:0 0 60px rgba(123,47,255,.2)">
+    <span class="memoji">🌀</span>
+    <div class="mtitle" style="color:#a78bfa">Flame Wreath!</div>
+    <p class="msub">Shade of Aran — DO NOT MOVE</p>
+    <div class="aran-msg" id="aranMsg">Move your cursor into the ring and FREEZE when the flames appear</div>
+    <div class="aran-ring" id="aranRing">
+      <div class="aran-player" id="aranPlayer">🧙‍♀️</div>
+    </div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--dim);text-align:center;margin:8px 0">
+      Survived: <span id="aranSurv" style="color:var(--fel)">0</span> &nbsp;·&nbsp; Wiped: <span id="aranWipe" style="color:var(--blood)">0</span>
+    </div>
+    <button class="mclose" onclick="aranStop();closeM('mAran')">Leave Karazhan</button>
   </div>
 </div>
 

@@ -431,6 +431,17 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
 /* DST counter special glow */
 .dst-counter{color:#ffd770;text-shadow:0 0 18px #f48c06,0 0 36px rgba(244,140,6,.3)!important}
 
+
+.cd-bar-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;overflow:hidden;padding:9px 12px;display:flex;align-items:center;gap:12px}
+.cd-icon{font-size:1.3rem;flex-shrink:0}
+.cd-info{flex:1;text-align:left}
+.cd-name{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:2px;color:var(--warrior);text-transform:uppercase}
+.cd-bar{height:4px;border-radius:2px;margin-top:5px;width:0;transition:width 1.5s ease}
+.cd-bar.sw{background:linear-gradient(90deg,#c69b3a,#ffd770)}
+.cd-bar.ls{background:linear-gradient(90deg,#cc2222,#ff6060)}
+.cd-bar.ip{background:linear-gradient(90deg,#2a8a4a,#3dff6e)}
+.cd-bar.hs{background:linear-gradient(90deg,#8b2fd4,#a855f7)}
+
 </style>
 </head>
 <body>
@@ -679,7 +690,7 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
   <p class="ssub">The commanders of Eradication</p>
   <div class="roster-grid">
 
-    <div class="rcard" style="border-color:rgba(198,155,58,.3)">
+    <div class="rcard" id="rcValiwar" style="border-color:rgba(198,155,58,.3);cursor:pointer">
       <div class="rcard-top" style="background:linear-gradient(90deg,var(--warrior),rgba(198,155,58,.2))"></div>
       <div class="rcard-body">
         <div class="rcard-name" style="color:var(--warrior)">Valiwar</div>
@@ -695,7 +706,7 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
       </div>
     </div>
 
-    <div class="rcard" style="border-color:rgba(244,140,186,.28)">
+    <div class="rcard" id="rcGloomadin" style="border-color:rgba(244,140,186,.28);cursor:pointer">
       <div class="rcard-top" style="background:linear-gradient(90deg,var(--paladin),rgba(244,140,186,.2))"></div>
       <div class="rcard-body">
         <div class="rcard-name" style="color:var(--paladin)">Gloomadin</div>
@@ -711,39 +722,38 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
       </div>
     </div>
 
-    <div class="rcard" style="border-color:rgba(244,140,186,.22)">
-      <div class="rcard-top" style="background:linear-gradient(90deg,var(--paladin),rgba(244,140,186,.15))"></div>
+    <div class="rcard" id="rcTheatus" style="border-color:rgba(244,140,186,.32);cursor:pointer">
+      <div class="rcard-top" style="background:linear-gradient(90deg,var(--paladin),rgba(244,140,186,.28))"></div>
       <div class="rcard-body">
         <div class="rcard-name" style="color:var(--paladin)">Theatus</div>
-        <div class="rcard-role">Heal Lead · Officer</div>
+        <div class="rcard-role">Co-GM · Blood Elf Holy Paladin</div>
         <div class="rcard-tags">
-          <span class="rtag rtag-rank">Officer</span>
+          <span class="rtag rtag-rank">Co-GM</span>
           <span class="rtag rtag-cls" style="color:var(--paladin);border-color:rgba(244,140,186,.25)">Paladin</span>
           <span class="rtag rtag-spec">Blood Elf</span>
           <span class="rtag rtag-spec">Holy</span>
-          <span class="rtag rtag-spec">Heal Lead</span>
         </div>
-        <div class="rcard-lore">Blood Elf Holy Paladin and Head of Healing. Theatus coordinates the entire healing team — assignments, cooldown rotation, and post-raid review. If the raid lived, there's a good chance Theatus had a hand in it.</div>
+        <div class="rcard-lore">Blood Elf Holy Paladin and Co-GM of Eradication. Theatus operates alongside Valiwar on every major guild decision — roster, strategy, culture. On the raid floor he coordinates healing assignments, cooldown rotation, and post-pull review. The steady hand that keeps the machine running.</div>
       </div>
     </div>
 
-    <div class="rcard" style="border-color:rgba(255,255,255,.14)">
-      <div class="rcard-top" style="background:linear-gradient(90deg,rgba(220,220,255,.9),rgba(200,200,255,.15))"></div>
+    <div class="rcard" id="rcDee" style="border-color:rgba(255,124,10,.22);cursor:pointer">
+      <div class="rcard-top" style="background:linear-gradient(90deg,var(--druid),rgba(255,124,10,.2))"></div>
       <div class="rcard-body">
-        <div class="rcard-name" style="color:#dde0ff">Shidee</div>
-        <div class="rcard-role">Healing Lead · Officer</div>
+        <div class="rcard-name" style="color:var(--druid)">Dee</div>
+        <div class="rcard-role">Heal Lead · Officer · Tauren Resto Druid</div>
         <div class="rcard-tags">
           <span class="rtag rtag-rank">Officer</span>
-          <span class="rtag rtag-cls" style="color:var(--priest);border-color:rgba(255,255,255,.2)">Priest</span>
-          <span class="rtag rtag-spec">Undead</span>
-          <span class="rtag rtag-spec">Holy</span>
-          <span class="rtag rtag-spec">Healing Lead</span>
+          <span class="rtag rtag-cls" style="color:var(--druid);border-color:rgba(255,124,10,.28)">Druid</span>
+          <span class="rtag rtag-spec">Tauren</span>
+          <span class="rtag rtag-spec">Restoration</span>
+          <span class="rtag rtag-spec">Heal Lead</span>
         </div>
-        <div class="rcard-lore">Undead Holy Priest and co-lead of the healing division alongside Theatus. Shidee sets the standard for throughput and positioning, keeping the raid topped through the most punishing mechanics Outland has to offer.</div>
+        <div class="rcard-lore">Tauren Restoration Druid and head of the healing division. Dee keeps HoTs ticking, throughput steady, and the team organized — raid assignments, cooldown coordination, and the kind of calm under pressure that only a Tauren can project. If the raid stays alive, Dee's probably the reason.</div>
       </div>
     </div>
 
-    <div class="rcard" style="border-color:rgba(255,244,104,.2)">
+    <div class="rcard" id="rcPantiesoup" style="border-color:rgba(255,244,104,.2);cursor:pointer">
       <div class="rcard-top" style="background:linear-gradient(90deg,var(--rogue),rgba(255,244,104,.15))"></div>
       <div class="rcard-body">
         <div class="rcard-name" style="color:var(--rogue)">Pantiesoup</div>
@@ -793,7 +803,7 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
           <div class="rday-time mono">6:00 PM – 9:00 PM PST</div>
           <div class="rday-tz">9:00 PM EST · 8:00 PM CST · 2:00 AM GMT</div>
         </div>
-        <span class="rday-type rdt-o">Karazhan Teams</span>
+        <span class="rday-type rdt-o">Off-Night</span>
       </div>
       <div class="rday">
         <div class="rday-name">Off-Nights</div>
@@ -1204,10 +1214,10 @@ const td=[
   {n:'Theatus',a:'received',b:"High King's Pauldrons",e:"Maulgar drop 🔱"},
   {n:'Theatus',a:'received',b:"Blessed Book of Nagrand",e:"Mag's Head reward 📖"},
   {n:'Theatus',a:'achieved',b:'Zero overhealing — Nightbane',e:'Precision heals 💎'},
-  {n:'Shidee',a:'received',b:"Ritssyn's Ring of Chaos",e:'Magtheridon drop 💀'},
-  {n:'Shidee',a:'received',b:"Staff of Infinite Mysteries",e:'Karazhan — Curator drop 🔮'},
-  {n:'Shidee',a:'received',b:'Bangle of Endless Blessings',e:'Karazhan — Chess event 🎲'},
-  {n:'Shidee',a:'achieved',b:'99th percentile healing — Magtheridon',e:'Heal Lead MVP 💚'},
+  {n:'Dee',a:'received',b:"Ritssyn's Ring of Chaos",e:'Magtheridon drop 💀'},
+  {n:'Dee',a:'received',b:"Staff of Infinite Mysteries",e:'Karazhan — Curator drop 🔮'},
+  {n:'Dee',a:'received',b:'Bangle of Endless Blessings',e:'Karazhan — Chess event 🎲'},
+  {n:'Dee',a:'achieved',b:'99th percentile healing — Magtheridon',e:'Heal Lead MVP 💚'},
   {n:'Holynificent',a:'received',b:"Mender's Heart-Ring",e:'Karazhan — Maiden drop 💍'},
   {n:'Holynificent',a:'received',b:'Bands of the Benevolent',e:'Karazhan — Moroes drop ✨'},
   {n:'Holynificent',a:'achieved',b:'Top healing output — The Curator',e:'Holy power 🌟'},
@@ -1548,6 +1558,88 @@ document.getElementById('hordeBtn').addEventListener('click',()=>{hc++;if(hc===1
 const bttEl=document.getElementById('btt');
 bttEl.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 window.addEventListener('scroll',()=>bttEl.classList.toggle('vis',scrollY>500),{passive:true});
+
+// EE9: GLOOMADIN — BUBBLE HEARTH
+document.getElementById('rcGloomadin').addEventListener('click',()=>{
+  openM('mBubbleHearth');
+  showAch('🫧','Bubble Hearth!','Classic Paladin escape plan activated.');
+  const anim=document.getElementById('bubbleAnim');
+  let frame=0;
+  const frames=['🫧🧙‍♂️🫧','🫧🫧🧙‍♂️','🫧🫧🫧','✨🏠✨'];
+  const bTimer=setInterval(()=>{anim.textContent=frames[frame%frames.length];frame++;if(frame>12)clearInterval(bTimer);},400);
+});
+
+// EE10: VALIWAR — TANK WALL COOLDOWNS
+document.getElementById('rcValiwar').addEventListener('click',()=>{
+  openM('mTankWall');
+  showAch('🛡️','Tank Wall Active!','Shield Wall + Last Stand + Ironshield Pot. Unstoppable.');
+  const cds=[
+    {icon:'🛡️',name:'Shield Wall',cls:'sw',pct:100},
+    {icon:'⚔️',name:'Last Stand',cls:'ls',pct:100},
+    {icon:'⚗️',name:'Ironshield Potion',cls:'ip',pct:100},
+    {icon:'💜',name:'Healthstone',cls:'hs',pct:100},
+  ];
+  const wrap=document.getElementById('tankCooldowns');
+  wrap.innerHTML='';
+  cds.forEach((cd,i)=>{
+    const div=document.createElement('div');
+    div.className='cd-bar-wrap';
+    div.innerHTML='<span class="cd-icon">'+cd.icon+'</span><div class="cd-info"><div class="cd-name">'+cd.name+'</div><div class="cd-bar '+cd.cls+'" id="cdb'+i+'"></div></div>';
+    wrap.appendChild(div);
+    setTimeout(()=>{document.getElementById('cdb'+i).style.width=cd.pct+'%';},200+i*300);
+  });
+});
+
+// EE11: THEATUS — DIVINE INTERVENTION
+document.getElementById('rcTheatus').addEventListener('click',()=>{
+  openM('mDivineLight');
+  showAch('✨','Divine Intervention!','Theatus sees all. Heals most of it.');
+});
+
+// EE12: SHIDEE — SHADOWFORM
+document.getElementById('rcDee').addEventListener('click',()=>{
+  openM('mShadowform');
+  showAch('🐱','Cat Form?!','Dee\'s HoTs are running. Dee is not here.');
+});
+
+// EE13: PANTIESOUP — VANISH
+document.getElementById('rcPantiesoup').addEventListener('click',()=>{
+  openM('mVanish');
+  showAch('💨','Vanished!','You have been evaluated from stealth.');
+});
+
+// EE14: ATTUMEN HORSE ROLL
+document.getElementById('bAttumen').style.cursor='pointer';
+document.getElementById('bAttumen').addEventListener('click',()=>{
+  openM('mAttumenHorse');
+  const rollEl=document.getElementById('horseRoll');
+  rollEl.textContent='🎲 Roll for mount...';
+  const rollBtn=document.getElementById('rollHorse');
+  rollBtn.textContent='Roll the Dice';
+  rollBtn.onclick=function(){
+    rollEl.textContent='🎲 Rolling...';
+    let spins=0;
+    const spin=setInterval(()=>{
+      const r=Math.floor(Math.random()*100)+1;
+      rollEl.textContent='🎲 '+r+'...';
+      spins++;
+      if(spins>8){
+        clearInterval(spin);
+        const final=Math.floor(Math.random()*100)+1;
+        if(final<=1){
+          rollEl.innerHTML='<span style="color:#c4a0ff;font-size:1.4rem">🐴 '+final+' — MOUNT DROPS!!!</span>';
+          showAch('🐴','Deathcharger\u2019s Reins!','0.8% drop. The RNG gods smile upon you.');
+          rollBtn.textContent='I Quit WoW (Never)';
+        } else {
+          rollEl.innerHTML='<span style="color:var(--dim)">'+final+' — No mount. Reset +1.</span>';
+          rollBtn.textContent='Same Time Next Week';
+        }
+      }
+    },120);
+  };
+});
+
+// EE15: TYPED CODES — add new words
 // EE8: TYPED CODES
 let typed='';
 document.addEventListener('keypress',e=>{
@@ -1555,7 +1647,82 @@ document.addEventListener('keypress',e=>{
   if(typed.endsWith('hogger'))showAch('🐗','Hogger?',"He's still in Elwynn Forest. You're in Outland.");
   if(typed.endsWith('illidan'))openM('mIllidan');
   if(typed.endsWith('murloc')){murl.style.transform='translateX(0) scale(2.2)';setTimeout(()=>murl.style.transform='',800);showAch('🐡','Mrgl mrgl!','The murloc acknowledges your devotion.')}
+  if(typed.endsWith('bubble'))openM('mBubbleHearth');
+  if(typed.endsWith('shieldwall'))openM('mTankWall');
+  if(typed.endsWith('vanish'))openM('mVanish');
+  if(typed.endsWith('grull'))showAch('👹','Gruul Smash!','It\'s Gruul\'s Lair, not Grull. But we love you.');
 });
 </script>
+
+<!-- EE: BUBBLE HEARTH -->
+<div class="modal" id="mBubbleHearth">
+  <div class="mbox" style="border-color:#f48cba;box-shadow:0 0 60px rgba(244,140,186,.22)">
+    <span class="memoji">🫧</span>
+    <div class="mtitle" style="color:#f48cba;text-shadow:0 0 25px #f48cba">Bubble Hearth!</div>
+    <p class="msub">Gloomadin — Paladin Signature Move</p>
+    <p style="color:var(--dim);font-size:.87rem;margin-bottom:20px;line-height:1.8">Divine Shield + Hearthstone. The most sacred of Paladin traditions.<br><em style="color:#f48cba">"Don't worry guys, I bubbled. You've got this."</em></p>
+    <div id="bubbleAnim" style="font-size:3rem;margin:10px 0;display:flex;justify-content:center;gap:10px;letter-spacing:4px">🫧🧙‍♂️🫧</div>
+    <button class="mclose" style="border-color:#f48cba;color:#f48cba;background:rgba(244,140,186,.1)" onclick="closeM('mBubbleHearth')">Back to the Instance</button>
+  </div>
+</div>
+
+<!-- EE: TANK WALL -->
+<div class="modal" id="mTankWall">
+  <div class="mbox" style="border-color:var(--warrior);box-shadow:0 0 60px rgba(198,155,58,.18)">
+    <span class="memoji">🛡️</span>
+    <div class="mtitle" style="color:var(--warrior);text-shadow:0 0 25px var(--warrior)">TANK WALL!</div>
+    <p class="msub">Valiwar — Emergency Cooldown Stack</p>
+    <div id="tankCooldowns" style="display:flex;flex-direction:column;gap:8px;margin:14px 0"></div>
+    <p style="color:var(--dim);font-size:.82rem;margin-bottom:18px;line-height:1.7;font-style:italic">"Shield Wall. Last Stand. Ironshield Pot. Trinket. Healthstone. Death is not an option."</p>
+    <button class="mclose" style="border-color:var(--warrior);color:var(--warrior);background:rgba(198,155,58,.08)" onclick="closeM('mTankWall')">We Survived 🏆</button>
+  </div>
+</div>
+
+<!-- EE: THEATUS DIVINE LIGHT -->
+<div class="modal" id="mDivineLight">
+  <div class="mbox" style="border-color:#f48cba;box-shadow:0 0 60px rgba(244,140,186,.18)">
+    <span class="memoji">✨</span>
+    <div class="mtitle" style="color:#f5d0e8;text-shadow:0 0 20px #f48cba">Divine Intervention!</div>
+    <p class="msub">Theatus — Co-GM · Blood Elf Holy Paladin</p>
+    <p style="color:var(--dim);font-size:.87rem;margin-bottom:20px;line-height:1.8">Theatus sees the tank at 3% HP, hits Divine Intervention on the wrong target, and somehow the raid still survives.<br><em style="color:#f48cba">"I meant to do that."</em></p>
+    <button class="mclose" style="border-color:#f48cba;color:#f48cba;background:rgba(244,140,186,.08)" onclick="closeM('mDivineLight')">Praise the Light</button>
+  </div>
+</div>
+
+<!-- EE: SHIDEE SHADOWFORM -->
+<div class="modal" id="mShadowform">
+  <div class="mbox neth">
+    <span class="memoji">👤</span>
+    <div class="mtitle" style="color:#a78bfa">Cat Form?!</div>
+    <p class="msub">Dee — Tauren Resto Druid with Mysterious Logs</p>
+    <p style="color:var(--dim);font-size:.87rem;margin-bottom:20px;line-height:1.8">The rejuvenation ticks say Restoration. The combat log says otherwise.<br><em style="color:#a78bfa">"Those were HoTs. Very aggressive HoTs."</em></p>
+    <div style="font-size:2rem;margin:8px 0;opacity:.6;letter-spacing:6px">👻 🔮 👻</div>
+    <button class="mclose" onclick="closeM('mShadowform')">Stay in the Light</button>
+  </div>
+</div>
+
+<!-- EE: PANTIESOUP VANISH -->
+<div class="modal" id="mVanish">
+  <div class="mbox" style="border-color:var(--rogue);box-shadow:0 0 60px rgba(255,244,104,.1)">
+    <span class="memoji">💨</span>
+    <div class="mtitle" style="color:var(--rogue);text-shadow:0 0 20px rgba(255,244,104,.6)">Vanish!</div>
+    <p class="msub">Pantiesoup — Recruiter Disappears</p>
+    <p style="color:var(--dim);font-size:.87rem;margin-bottom:20px;line-height:1.8">Application submitted. Pantiesoup reviews it from stealth.<br>You can feel being watched. There is no escaping the evaluation.<br><em style="color:var(--rogue)">"We'll be in touch."</em></p>
+    <button class="mclose" style="border-color:var(--rogue);color:var(--rogue);background:rgba(255,244,104,.06)" onclick="closeM('mVanish')">Submit Application</button>
+  </div>
+</div>
+
+<!-- EE: ATTUMEN HORSE -->
+<div class="modal" id="mAttumenHorse">
+  <div class="mbox" style="border-color:#7b2fff;box-shadow:0 0 60px rgba(123,47,255,.18)">
+    <span class="memoji">🐴</span>
+    <div class="mtitle" style="color:#c4a0ff">Deathcharger's Reins</div>
+    <p class="msub">Attumen the Huntsman — Mount Drop</p>
+    <p style="color:var(--dim);font-size:.87rem;margin-bottom:20px;line-height:1.8">0.8% drop chance. 52 resets. Still farming.<br><em style="color:#c4a0ff">"It'll drop this week. I can feel it."</em></p>
+    <div id="horseRoll" style="font-family:'Share Tech Mono',monospace;font-size:1.2rem;color:var(--dim);margin:10px 0">🎲 Roll for mount...</div>
+    <button class="mclose" style="border-color:#7b2fff;color:#c4a0ff;background:rgba(123,47,255,.08)" id="rollHorse">Roll the Dice</button>
+  </div>
+</div>
+
 </body>
 </html>

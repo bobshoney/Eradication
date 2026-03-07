@@ -107,7 +107,7 @@ nav a:hover,nav a.active{color:var(--fb);border-color:rgba(244,140,6,.32);backgr
 /* TICKER */
 .ticker{position:relative;z-index:1;background:rgba(0,0,0,.5);border-top:1px solid rgba(61,255,110,.08);border-bottom:1px solid rgba(61,255,110,.08);padding:8px 0;overflow:hidden}
 .tlbl{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;background:rgba(61,255,110,.09);border-right:1px solid rgba(61,255,110,.12);padding:0 15px;font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:3px;text-transform:uppercase;color:var(--fel);z-index:2;white-space:nowrap}
-.ttrack{display:flex;animation:tscroll 58s linear infinite;width:max-content;padding-left:110px}
+.ttrack{display:flex;animation:tscroll 260s linear infinite;width:max-content;padding-left:110px}
 .ttrack:hover{animation-play-state:paused}
 .titem{white-space:nowrap;padding:0 50px;font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--dim);display:flex;align-items:center;gap:8px}
 .tn{color:var(--fb)}.tb{color:var(--gold)}.tg{color:var(--fel)}
@@ -131,7 +131,7 @@ nav a:hover,nav a.active{color:var(--fb);border-color:rgba(244,140,6,.32);backgr
 .pf-fel{background:linear-gradient(90deg,var(--fd),var(--fel));box-shadow:0 0 8px var(--fel)}
 .pf-lock{background:#0c0918}
 .phase-body{overflow:hidden;transition:max-height .45s cubic-bezier(.25,1,.5,1),opacity .35s ease;max-height:0;opacity:0}
-.phase-body.open{max-height:2400px;opacity:1}
+.phase-body.open{max-height:2400px;opacity:1;padding-bottom:16px}
 .phase-note{font-family:'Share Tech Mono',monospace;font-size:.56rem;letter-spacing:3px;text-transform:uppercase;color:#2a1e50;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .boss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:10px;margin-bottom:4px}
 
@@ -176,11 +176,11 @@ nav a:hover,nav a.active{color:var(--fb);border-color:rgba(244,140,6,.32);backgr
 
 /* ROSTER */
 .roster-sec{position:relative;z-index:1;background:var(--d2)}
-.roster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:16px}
-.rcard{background:rgba(8,5,16,.9);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;transition:all .3s}
+.roster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:16px;align-items:stretch}
+.rcard{background:rgba(8,5,16,.9);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;transition:all .3s;display:flex;flex-direction:column}
 .rcard:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(0,0,0,.7)}
 .rcard-top{height:4px;width:100%}
-.rcard-body{padding:18px 16px}
+.rcard-body{padding:18px 16px;flex:1;display:flex;flex-direction:column}
 .rcard-name{font-family:'Cinzel',serif;font-size:1rem;font-weight:900;letter-spacing:3px;text-transform:uppercase;margin-bottom:3px}
 .rcard-role{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:11px}
 .rcard-tags{display:flex;flex-wrap:wrap;gap:5px}
@@ -188,7 +188,7 @@ nav a:hover,nav a.active{color:var(--fb);border-color:rgba(244,140,6,.32);backgr
 .rtag-rank{color:var(--gold);border-color:rgba(200,168,75,.28);background:rgba(200,168,75,.06)}
 .rtag-cls{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
 .rtag-spec{color:var(--dim);border-color:rgba(154,139,181,.18);background:rgba(154,139,181,.03)}
-.rcard-lore{font-size:.82rem;color:var(--dim);font-style:italic;margin-top:10px;line-height:1.55;padding-top:10px;border-top:1px solid rgba(255,255,255,.05)}
+.rcard-lore{font-size:.82rem;color:var(--dim);font-style:italic;margin-top:10px;line-height:1.55;padding-top:10px;border-top:1px solid rgba(255,255,255,.05);flex:1}
 
 /* SCHEDULE */
 .sched-sec{position:relative;z-index:1;background:var(--d1)}
@@ -238,7 +238,7 @@ nav a:hover,nav a.active{color:var(--fb);border-color:rgba(244,140,6,.32);backgr
 .rec-sec{position:relative;z-index:1;background:var(--d1)}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:10px;margin-bottom:20px}
 .ccard{background:rgba(8,5,16,.8);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;transition:all .3s;position:relative;overflow:hidden}
-.ccard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px}
+.ccard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;background:linear-gradient(180deg,rgba(244,140,6,.7),rgba(123,47,255,.35))}
 .ccard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.5)}
 .cdot{width:10px;height:10px;border-radius:50%;flex-shrink:0;box-shadow:0 0 7px currentColor}
 .ci{flex:1}
@@ -247,6 +247,7 @@ nav a:hover,nav a.active{color:var(--fb);border-color:rgba(244,140,6,.32);backgr
 .cprio{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:2px;padding:2px 8px;border-radius:20px;text-transform:uppercase;border:1px solid;white-space:nowrap}
 .ph{color:var(--fire);border-color:rgba(244,140,6,.34);background:rgba(244,140,6,.09)}
 .pm{color:#b8a0d0;border-color:rgba(184,160,208,.24);background:rgba(184,160,208,.05)}
+.pl{color:#352845;border-color:rgba(80,55,100,.34);background:rgba(50,35,70,.08)}
 .pc2{color:#352845;border-color:rgba(50,38,60,.34)}
 .rnote{text-align:center;background:rgba(61,255,110,.04);border:1px solid rgba(61,255,110,.11);border-radius:10px;padding:14px 22px;font-style:italic;color:var(--dim);font-size:.92rem}
 .rnote strong{color:var(--fel)}
@@ -308,8 +309,54 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
 .mclose:hover{background:rgba(244,140,6,.25)}
 .memoji{font-size:3rem;display:block;margin-bottom:13px}
 
-@media(max-width:920px){.ag,.sg,.lg,.ccgrid{grid-template-columns:1fr}.sbar-inner{grid-template-columns:1fr 1fr}.sb-mid{display:none}.pillars{grid-template-columns:1fr 1fr}}
+@media(max-width:920px){.ag,.sg,.lg,.ccgrid,.req-grid{grid-template-columns:1fr}.sbar-inner{grid-template-columns:1fr 1fr}.sb-mid{display:none}.pillars{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.pillars{grid-template-columns:1fr}.h-title{font-size:2.6rem}nav .nh{display:none}.ccgrid{grid-template-columns:1fr}.tlbl{display:none}.ttrack{padding-left:10px}.roster-grid{grid-template-columns:1fr 1fr}}
+
+/* REQUIREMENTS / APPLICATION */
+.req-sec{position:relative;z-index:1;background:var(--d2)}
+.req-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.req-left,.req-right{display:flex;flex-direction:column;gap:14px}
+.req-block{background:rgba(8,5,16,.9);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:20px;position:relative;overflow:hidden;transition:border-color .3s}
+.req-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--neth),transparent)}
+.apply-block::before{background:linear-gradient(90deg,transparent,var(--fire),transparent)}
+.trial-block::before{background:linear-gradient(90deg,transparent,var(--fel),transparent)}
+.req-block-title{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--fb);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+.req-block-title i{color:var(--fire);font-size:.75rem}
+.req-items{display:flex;flex-direction:column;gap:7px}
+.req-item{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:rgba(255,255,255,.02);border-radius:6px;border:1px solid rgba(255,255,255,.04);transition:all .25s}
+.req-item:hover{border-color:rgba(244,140,6,.15);background:rgba(244,140,6,.03)}
+.req-check{font-family:'Share Tech Mono',monospace;font-size:.78rem;color:var(--fel);min-width:14px;font-weight:700;line-height:1.7;flex-shrink:0}
+.req-item div{flex:1}
+.req-item strong{display:block;font-size:.82rem;color:var(--txt);line-height:1.3;font-weight:600}
+.req-item span{font-size:.73rem;color:var(--dim);line-height:1.4;display:block;margin-top:2px}
+.req-addons{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.raddon{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-radius:6px;border:1px solid;font-family:'Share Tech Mono',monospace;font-size:.62rem;transition:all .25s;gap:6px}
+.raddon.mandatory{border-color:rgba(244,140,6,.24);background:rgba(244,140,6,.05);color:var(--fb)}
+.raddon.mandatory:hover{border-color:rgba(244,140,6,.5);background:rgba(244,140,6,.09)}
+.raddon.rec{border-color:rgba(255,255,255,.06);color:var(--dim)}
+.raddon.rec:hover{border-color:rgba(123,47,255,.2)}
+.ra-tag{background:rgba(244,140,6,.15);color:var(--fire);padding:2px 7px;border-radius:8px;font-size:.46rem;letter-spacing:1px;white-space:nowrap;flex-shrink:0}
+.ra-tag-rec{background:rgba(154,139,181,.09);color:var(--dim);padding:2px 7px;border-radius:8px;font-size:.46rem;letter-spacing:1px;white-space:nowrap;flex-shrink:0}
+.app-template{background:rgba(3,2,10,.9);border:1px solid rgba(123,47,255,.18);border-radius:8px;padding:14px;font-family:'Share Tech Mono',monospace}
+.app-line{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.app-line:last-child{border-bottom:none;padding-bottom:0}
+.app-key{font-size:.54rem;letter-spacing:1px;color:var(--gold);min-width:108px;flex-shrink:0;padding-top:2px;line-height:1.3}
+.app-val{font-size:.58rem;color:var(--dim);line-height:1.55}
+.trial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.trial-item{text-align:center;background:rgba(61,255,110,.04);border:1px solid rgba(61,255,110,.1);border-radius:8px;padding:14px 8px;transition:all .3s}
+.trial-item:hover{border-color:rgba(61,255,110,.25);background:rgba(61,255,110,.07)}
+.trial-num{display:block;font-family:'Cinzel',serif;font-size:1.45rem;font-weight:900;color:var(--fel);line-height:1}
+.trial-lbl{display:block;font-family:'Share Tech Mono',monospace;font-size:.44rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:5px}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:68px;right:20px;z-index:987;width:36px;height:36px;background:rgba(8,5,16,.94);border:1px solid rgba(123,47,255,.28);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px);transition:all .35s;color:var(--neth);font-size:.85rem;pointer-events:none}
+#btt.vis{opacity:1;transform:translateY(0);pointer-events:all}
+#btt:hover{border-color:rgba(123,47,255,.7);box-shadow:0 0 14px rgba(123,47,255,.28)}
+
+/* FOOTER NAV */
+.footer-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 16px;margin:14px 0;padding:12px 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.footer-nav a{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:rgba(154,139,181,.35);text-decoration:none;transition:color .2s}
+.footer-nav a:hover{color:var(--fire)}
 </style>
 </head>
 <body>
@@ -373,11 +420,11 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
       <a href="#recruitment" class="btn btn-fel"><i class="fas fa-users"></i> Recruitment</a>
     </div>
     <div class="h-stats">
-      <div class="hstat"><div class="hn" data-count="9">0</div><div class="hl">Bosses Slain</div></div>
+      <div class="hstat"><div class="hn" data-count="12">0</div><div class="hl">Bosses Slain</div></div>
       <div class="sdot">·</div>
       <div class="hstat"><div class="hn" data-count="2">0</div><div class="hl">Raid Nights/Wk</div></div>
       <div class="sdot">·</div>
-      <div class="hstat"><div class="hn" data-count="25">0</div><div class="hl">Core Raiders</div></div>
+      <div class="hstat"><div class="hn" data-count="27">0</div><div class="hl">Core Raiders</div></div>
       <div class="sdot">·</div>
       <div class="hstat"><div class="hn" data-count="97">0</div><div class="hl">Attendance %</div></div>
     </div>
@@ -422,9 +469,9 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
 
 <div class="tier-block">
   <div class="tier-hdr open" data-target="t4body">
-    <span class="tbadge tbc">✓ 9/9 Cleared</span>
+    <span class="tbadge tbc">✓ 12/12 Cleared</span>
     <span class="tname gold">Phase 1 — Tier 4</span>
-    <span class="tfrac mono">Karazhan · Gruul's Lair · Magtheridon's Lair</span>
+    <span class="tfrac mono">Karazhan (9) · Gruul's Lair (2) · Magtheridon's Lair (1)</span>
     <i class="fas fa-chevron-down tchev"></i>
   </div>
   <div class="pbar"><div class="pf pf-fel" style="width:100%"></div></div>
@@ -432,11 +479,14 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
     <div class="boss-grid" id="t4g">
       <div class="bc killed" id="bAttumen"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3d1a60,#1a0835,#060212)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(140,60,255,.6) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🦇</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Attumen the Huntsman</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#200e45,#0c0620,#030108)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(100,70,180,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🕯️</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Moroes</span><span class="bstat">☠ DEAD</span></div></div>
+      <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3a1040,#18082a,#06010e)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(210,90,230,.5) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🎭</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Opera Event</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3a1045,#180825,#060108)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,186,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🎭</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Maiden of Virtue</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#10203a,#06101e,#010408)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(63,199,235,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">👁️</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">The Curator</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3d1080,#19043a,#060010)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(123,47,255,.68) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🌀</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Shade of Aran</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#0f3018,#061408,#010502)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(61,255,110,.44) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🐉</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Netherspite</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed" id="bPrince"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3a0808,#1a0202,#060000)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(220,30,30,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">⚔️</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Prince Malchezaar</span><span class="bstat">☠ DEAD</span></div></div>
+      <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#1e0830,#0c0318,#04000a)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(155,80,220,.58) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🐲</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Nightbane</span><span class="bstat">☠ DEAD</span></div></div>
+      <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#281408,#120a04,#050200)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(244,160,6,.52) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🗡️</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">High King Maulgar</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#3a2010,#1a0e06,#060402)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(200,168,75,.5) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">🪨</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Gruul the Dragonkiller</span><span class="bstat">☠ DEAD</span></div></div>
       <div class="bc killed" id="bMag"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#4a1000,#220800,#0c0200)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,6,.65) 0%,transparent 70%)"></div><div class="bp-vig"></div><div class="bp-scan"></div><span class="bp-em">👿</span><span class="bp-dead">☠ DEAD</span></div><div class="binfo"><span class="bname">Magtheridon</span><span class="bstat">☠ DEAD</span></div></div>
     </div>
@@ -554,14 +604,15 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
       <div class="rcard-top" style="background:linear-gradient(90deg,var(--warrior),rgba(198,155,58,.2))"></div>
       <div class="rcard-body">
         <div class="rcard-name" style="color:var(--warrior)">Valiwar</div>
-        <div class="rcard-role">Guild Master</div>
+        <div class="rcard-role">Guild Master · Main Tank</div>
         <div class="rcard-tags">
           <span class="rtag rtag-rank">Guild Master</span>
           <span class="rtag rtag-cls" style="color:var(--warrior);border-color:rgba(198,155,58,.3)">Warrior</span>
-          <span class="rtag rtag-spec">Orc · Male</span>
+          <span class="rtag rtag-spec">Orc</span>
           <span class="rtag rtag-spec">Main Tank</span>
+          <span class="rtag rtag-spec">Prot</span>
         </div>
-        <div class="rcard-lore">The shield and spine of Eradication — in the raid and out of it. Where Valiwar goes, the guild follows.</div>
+        <div class="rcard-lore">Valiwar is the foundation Eradication is built on — Orc Warrior, guild founder, and first through every door. As the primary main tank, he holds the front line on every progression boss while simultaneously managing the entire guild operation. Roster decisions, loot disputes, strategy calls, officer alignment — it runs through Valiwar. The kind of GM who leads from the front, not the bench.</div>
       </div>
     </div>
 
@@ -569,15 +620,15 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
       <div class="rcard-top" style="background:linear-gradient(90deg,var(--paladin),rgba(244,140,186,.2))"></div>
       <div class="rcard-body">
         <div class="rcard-name" style="color:var(--paladin)">Gloomadin</div>
-        <div class="rcard-role">Raid Leader · Officer</div>
+        <div class="rcard-role">Raid Leader · Officer · Main Tank</div>
         <div class="rcard-tags">
           <span class="rtag rtag-rank">Officer</span>
           <span class="rtag rtag-cls" style="color:var(--paladin);border-color:rgba(244,140,186,.28)">Paladin</span>
-          <span class="rtag rtag-spec">Blood Elf · Female</span>
+          <span class="rtag rtag-spec">Blood Elf</span>
           <span class="rtag rtag-spec">Prot · Main Tank</span>
           <span class="rtag rtag-spec">Raid Lead</span>
         </div>
-        <div class="rcard-lore">Blood Elf Prot Paladin. Commands the raid floor with precision — the voice that keeps 25 people alive on progression.</div>
+        <div class="rcard-lore">Blood Elf Prot Paladin and the commanding voice on the raid floor. Gloomadin calls pulls, manages cooldowns, and coordinates the 25-man with iron precision. Co-tanks with Valiwar on progression content and serves as the tactical brain behind the execution.</div>
       </div>
     </div>
 
@@ -585,14 +636,15 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
       <div class="rcard-top" style="background:linear-gradient(90deg,var(--paladin),rgba(244,140,186,.15))"></div>
       <div class="rcard-body">
         <div class="rcard-name" style="color:var(--paladin)">Theatus</div>
-        <div class="rcard-role">Officer</div>
+        <div class="rcard-role">Heal Lead · Officer</div>
         <div class="rcard-tags">
           <span class="rtag rtag-rank">Officer</span>
           <span class="rtag rtag-cls" style="color:var(--paladin);border-color:rgba(244,140,186,.25)">Paladin</span>
+          <span class="rtag rtag-spec">Blood Elf</span>
           <span class="rtag rtag-spec">Holy</span>
-          <span class="rtag rtag-spec">Healer</span>
+          <span class="rtag rtag-spec">Heal Lead</span>
         </div>
-        <div class="rcard-lore">Holy Paladin officer. Keeping the raid standing so everyone else can focus on dealing damage.</div>
+        <div class="rcard-lore">Blood Elf Holy Paladin and Head of Healing. Theatus coordinates the entire healing team — assignments, cooldown rotation, and post-raid review. If the raid lived, there's a good chance Theatus had a hand in it.</div>
       </div>
     </div>
 
@@ -600,14 +652,15 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
       <div class="rcard-top" style="background:linear-gradient(90deg,rgba(220,220,255,.9),rgba(200,200,255,.15))"></div>
       <div class="rcard-body">
         <div class="rcard-name" style="color:#dde0ff">Shidee</div>
-        <div class="rcard-role">Officer</div>
+        <div class="rcard-role">Healing Lead · Officer</div>
         <div class="rcard-tags">
           <span class="rtag rtag-rank">Officer</span>
           <span class="rtag rtag-cls" style="color:var(--priest);border-color:rgba(255,255,255,.2)">Priest</span>
+          <span class="rtag rtag-spec">Undead</span>
           <span class="rtag rtag-spec">Holy</span>
-          <span class="rtag rtag-spec">Healer</span>
+          <span class="rtag rtag-spec">Healing Lead</span>
         </div>
-        <div class="rcard-lore">Holy Priest officer. Divine guidance and heals on demand — the backbone of the healing corps.</div>
+        <div class="rcard-lore">Undead Holy Priest and co-lead of the healing division alongside Theatus. Shidee sets the standard for throughput and positioning, keeping the raid topped through the most punishing mechanics Outland has to offer.</div>
       </div>
     </div>
 
@@ -615,14 +668,15 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
       <div class="rcard-top" style="background:linear-gradient(90deg,var(--rogue),rgba(255,244,104,.15))"></div>
       <div class="rcard-body">
         <div class="rcard-name" style="color:var(--rogue)">Pantiesoup</div>
-        <div class="rcard-role">Officer</div>
+        <div class="rcard-role">Recruiter · Officer</div>
         <div class="rcard-tags">
           <span class="rtag rtag-rank">Officer</span>
           <span class="rtag rtag-cls" style="color:var(--rogue);border-color:rgba(255,244,104,.25)">Rogue</span>
+          <span class="rtag rtag-spec">Undead</span>
           <span class="rtag rtag-spec">Combat</span>
-          <span class="rtag rtag-spec">DPS</span>
+          <span class="rtag rtag-spec">Recruiter</span>
         </div>
-        <div class="rcard-lore">Combat Rogue officer. Exceptional name, exceptional DPS. The guild's resident chaos agent.</div>
+        <div class="rcard-lore">Undead Combat Rogue and the guild's head of recruitment. Pantiesoup evaluates applicants, handles trial periods, and ensures only the right players make it past the front door. Also absolutely destroying the DPS meters while doing it.</div>
       </div>
     </div>
 
@@ -671,7 +725,7 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
     <div class="si">
       <div class="ic"><div class="ic-t">Invite Time</div><div class="ic-v">Invites go out <span class="fire">15 min before</span> first pull. Late = absent.</div></div>
       <div class="ic"><div class="ic-t">Attendance</div><div class="ic-v">Maintain <span class="fire">80%+</span> — communicate early if you'll miss.</div></div>
-      <div class="ic"><div class="ic-t">Consumables</div><div class="ic-v">Flasks, pots, food — <span class="fire">mandatory</span>. Feasts provided; bring your flask.</div></div>
+      <div class="ic"><div class="ic-t">Consumables</div><div class="ic-v">Flasks, pots, food buffs — <span class="fire">mandatory</span>. Come prepared with your own consumables.</div></div>
       <div class="ic"><div class="ic-t">Required AddOns</div><div class="ic-v">DBM · WeakAuras · Details! · Class essentials</div></div>
       <div class="ic"><div class="ic-t">Reset Times (PST)</div><div class="ic-v">Raids: <span class="fire">Tues 8:00 AM</span> &nbsp;·&nbsp; Heroics: <span class="fire">Daily 3:00 AM</span></div></div>
     </div>
@@ -687,25 +741,26 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
   <p class="ssub">Soft Reserve · MS &gt; OS · Role Priority · Transparent</p>
   <div class="lg">
     <div>
-      <p class="loot-main">We run <strong class="fire">Soft Reserve (SR)</strong> with <strong class="fire">MS &gt; OS</strong> using <strong class="gold">SoftReserve.tech</strong>. The SR link posts in <span class="fel">#raid-info</span> 24 hours before each raid. Every raider gets <strong>one soft reserve</strong> per lockout.</p>
+      <p class="loot-main">We run <strong class="fire">Soft Reserve (SR)</strong> with <strong class="fire">MS &gt; OS</strong> via the <strong class="gold">Gargoyle addon</strong>. The SR link posts in <span class="fel">#raid-info</span> 24 hours before each raid. Every raider gets <strong>one soft reserve</strong> per lockout — use it wisely on your biggest upgrade.</p>
       <div class="lsteps">
-        <div class="lstep"><div class="lsn">1</div><div class="lsb"><strong>Claim your SR</strong> via the SoftReserve link in #raid-info before the raid begins.</div></div>
-        <div class="lstep"><div class="lsn">2</div><div class="lsb"><strong>SR item drops:</strong> SR holder wins if it's their main spec. Ties broken by /roll.</div></div>
-        <div class="lstep"><div class="lsn">3</div><div class="lsb"><strong>Non-SR items:</strong> MS open-roll first. If no MS interest, OS may roll freely.</div></div>
-        <div class="lstep"><div class="lsn">4</div><div class="lsb"><strong>Tier tokens &amp; reserved items</strong> — Tank &amp; Healer priority on ties. See the list.</div></div>
+        <div class="lstep"><div class="lsn">1</div><div class="lsb"><strong>Install Gargoyle</strong> — the SR link and instructions are pinned in #raid-info on Discord.</div></div>
+        <div class="lstep"><div class="lsn">2</div><div class="lsb"><strong>Claim your SR</strong> before raid invites go out. Late SR = no SR that lockout.</div></div>
+        <div class="lstep"><div class="lsn">3</div><div class="lsb"><strong>SR item drops:</strong> SR holder wins if it's their main spec. Ties broken by /roll.</div></div>
+        <div class="lstep"><div class="lsn">4</div><div class="lsb"><strong>Non-SR items:</strong> MS open-roll first. If no MS interest, OS rolls freely. No hoarding.</div></div>
+        <div class="lstep"><div class="lsn">5</div><div class="lsb"><strong>Reserved items</strong> are officer-distributed based on attendance, performance, and roster need.</div></div>
       </div>
-      <div class="sr-box"><i class="fas fa-link"></i><p>SR link drops in <strong>#raid-info</strong> every week — check before each raid.</p></div>
+      <div class="sr-box"><i class="fas fa-dragon"></i><p>SR managed via <strong>Gargoyle</strong> — link in <strong>#raid-info</strong> before every raid.</p></div>
     </div>
     <div class="res-block">
       <div class="res-title">🔒 Reserved &amp; Role Priority Items</div>
       <div class="res-items">
-        <div class="ri"><span style="font-size:1rem;flex-shrink:0">🛡️</span><div><div class="ri-nm">All Tier Set Tokens</div><span class="ri-sub">Tank &amp; Healer win on SR ties</span></div><span class="ri-rule">ROLE PRIO</span></div>
-        <div class="ri"><span style="font-size:1rem;flex-shrink:0">⚔️</span><div><div class="ri-nm">Gorehowl</div><span class="ri-sub">Gruul's Lair — Officer allocated</span></div><span class="ri-rule">PERFORMANCE</span></div>
-        <div class="ri"><span style="font-size:1rem;flex-shrink:0">💎</span><div><div class="ri-nm">Dragonspine Trophy</div><span class="ri-sub">Gruul's Lair — BiS physical DPS</span></div><span class="ri-rule">PERFORMANCE</span></div>
-        <div class="ri"><span style="font-size:1rem;flex-shrink:0">📿</span><div><div class="ri-nm">Ribbon of Sacrifice</div><span class="ri-sub">Karazhan — Healer priority</span></div><span class="ri-rule">HEALER PRIO</span></div>
-        <div class="ri"><span style="font-size:1rem;flex-shrink:0">🔮</span><div><div class="ri-nm">Shadow-Cloak of Dalaran</div><span class="ri-sub">Karazhan — Progression value</span></div><span class="ri-rule">PERFORMANCE</span></div>
+        <div class="ri"><span style="font-size:1rem;flex-shrink:0">🛡️</span><div><div class="ri-nm">All Tier Set Tokens</div><span class="ri-sub">Tank &amp; Healer priority on SR ties</span></div><span class="ri-rule">ROLE PRIO</span></div>
+        <div class="ri"><span style="font-size:1rem;flex-shrink:0">💀</span><div><div class="ri-nm">Magtheridon's Head</div><span class="ri-sub">Healer priority — Blessed Book of Nagrand</span></div><span class="ri-rule">HEALER PRIO</span></div>
+        <div class="ri"><span style="font-size:1rem;flex-shrink:0">💎</span><div><div class="ri-nm">Dragonspine Trophy</div><span class="ri-sub">Gruul's Lair — BiS physical DPS trinket</span></div><span class="ri-rule">PERFORMANCE</span></div>
+        <div class="ri"><span style="font-size:1rem;flex-shrink:0">🌑</span><div><div class="ri-nm">Staff of Infinite Mysteries</div><span class="ri-sub">Karazhan — Caster/healer officer distributed</span></div><span class="ri-rule">PERFORMANCE</span></div>
+        <div class="ri"><span style="font-size:1rem;flex-shrink:0">⚗️</span><div><div class="ri-nm">Nightbane Chest Drops</div><span class="ri-sub">Paladin / Warrior tank priority on plate</span></div><span class="ri-rule">TANK PRIO</span></div>
       </div>
-      <div style="margin-top:13px;padding-top:11px;border-top:1px solid rgba(255,255,255,.04);font-size:.77rem;color:var(--dim);font-style:italic;line-height:1.55">Full reserved list published with the SR link weekly — no surprises on raid night.</div>
+      <div style="margin-top:13px;padding-top:11px;border-top:1px solid rgba(255,255,255,.04);font-size:.77rem;color:var(--dim);font-style:italic;line-height:1.55">Full reserved list published with the Gargoyle SR link weekly — no surprises on raid night.</div>
     </div>
   </div>
 </div>
@@ -718,20 +773,95 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
   <h2 class="stitle fire gf">Recruitment</h2>
   <p class="ssub">Seeking the finest of Outland — Phase 1 roster needs</p>
   <div class="cgrid">
-    <div class="ccard" style="border-color:rgba(198,155,58,.22)"><div class="cdot" style="background:var(--warrior);color:var(--warrior)"></div><div class="ci"><div class="cn" style="color:var(--warrior)">Warrior</div><div class="cs">Protection (Tank)</div></div><span class="cprio ph">High</span></div>
-    <div class="ccard" style="border-color:rgba(255,124,10,.2)"><div class="cdot" style="background:var(--druid);color:var(--druid)"></div><div class="ci"><div class="cn" style="color:var(--druid)">Druid</div><div class="cs">Feral (Tank)</div></div><span class="cprio pm">Medium</span></div>
+    <div class="ccard" style="border-color:rgba(255,124,10,.2)"><div class="cdot" style="background:var(--druid);color:var(--druid)"></div><div class="ci"><div class="cn" style="color:var(--druid)">Druid</div><div class="cs">Feral (Tank)</div></div><span class="cprio ph">High</span></div>
+    <div class="ccard" style="border-color:rgba(255,124,10,.2)"><div class="cdot" style="background:var(--druid);color:var(--druid)"></div><div class="ci"><div class="cn" style="color:var(--druid)">Druid</div><div class="cs">Balance (Boomkin)</div></div><span class="cprio ph">High</span></div>
     <div class="ccard" style="border-color:rgba(0,112,221,.2)"><div class="cdot" style="background:var(--shaman);color:var(--shaman)"></div><div class="ci"><div class="cn" style="color:var(--shaman)">Shaman</div><div class="cs">Restoration</div></div><span class="cprio ph">High</span></div>
-    <div class="ccard" style="border-color:rgba(255,255,255,.1)"><div class="cdot" style="background:var(--priest);color:var(--priest)"></div><div class="ci"><div class="cn" style="color:var(--priest)">Priest</div><div class="cs">Holy / Discipline</div></div><span class="cprio ph">High</span></div>
+    <div class="ccard" style="border-color:rgba(0,112,221,.2)"><div class="cdot" style="background:var(--shaman);color:var(--shaman)"></div><div class="ci"><div class="cn" style="color:var(--shaman)">Shaman</div><div class="cs">Enhancement</div></div><span class="cprio ph">High</span></div>
+    <div class="ccard" style="border-color:rgba(0,112,221,.2)"><div class="cdot" style="background:var(--shaman);color:var(--shaman)"></div><div class="ci"><div class="cn" style="color:var(--shaman)">Shaman</div><div class="cs">Elemental</div></div><span class="cprio ph">High</span></div>
+    <div class="ccard" style="border-color:rgba(170,211,114,.2)"><div class="cdot" style="background:var(--hunter);color:var(--hunter)"></div><div class="ci"><div class="cn" style="color:var(--hunter)">Hunter</div><div class="cs">BM / Marksmanship</div></div><span class="cprio pm">Medium</span></div>
+    <div class="ccard" style="border-color:rgba(255,255,255,.1)"><div class="cdot" style="background:var(--priest);color:var(--priest)"></div><div class="ci"><div class="cn" style="color:var(--priest)">Priest</div><div class="cs">Holy / Discipline</div></div><span class="cprio pm">Medium</span></div>
     <div class="ccard" style="border-color:rgba(244,140,186,.17)"><div class="cdot" style="background:var(--paladin);color:var(--paladin)"></div><div class="ci"><div class="cn" style="color:var(--paladin)">Paladin</div><div class="cs">Holy</div></div><span class="cprio pm">Medium</span></div>
-    <div class="ccard" style="border-color:rgba(135,136,238,.2)"><div class="cdot" style="background:var(--warlock);color:var(--warlock)"></div><div class="ci"><div class="cn" style="color:var(--warlock)">Warlock</div><div class="cs">Any Spec</div></div><span class="cprio ph">High</span></div>
-    <div class="ccard" style="border-color:rgba(170,211,114,.2)"><div class="cdot" style="background:var(--hunter);color:var(--hunter)"></div><div class="ci"><div class="cn" style="color:var(--hunter)">Hunter</div><div class="cs">BM / Marksmanship</div></div><span class="cprio ph">High</span></div>
-    <div class="ccard" style="border-color:rgba(63,199,235,.2)"><div class="cdot" style="background:var(--mage);color:var(--mage)"></div><div class="ci"><div class="cn" style="color:var(--mage)">Mage</div><div class="cs">Arcane / Fire</div></div><span class="cprio pm">Medium</span></div>
+    <div class="ccard" style="opacity:.45"><div class="cdot" style="background:var(--warlock);color:var(--warlock)"></div><div class="ci"><div class="cn" style="color:var(--warlock)">Warlock</div><div class="cs">Any Spec</div></div><span class="cprio pl">Low</span></div>
+    <div class="ccard" style="opacity:.45"><div class="cdot" style="background:var(--mage);color:var(--mage)"></div><div class="ci"><div class="cn" style="color:var(--mage)">Mage</div><div class="cs">Arcane / Fire</div></div><span class="cprio pl">Low</span></div>
     <div class="ccard" style="opacity:.35"><div class="cdot" style="background:var(--rogue);color:var(--rogue)"></div><div class="ci"><div class="cn" style="color:var(--rogue)">Rogue</div><div class="cs">Any Spec</div></div><span class="cprio pc2">Closed</span></div>
   </div>
   <div class="rnote"><strong>Exceptional players of any class are always welcome to apply.</strong><br>Skilled, prepared, drama-free? Reach out — we'll make it work.</div>
 </div>
 </section>
 <div class="gsep"></div>
+
+<div class="gsep"></div>
+<!-- REQUIREMENTS -->
+<section id="requirements" class="req-sec sp">
+<div class="con">
+  <h2 class="stitle fire gf">Requirements &amp; Application</h2>
+  <p class="ssub">What we need from you — what to expect when you join</p>
+  <div class="req-grid">
+    <div class="req-left">
+
+      <div class="req-block">
+        <div class="req-block-title"><i class="fas fa-shield-alt"></i> Gear Standards</div>
+        <div class="req-items">
+          <div class="req-item"><span class="req-check">✓</span><div><strong>Heroic-ready gearing</strong><span>Pre-BiS heroic gear — every slot gemmed and enchanted before your first raid</span></div></div>
+          <div class="req-item"><span class="req-check">✓</span><div><strong>BiS enchants on every slot</strong><span>No unenchanted items. No partial. We check.</span></div></div>
+          <div class="req-item"><span class="req-check">✓</span><div><strong>Phase-appropriate iLevel</strong><span>Karazhan-eligible minimum — no gear carries in progression</span></div></div>
+          <div class="req-item"><span class="req-check">✓</span><div><strong>Meta-correct spec &amp; build</strong><span>Theory-crafted, optimised, and ready to explain your talent choices</span></div></div>
+        </div>
+      </div>
+
+      <div class="req-block">
+        <div class="req-block-title"><i class="fas fa-flask"></i> Consumables (Mandatory)</div>
+        <div class="req-items">
+          <div class="req-item"><span class="req-check fire">!</span><div><strong>Flask or Elixir</strong><span>Flask of Fortification · Relentless Assault · Supreme Power · Chromatic Wonder — role appropriate</span></div></div>
+          <div class="req-item"><span class="req-check fire">!</span><div><strong>Food buffs</strong><span>Fisherman's Feast · Warp Burger · Ravager Dog — bring 40+ per night</span></div></div>
+          <div class="req-item"><span class="req-check fire">!</span><div><strong>Potions</strong><span>Super Mana · Destruction · Haste — carry a minimum of 20 per raid</span></div></div>
+          <div class="req-item"><span class="req-check">✓</span><div><strong>Class reagents</strong><span>Candles, ankhs, soulstones, runes — arrive fully stocked, no begging mid-raid</span></div></div>
+        </div>
+      </div>
+
+      <div class="req-block">
+        <div class="req-block-title"><i class="fas fa-puzzle-piece"></i> Required AddOns</div>
+        <div class="req-addons">
+          <div class="raddon mandatory"><span>DBM</span><span class="ra-tag">Required</span></div>
+          <div class="raddon mandatory"><span>Gargoyle (SR)</span><span class="ra-tag">Required</span></div>
+          <div class="raddon mandatory"><span>Details!</span><span class="ra-tag">Required</span></div>
+          <div class="raddon mandatory"><span>WeakAuras</span><span class="ra-tag">Required</span></div>
+          <div class="raddon rec"><span>Decursive</span><span class="ra-tag-rec">Healers</span></div>
+          <div class="raddon rec"><span>ThreatClassic</span><span class="ra-tag-rec">Recommended</span></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="req-right">
+
+      <div class="req-block apply-block">
+        <div class="req-block-title"><i class="fas fa-scroll"></i> Application Template</div>
+        <p style="font-size:.83rem;color:var(--dim);margin-bottom:13px;line-height:1.6">Post in <strong class="fel">#recruitment</strong> on Discord or send via email. Include all fields.</p>
+        <div class="app-template">
+          <div class="app-line"><span class="app-key">Character Name</span><span class="app-val">Your in-game name on US-Nightslayer</span></div>
+          <div class="app-line"><span class="app-key">Class / Spec</span><span class="app-val">e.g. Restoration Shaman, Feral Druid (Tank)</span></div>
+          <div class="app-line"><span class="app-key">Race</span><span class="app-val">Must be Horde on US-Nightslayer</span></div>
+          <div class="app-line"><span class="app-key">TBC Experience</span><span class="app-val">Original TBC, private servers, or this Fresh TBC</span></div>
+          <div class="app-line"><span class="app-key">WarcraftLogs</span><span class="app-val">Link to your best recent parses — required</span></div>
+          <div class="app-line"><span class="app-key">Availability</span><span class="app-val">Confirm Mon &amp; Tue 6–9 PM PST attendance</span></div>
+          <div class="app-line"><span class="app-key">Why Eradication?</span><span class="app-val">What draws you to us specifically</span></div>
+        </div>
+      </div>
+
+      <div class="req-block trial-block">
+        <div class="req-block-title"><i class="fas fa-hourglass-half"></i> Trial Period</div>
+        <div class="trial-grid">
+          <div class="trial-item"><span class="trial-num">2</span><span class="trial-lbl">Week Trial</span></div>
+          <div class="trial-item"><span class="trial-num">80%</span><span class="trial-lbl">Min Attendance</span></div>
+          <div class="trial-item"><span class="trial-num">5</span><span class="trial-lbl">Raid Logs Min</span></div>
+        </div>
+        <p style="font-size:.8rem;color:var(--dim);line-height:1.65">Trials are evaluated on <strong style="color:var(--txt)">attendance</strong>, <strong style="color:var(--txt)">performance</strong>, <strong style="color:var(--txt)">preparation</strong>, and <strong style="color:var(--txt)">attitude</strong>. After two weeks, officers vote. Full raider rank awarded on majority approval. Feedback is given regardless of outcome.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+</section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact-sec sp">
@@ -757,16 +887,29 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
       <span class="cc-ic li"><i class="fas fa-chart-bar"></i></span>
       <div class="cc-title" style="color:var(--fel)">WarcraftLogs</div>
       <div class="cc-desc">Review our raid parses and performance history. Strong log applicants go to the top of the list — show us your numbers.</div>
-      <a href="https://fresh.warcraftlogs.com/guild/reports-list/811017" target="_blank" class="btn btn-fel" style="justify-content:center;width:100%"><i class="fas fa-external-link-alt"></i> View Our Logs</a>
-      <div class="cc-detail">fresh.warcraftlogs.com/guild/811017</div>
+      <a href="https://fresh.warcraftlogs.com/guild/id/811017" target="_blank" class="btn btn-fel" style="justify-content:center;width:100%"><i class="fas fa-external-link-alt"></i> View Our Logs</a>
+      <div class="cc-detail">fresh.warcraftlogs.com/guild/id/811017</div>
     </div>
   </div>
 </div>
 </section>
 
+<div id="btt" title="Back to top"><i class="fas fa-chevron-up"></i></div>
 <footer>
   <div class="flogo">Eradication</div>
   <div class="fsub">US-Nightslayer · Horde · The Burning Crusade Classic · Phase 1</div>
+  <nav class="footer-nav">
+    <a href="#home">Home</a>
+    <a href="#progression">Progression</a>
+    <a href="#about">About</a>
+    <a href="#roster">Roster</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#loot">Loot</a>
+    <a href="#recruitment">Recruitment</a>
+    <a href="#requirements">Apply</a>
+    <a href="https://discord.gg/ppqWpgvJFT" target="_blank">Discord</a>
+    <a href="https://fresh.warcraftlogs.com/guild/id/811017" target="_blank">WarcraftLogs</a>
+  </nav>
   <p class="fcopy">© 2026 Eradication &nbsp;·&nbsp; World of Warcraft is a trademark of Blizzard Entertainment, Inc. &nbsp;·&nbsp; <span class="hbtn" id="hordeBtn">For the Horde.</span></p>
 </footer>
 <script>
@@ -830,16 +973,100 @@ tick();setInterval(tick,1000);
 
 // TICKER
 const td=[
-  {n:'Eradication',a:'achieved',b:'Full T4 Clear 9/9',e:'Phase 1 Complete 🏆'},
-  {n:'Valiwar',a:'tanked',b:'Magtheridon — no deaths',e:'Perfect execution ✓'},
-  {n:'Gloomadin',a:'called',b:'flawless cube click on Mag',e:'Raid Lead MVP 🎯'},
-  {n:'Eradication',a:'killed',b:'Gruul the Dragonkiller',e:'First Kill 💀'},
-  {n:'Pantiesoup',a:'logged',b:'95th parse on Prince Malchezaar',e:'Top DPS 🔥'},
-  {n:'Shidee',a:'achieved',b:'zero healer deaths — Attumen',e:''},
-  {n:'Eradication',a:'raid nights:',b:'Monday & Tuesday 6 PM PST',e:'⚔️ Be ready'},
-  {n:'Theatus',a:'reminder:',b:'SR link posted in #raid-info',e:'Check Discord'},
-  {n:'Eradication',a:'seeking:',b:'Resto Shaman · Holy Priest · Hunter',e:'Apply on Discord'},
-  {n:'Eradication',a:'Phase 2 target:',b:'SSC & Tempest Keep when released',e:'🌀'},
+  {n:'Eradication',a:'achieved',b:'Full T4 Clear — 9/9',e:'Phase 1 Complete 🏆'},
+  {n:'Eradication',a:'killed',b:'Magtheridon — First Kill',e:'Server progression 🌋'},
+  {n:'Eradication',a:'killed',b:'Gruul the Dragonkiller — First Kill',e:'💀'},
+  {n:'Eradication',a:'cleared',b:'Karazhan — full clear',e:'3h 12m ⏱️'},
+  {n:'Valiwar',a:'received',b:'Warbringer Greathelm',e:'T4 Head Token ⚔️'},
+  {n:'Valiwar',a:'received',b:'Girdle of the Fearless',e:"Gruul's Lair drop 🏆"},
+  {n:'Valiwar',a:'received',b:"Panzar'oth Legguards",e:'Magtheridon drop 🛡️'},
+  {n:'Valiwar',a:'achieved',b:"Flawless tank — zero deaths Magtheridon",e:'Main Tank MVP 🛡️'},
+  {n:'Gloomadin',a:'received',b:'Justicar Faceguard',e:'T4 Head Token 🛡️'},
+  {n:'Gloomadin',a:'received',b:'Eternium Shell Fragment',e:'Magtheridon tank trinket 💎'},
+  {n:'Gloomadin',a:'earned',b:"Champion of the Naaru",e:'Achievement unlocked 🌀'},
+  {n:'Gloomadin',a:'called',b:'flawless cube click — Magtheridon',e:'Raid Lead MVP 🎯'},
+  {n:'Theatus',a:'received',b:"Light's Justice",e:'Karazhan — Moroes drop ✨'},
+  {n:'Theatus',a:'received',b:"High King's Pauldrons",e:"Maulgar drop 🔱"},
+  {n:'Theatus',a:'received',b:"Blessed Book of Nagrand",e:"Mag's Head reward 📖"},
+  {n:'Theatus',a:'achieved',b:'Zero overhealing — Nightbane',e:'Precision heals 💎'},
+  {n:'Shidee',a:'received',b:"Ritssyn's Ring of Chaos",e:'Magtheridon drop 💀'},
+  {n:'Shidee',a:'received',b:"Staff of Infinite Mysteries",e:'Karazhan — Curator drop 🔮'},
+  {n:'Shidee',a:'received',b:'Bangle of Endless Blessings',e:'Karazhan — Chess event 🎲'},
+  {n:'Shidee',a:'achieved',b:'99th percentile healing — Magtheridon',e:'Heal Lead MVP 💚'},
+  {n:'Holynificent',a:'received',b:"Mender's Heart-Ring",e:'Karazhan — Maiden drop 💍'},
+  {n:'Holynificent',a:'received',b:'Bands of the Benevolent',e:'Karazhan — Moroes drop ✨'},
+  {n:'Holynificent',a:'achieved',b:'Top healing output — The Curator',e:'Holy power 🌟'},
+  {n:'Ashtun',a:'received',b:"Shard of the Virtuous",e:'Karazhan — Chess event ✨'},
+  {n:'Ashtun',a:'received',b:"Touch of Inspiration",e:'Karazhan — Maiden drop 💙'},
+  {n:'Ashtun',a:'achieved',b:"First healer to Sha'tar exalted",e:'Rep done 🏅'},
+  {n:'Fresnel',a:'received',b:"Light-Mantle of the Observer",e:'Karazhan — Curator drop 🔮'},
+  {n:'Fresnel',a:'received',b:"Ring of Cryptic Dreams",e:'Karazhan — Shade of Aran 💜'},
+  {n:'Fresnel',a:'achieved',b:'Personal best HPS — Gruul',e:'New record 📈'},
+  {n:'Koppx',a:'received',b:"Vambraces of the Naaru",e:'Karazhan — Prince drop 🌀'},
+  {n:'Koppx',a:'received',b:"Jade Ring of the Everliving",e:'Karazhan — Moroes drop 💚'},
+  {n:'Koppx',a:'achieved',b:'Never went OOM — full Kara clear',e:'Mana efficiency ✅'},
+  {n:'Siggni',a:'received',b:"Trial-Fire Trousers",e:'Karazhan — Shade of Aran 🔥'},
+  {n:'Siggni',a:'received',b:"Robe of the Elder Scribes",e:'Karazhan — Curator drop 📜'},
+  {n:'Siggni',a:'achieved',b:'100% attendance — 4 consecutive weeks',e:'Dedication 🏆'},
+  {n:'Pantiesoup',a:'received',b:"Dragonspine Trophy",e:"Gruul's Lair — BiS trinket 💎"},
+  {n:'Pantiesoup',a:'received',b:"Blade of the Unrequited",e:'Karazhan — Attumen 🗡️'},
+  {n:'Pantiesoup',a:'received',b:"Romulo's Poison Vial",e:'Karazhan — Opera event 🎭'},
+  {n:'Pantiesoup',a:'logged',b:'97th percentile — Prince Malchezaar',e:'Top Rogue 🔥'},
+  {n:'Rookfang',a:'received',b:"Wolfslayer Sniper Rifle",e:'Karazhan — Attumen drop 🔫'},
+  {n:'Rookfang',a:'received',b:"Stalker's War Bands",e:'Karazhan — Moroes drop 🏹'},
+  {n:'Rookfang',a:'logged',b:'95th percentile — Gruul',e:'Hunter MVP 🏹'},
+  {n:'Teetertot',a:'received',b:"Staff of Beasts",e:'Karazhan — Attumen drop 🐺'},
+  {n:'Teetertot',a:'received',b:"Jade Ring of the Everliving",e:'Karazhan — Moroes drop 💚'},
+  {n:'Teetertot',a:'achieved',b:'Personal best parse — Magtheridon',e:'Rising star 📈'},
+  {n:'Thotxmage',a:'received',b:"Mana-Etched Spaulders",e:'Karazhan — Prince drop 🔮'},
+  {n:'Thotxmage',a:'received',b:"Tirisfal Wand of Ascendancy",e:'Karazhan drop 🪄'},
+  {n:'Thotxmage',a:'logged',b:'98th percentile fire — Shade of Aran',e:'Mage king 👑'},
+  {n:'Trollson',a:'received',b:"Axe of the Gronn Lords",e:"Gruul's Lair drop 🪓"},
+  {n:'Trollson',a:'received',b:"Bloodshed Legguards",e:'Karazhan — Attumen drop ⚔️'},
+  {n:'Trollson',a:'achieved',b:'50 total boss kills',e:'The Long Road 🩸'},
+  {n:'Techsealz',a:'received',b:"Warp-Storm Warblade",e:'Karazhan — Prince drop ⚡'},
+  {n:'Techsealz',a:'received',b:"Ritssyn's Ring of Chaos",e:'Magtheridon drop 💀'},
+  {n:'Techsealz',a:'logged',b:'96th percentile — Magtheridon',e:'Top parse 🔥'},
+  {n:'Jennatollas',a:'received',b:"Romulo's Poison Vial",e:'Karazhan — Opera 🎭'},
+  {n:'Jennatollas',a:'received',b:"Void Star Talisman",e:'Karazhan — Curator drop 💜'},
+  {n:'Jennatollas',a:'achieved',b:'Dodged every fire — Shade of Aran',e:'Flawless 🌀'},
+  {n:'Sugarplumm',a:'received',b:"Sunfury Bow of the Phoenix",e:'Karazhan — Prince drop 🔥'},
+  {n:'Sugarplumm',a:'received',b:"Chest of the Unending Coil",e:'Karazhan — Chess event 🐉'},
+  {n:'Sugarplumm',a:'achieved',b:'Personal best — Gruul the Dragonkiller',e:'📈 Rising'},
+  {n:'Ishikai',a:'received',b:"Mage-Fury Pauldrons",e:'Karazhan — Curator drop 🔮'},
+  {n:'Ishikai',a:'received',b:"Shermanar Great-Ring",e:'Karazhan — Prince drop 💎'},
+  {n:'Ishikai',a:'logged',b:'94th percentile — Moroes',e:'Solid DPS ⚡'},
+  {n:'Liohh',a:'received',b:"Gloves of the Fallen Defender",e:'T4 DPS Glove Token 🧤'},
+  {n:'Liohh',a:'received',b:"Edgewalker Longboots",e:'Karazhan — Nightbane drop 👢'},
+  {n:'Liohh',a:'achieved',b:'100% uptime — Attumen the Huntsman',e:'Consistent 🎯'},
+  {n:'Twinblâde',a:'received',b:"Drape of the Dark Reavers",e:'Karazhan — Netherspite 🐉'},
+  {n:'Twinblâde',a:'received',b:"Bladeangel's Money Belt",e:'Karazhan — Prince drop 🗡️'},
+  {n:'Twinblâde',a:'logged',b:'93rd percentile — Gruul',e:'DPS on point ⚔️'},
+  {n:'Fathur',a:'received',b:"Pauldrons of the Wardancer",e:'Karazhan — Moroes drop 💀'},
+  {n:'Fathur',a:'received',b:"Edgewalker Longboots",e:'Karazhan — Nightbane drop 👢'},
+  {n:'Fathur',a:'achieved',b:'Survived all Infernals — Prince Malchezaar',e:'Impressive 💃'},
+  {n:'Symbiotes',a:'received',b:"Earthsoul Leggings",e:'Karazhan — Shade of Aran 🌿'},
+  {n:'Symbiotes',a:'received',b:"Idol of the Avian Heart",e:'Karazhan — Chess event 🎲'},
+  {n:'Symbiotes',a:'achieved',b:'Battle rez saved the pull — Nightbane',e:'Clutch 🌿'},
+  {n:'Tappedx',a:'received',b:"Inferno Waist Cord",e:'Karazhan — Prince drop 🔥'},
+  {n:'Tappedx',a:'received',b:"Brooch of Unquenchable Fury",e:'Karazhan — Moroes drop ⚡'},
+  {n:'Tappedx',a:'logged',b:'91st percentile — Magtheridon',e:'Solid performance ✅'},
+  {n:'Icedlattè',a:'received',b:"Mantle of the Mind Flayer",e:'Karazhan — Shade of Aran ❄️'},
+  {n:'Icedlattè',a:'received',b:"Bands of Negation",e:'Karazhan — Curator drop 🔮'},
+  {n:'Icedlattè',a:'achieved',b:'Personal best — Prince Malchezaar',e:'❄️ Frosty numbers'},
+  {n:'Mootownbb',a:'received',b:"Windcaller's Orb",e:'Karazhan — Chess event 🌪️'},
+  {n:'Mootownbb',a:'received',b:"Ferocious Swift Kicker",e:'Karazhan — Opera drop 🥊'},
+  {n:'Mootownbb',a:'achieved',b:'Perfect totem placement — Magtheridon',e:'Shaman MVP 🪘'},
+  {n:'Sodmg',a:'received',b:"Nathrezim Mindblade",e:'Karazhan — Moroes drop 🗡️'},
+  {n:'Sodmg',a:'received',b:"Shadow-Cloak of Dalaran",e:'Karazhan — Shade of Aran 🌑'},
+  {n:'Sodmg',a:'logged',b:'96th percentile shadow — Nightbane',e:'Shadow Lord 👁️'},
+  {n:'Wyntaur',a:'received',b:"Shard of the Virtuous",e:'Karazhan — Chess event ✨'},
+  {n:'Wyntaur',a:'received',b:"Earthsoul Leggings",e:'Karazhan — Shade of Aran 🌿'},
+  {n:'Wyntaur',a:'achieved',b:'Top Enh parse — Gruul the Dragonkiller',e:'Enh carry 🪘'},
+  {n:'Eradication',a:'SR via',b:'Gargoyle addon — link in #raid-info',e:'Check Discord before raid'},
+  {n:'Eradication',a:'seeking:',b:'Resto Shaman · Feral Tank · Boomkin',e:'Apply on Discord'},
+  {n:'Eradication',a:'raid nights:',b:'Monday & Tuesday 6 PM PST',e:'⚔️ Invites 15 min early'},
+  {n:'Eradication',a:'Phase 2 target:',b:'SSC & Tempest Keep',e:'🌀 When released'},
 ];
 (()=>{const t=document.getElementById('ttrack'),a=[...td,...td];t.innerHTML=a.map(d=>'<span class="titem"><span class="tn">'+d.n+'</span><span style="color:#1a1228">·</span><span>'+d.a+'</span><span class="tb">'+d.b+'</span>'+(d.e?'<span class="tg">['+d.e+']</span>':'')+'<span style="color:#12101e;padding:0 16px">///</span></span>').join('')})();
 
@@ -849,7 +1076,7 @@ const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){animC(
 document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
 
 // SCROLL REVEAL
-const rv=document.querySelectorAll('.bc.killed,.ccard,.pc,.ic,.rday,.rcard,.cct,.lstep,.ri');
+const rv=document.querySelectorAll('.bc.killed,.ccard,.pc,.ic,.rday,.rcard,.cct,.lstep,.ri,.req-item,.req-block,.trial-item,.raddon');
 const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform=(e.target.style.transform||'').replace(' translateY(18px)','')},+(e.target.dataset.ri||0)*40);ro.unobserve(e.target)}}),{threshold:.07});
 rv.forEach((el,i)=>{el.style.opacity='0';el.style.transition='opacity .5s ease,transform .5s ease,box-shadow .3s,border-color .3s';el.style.transform+=' translateY(18px)';el.dataset.ri=i%10;ro.observe(el)});
 
@@ -954,6 +1181,11 @@ murl.addEventListener('click',()=>showAch('🐡','Mrgl Mrgl Mrgl!','You found th
 let hc=0;
 document.getElementById('hordeBtn').addEventListener('click',()=>{hc++;if(hc===1)showAch('🩸','For the Horde!',"Lok'tar Ogar — victory or death!");if(hc>=4){openM('mIllidan');hc=0;}});
 
+
+// BACK TO TOP
+const bttEl=document.getElementById('btt');
+bttEl.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+window.addEventListener('scroll',()=>bttEl.classList.toggle('vis',scrollY>500),{passive:true});
 // EE8: TYPED CODES
 let typed='';
 document.addEventListener('keypress',e=>{

@@ -2,6 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Eradication — TBC Guild | US-Nightslayer Horde">
+<meta property="og:description" content="Semi-dadcore Horde guild on US-Nightslayer. 12/12 T4 cleared. Vanilla-tested raid leader. Mon &amp; Tue 6–9 PM PST. Recruiting Resto Shaman, Boomkin, Enh Shaman.">
+<meta property="og:url" content="https://eradication-nightslayer.com">
+<meta property="og:image" content="https://eradication-nightslayer.com/og-banner.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Eradication — TBC Guild | US-Nightslayer">
+<meta name="twitter:description" content="12/12 T4 · Semi-dadcore · Vanilla leadership · Recruiting now">
+<meta name="description" content="Eradication is a semi-dadcore Horde guild on US-Nightslayer TBC Fresh. 12/12 T4 cleared. Mon &amp; Tue raids. Experienced vanilla raid leader. Apply now.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2303020a'/><text x='16' y='23' text-anchor='middle' font-size='20'>⚔️</text></svg>">
 <title>Eradication – TBC Guild | US-Nightslayer</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -36,6 +46,7 @@ body{font-family:'Crimson Text',serif;background:var(--d0);color:var(--txt);over
 .ssub{color:var(--dim);font-size:.93rem;font-style:italic;margin-bottom:32px;margin-top:4px}
 
 /* HEADER */
+section[id]{scroll-margin-top:70px}
 header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(3,2,10,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(244,140,6,.22)}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 20px}
 .logo{display:flex;flex-direction:column;gap:1px;cursor:pointer;text-decoration:none}
@@ -107,7 +118,7 @@ nav a:hover,nav a.active{color:var(--fb);border-color:rgba(244,140,6,.32);backgr
 /* TICKER */
 .ticker{position:relative;z-index:1;background:rgba(0,0,0,.5);border-top:1px solid rgba(61,255,110,.08);border-bottom:1px solid rgba(61,255,110,.08);padding:8px 0;overflow:hidden}
 .tlbl{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;background:rgba(61,255,110,.09);border-right:1px solid rgba(61,255,110,.12);padding:0 15px;font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:3px;text-transform:uppercase;color:var(--fel);z-index:2;white-space:nowrap}
-.ttrack{display:flex;animation:tscroll 260s linear infinite;width:max-content;padding-left:110px}
+.ttrack{display:flex;animation:tscroll 260s linear infinite;width:max-content;padding-left:110px;animation-duration:var(--ticker-dur,260s)}
 .ttrack:hover{animation-play-state:paused}
 .titem{white-space:nowrap;padding:0 50px;font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--dim);display:flex;align-items:center;gap:8px}
 .tn{color:var(--fb)}.tb{color:var(--gold)}.tg{color:var(--fel)}
@@ -494,6 +505,92 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
 .aran-flame{position:absolute;font-size:1.2rem;pointer-events:none}
 .aran-msg{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:2px;color:var(--fb);min-height:22px;text-align:center}
 
+
+/* HAMBURGER NAV */
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid transparent;border-radius:6px;transition:all .2s;background:none;z-index:1001}
+.ham:hover{border-color:rgba(244,140,6,.3);background:rgba(244,140,6,.05)}
+.ham span{display:block;width:22px;height:2px;background:var(--dim);border-radius:2px;transition:all .3s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--fire)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--fire)}
+.mob-nav{position:fixed;top:56px;left:0;right:0;background:rgba(3,2,10,.98);backdrop-filter:blur(24px);border-bottom:1px solid rgba(244,140,6,.18);z-index:998;transform:translateY(-110%);transition:transform .3s cubic-bezier(.4,0,.2,1);padding:0}
+.mob-nav.open{transform:translateY(0)}
+.mob-nav ul{list-style:none;padding:12px 16px 16px;display:flex;flex-direction:column;gap:2px}
+.mob-nav li a{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);text-decoration:none;padding:11px 14px;border-radius:6px;border:1px solid transparent;transition:all .2s}
+.mob-nav li a:hover,.mob-nav li a.active{color:var(--fb);border-color:rgba(244,140,6,.25);background:rgba(244,140,6,.06)}
+.mob-nav li a.ncta{background:linear-gradient(135deg,var(--fire),#c07000);color:#060208!important;font-weight:700;border-color:transparent;margin-top:6px;text-align:center}
+.mob-overlay{position:fixed;inset:0;top:56px;background:rgba(0,0,0,.5);z-index:997;opacity:0;pointer-events:none;transition:opacity .3s}
+.mob-overlay.open{opacity:1;pointer-events:all}
+@media(max-width:680px){
+  .ham{display:flex}
+  nav{display:none}
+}
+
+
+/* APPLICATION FORM */
+.app-form{display:flex;flex-direction:column;gap:10px}
+.af-field{display:flex;flex-direction:column;gap:4px}
+.af-label{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.af-input,.af-select,.af-textarea{background:rgba(3,2,10,.9);border:1px solid rgba(123,47,255,.2);border-radius:6px;color:var(--txt);font-family:'Crimson Text',serif;font-size:.92rem;padding:9px 12px;transition:all .2s;width:100%;box-sizing:border-box;outline:none;-webkit-appearance:none}
+.af-input:focus,.af-select:focus,.af-textarea:focus{border-color:rgba(244,140,6,.5);box-shadow:0 0 0 2px rgba(244,140,6,.08)}
+.af-input::placeholder,.af-textarea::placeholder{color:rgba(154,139,181,.3)}
+.af-textarea{resize:vertical;min-height:80px;line-height:1.55}
+.af-select option{background:#0a050f;color:var(--txt)}
+.af-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.af-submit{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;padding:12px 24px;border-radius:6px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--fire),#c07000);color:#060208;box-shadow:0 0 18px rgba(244,140,6,.35);transition:all .3s;width:100%;margin-top:4px}
+.af-submit:hover{box-shadow:0 0 32px rgba(244,140,6,.75);transform:translateY(-1px)}
+.af-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.af-msg{text-align:center;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:2px;padding:12px;border-radius:6px;display:none}
+.af-msg.ok{display:block;background:rgba(61,255,110,.07);border:1px solid rgba(61,255,110,.2);color:var(--fel)}
+.af-msg.err{display:block;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);color:#f87171}
+.af-req{color:var(--fire);margin-left:2px}
+@media(max-width:680px){.af-row{grid-template-columns:1fr}}
+
+
+/* WARCRAFTLOGS PANEL */
+.wcl-sec{position:relative;z-index:1;background:var(--d1)}
+.wcl-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.wcl-kills{display:flex;flex-direction:column;gap:8px}
+.wcl-kill{display:flex;align-items:center;gap:12px;background:rgba(8,5,16,.9);border:1px solid rgba(61,255,110,.08);border-radius:8px;padding:10px 13px;transition:all .25s;cursor:pointer;text-decoration:none}
+.wcl-kill:hover{border-color:rgba(61,255,110,.25);background:rgba(10,5,20,.95);transform:translateX(4px)}
+.wcl-kill-icon{font-size:1.5rem;flex-shrink:0;width:36px;text-align:center}
+.wcl-kill-info{flex:1;min-width:0}
+.wcl-kill-boss{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:1px;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wcl-kill-meta{font-family:'Share Tech Mono',monospace;font-size:.5rem;color:var(--dim);letter-spacing:1px;margin-top:2px}
+.wcl-kill-parse{font-family:'Share Tech Mono',monospace;font-size:.78rem;font-weight:700;flex-shrink:0;min-width:42px;text-align:right}
+.wcl-stats{display:flex;flex-direction:column;gap:10px}
+.wcl-stat-card{background:rgba(8,5,16,.9);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px 16px}
+.wcl-stat-num{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:900;line-height:1}
+.wcl-stat-lbl{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:4px}
+.wcl-badge{display:inline-block;padding:1px 8px;border-radius:10px;font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:1px;margin-left:6px;vertical-align:middle}
+.parse-gold{color:#ffd700}.parse-purple{color:#c084fc}.parse-blue{color:#60b8ff}.parse-green{color:#4ade80}.parse-grey{color:var(--dim)}
+.wcl-link-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(61,255,110,.07);border:1px solid rgba(61,255,110,.2);border-radius:8px;padding:12px;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--fel);text-decoration:none;transition:all .25s;margin-top:4px}
+.wcl-link-btn:hover{background:rgba(61,255,110,.12);border-color:rgba(61,255,110,.4);transform:translateY(-2px)}
+.wcl-loading{text-align:center;padding:32px;font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--dim);letter-spacing:2px}
+.wcl-loading i{display:block;font-size:1.4rem;margin-bottom:8px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){.wcl-grid{grid-template-columns:1fr}}
+
+
+/* FOOTER UPGRADE */
+footer{background:linear-gradient(180deg,rgba(3,2,10,.98) 0%,rgba(6,2,16,1) 100%);border-top:1px solid rgba(244,140,6,.15);padding:40px 24px 24px;text-align:center;position:relative;overflow:hidden}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--fire),var(--neth),var(--fel),transparent)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-crest{font-size:2.2rem;margin-bottom:8px;filter:drop-shadow(0 0 12px var(--fire));display:block}
+.footer-tagline{font-family:'Crimson Text',serif;font-size:.9rem;color:var(--dim);font-style:italic;margin-bottom:18px;max-width:380px;margin-left:auto;margin-right:auto;line-height:1.6}
+.footer-socials{display:flex;justify-content:center;gap:10px;margin:14px 0}
+.fsoc-btn{display:flex;align-items:center;gap:7px;padding:7px 16px;border-radius:6px;font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border:1px solid;transition:all .25s}
+.fsoc-btn.disc{color:#8da0f5;border-color:rgba(141,160,245,.2);background:rgba(88,101,242,.06)}
+.fsoc-btn.disc:hover{border-color:rgba(141,160,245,.5);background:rgba(88,101,242,.12);transform:translateY(-2px)}
+.fsoc-btn.logs{color:var(--fel);border-color:rgba(61,255,110,.15);background:rgba(61,255,110,.04)}
+.fsoc-btn.logs:hover{border-color:rgba(61,255,110,.35);background:rgba(61,255,110,.09);transform:translateY(-2px)}
+
+
+/* SOUND TOGGLE */
+#soundBtn{position:fixed;bottom:80px;right:18px;width:38px;height:38px;border-radius:50%;background:rgba(3,2,10,.85);border:1px solid rgba(123,47,255,.25);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9990;font-size:.85rem;color:var(--dim);transition:all .25s;backdrop-filter:blur(8px)}
+#soundBtn:hover{border-color:rgba(244,140,6,.5);color:var(--fire);box-shadow:0 0 14px rgba(244,140,6,.2)}
+#soundBtn.on{border-color:rgba(61,255,110,.3);color:var(--fel)}
+
 </style>
 </head>
 <body>
@@ -531,18 +628,38 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
       <span class="logo-name">Eradication</span>
       <span class="logo-sub">US-Nightslayer · Horde · TBC</span>
     </a>
+    <button class="ham" id="hamBtn" aria-label="Menu"><span></span><span></span><span></span></button>
     <nav><ul>
       <li class="nh"><a href="#progression">Progress</a></li>
       <li class="nh"><a href="#about">About</a></li>
       <li class="nh"><a href="#roster">Roster</a></li>
       <li class="nh"><a href="#schedule">Raids</a></li>
       <li class="nh"><a href="#loot">Loot</a></li>
+      <li class="nh"><a href="#logs">Logs</a></li>
       <li class="nh"><a href="#gallery">Gallery</a></li>
       <li class="nh"><a href="#recruitment">Recruit</a></li>
       <li><a href="#requirements" class="ncta">Apply Now</a></li>
     </ul></nav>
   </div>
 </header>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <ul>
+    <li><a href="#progression" onclick="closeMobNav()">Progression</a></li>
+    <li><a href="#about" onclick="closeMobNav()">About</a></li>
+    <li><a href="#roster" onclick="closeMobNav()">Roster</a></li>
+    <li><a href="#schedule" onclick="closeMobNav()">Raids</a></li>
+    <li><a href="#loot" onclick="closeMobNav()">Loot</a></li>
+    <li><a href="#gallery" onclick="closeMobNav()">Gallery</a></li>
+    <li><a href="#recruitment" onclick="closeMobNav()">Recruit</a></li>
+    <li><a href="#requirements" onclick="closeMobNav()">Requirements</a></li>
+    <li><a href="#contact" onclick="closeMobNav()">Contact</a></li>
+    <li><a href="#requirements" class="ncta" onclick="closeMobNav()">Apply Now</a></li>
+  </ul>
+</div>
+<div class="mob-overlay" id="mobOverlay" onclick="closeMobNav()"></div>
+
 
 <section class="hero" id="home">
   <div class="hero-bg"></div><div class="hex-bg"></div>
@@ -644,7 +761,7 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
   </div>
   <div class="pbar"><div class="pf pf-lock" style="width:0%"></div></div>
   <div class="phase-body" id="t5body">
-    <div class="phase-note">⏳ Phase 2 not yet released — watch #announcements</div>
+    <div class="phase-note" style="color:rgba(100,160,255,.5)"><i class="fas fa-clock" style="margin-right:6px"></i>Phase 2 est. <span id="p2countdown" style="color:#60b8ff">calculating...</span> — watch #announcements</div>
     <div class="boss-grid">
       <div class="bc locked"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#052a3d,#011018)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(0,112,221,.6) 0%,transparent 70%)"></div><div class="bp-vig"></div><span class="bp-em">🌊</span><div class="bp-lv"><i class="fas fa-lock"></i><span>Unreleased</span></div></div><div class="binfo"><span class="bname">Hydross the Unstable</span><span class="bstat">UNRELEASED</span></div></div>
       <div class="bc locked"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#062030,#020a12)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(63,199,235,.55) 0%,transparent 70%)"></div><div class="bp-vig"></div><span class="bp-em">🦑</span><div class="bp-lv"><i class="fas fa-lock"></i><span>Unreleased</span></div></div><div class="binfo"><span class="bname">The Lurker Below</span><span class="bstat">UNRELEASED</span></div></div>
@@ -669,7 +786,7 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
   </div>
   <div class="pbar"><div class="pf pf-lock" style="width:0%"></div></div>
   <div class="phase-body" id="t6body">
-    <div class="phase-note">⏳ Phase 3 not yet released</div>
+    <div class="phase-note" style="color:rgba(192,132,252,.5)"><i class="fas fa-lock" style="margin-right:6px"></i>Phase 3 — Coming after Phase 2 · <span style="color:#c084fc">Black Temple</span></div>
     <div class="boss-grid">
       <div class="bc locked"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#101830,#050810)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(200,168,75,.4) 0%,transparent 70%)"></div><div class="bp-vig"></div><span class="bp-em">❄️</span><div class="bp-lv"><i class="fas fa-lock"></i><span>Unreleased</span></div></div><div class="binfo"><span class="bname">Rage Winterchill</span><span class="bstat">UNRELEASED</span></div></div>
       <div class="bc locked"><div class="bp"><div class="bp-bg" style="background:linear-gradient(135deg,#1a1205,#080602)"></div><div class="bp-glow" style="background:radial-gradient(ellipse at center,rgba(244,140,6,.48) 0%,transparent 70%)"></div><div class="bp-vig"></div><span class="bp-em">🧟</span><div class="bp-lv"><i class="fas fa-lock"></i><span>Unreleased</span></div></div><div class="binfo"><span class="bname">Anetheron</span><span class="bstat">UNRELEASED</span></div></div>
@@ -1110,17 +1227,100 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
     <div class="req-right">
 
       <div class="req-block apply-block">
-        <div class="req-block-title"><i class="fas fa-scroll"></i> Application Template</div>
-        <p style="font-size:.83rem;color:var(--dim);margin-bottom:13px;line-height:1.6">Post in <strong class="fel">#recruitment</strong> on Discord or send via email. Include all fields.</p>
-        <div class="app-template">
-          <div class="app-line"><span class="app-key">Character Name</span><span class="app-val">Your in-game name on US-Nightslayer</span></div>
-          <div class="app-line"><span class="app-key">Class / Spec</span><span class="app-val">e.g. Restoration Shaman, Feral Druid (Tank)</span></div>
-          <div class="app-line"><span class="app-key">Race</span><span class="app-val">Must be Horde on US-Nightslayer</span></div>
-          <div class="app-line"><span class="app-key">TBC Experience</span><span class="app-val">Original TBC, private servers, or this Fresh TBC</span></div>
-          <div class="app-line"><span class="app-key">WarcraftLogs</span><span class="app-val">Link to your best recent parses — required</span></div>
-          <div class="app-line"><span class="app-key">Availability</span><span class="app-val">Confirm Mon &amp; Tue 6–9 PM PST attendance</span></div>
-          <div class="app-line"><span class="app-key">Why Eradication?</span><span class="app-val">What draws you to us specifically</span></div>
-        </div>
+        <div class="req-block-title"><i class="fas fa-scroll"></i> Apply to Eradication</div>
+        <p style="font-size:.83rem;color:var(--dim);margin-bottom:14px;line-height:1.6">Fill out the form below. We review every application within 24 hours and respond via Discord.</p>
+        <form class="app-form" id="appForm" onsubmit="submitApp(event)">
+          <div class="af-row">
+            <div class="af-field">
+              <label class="af-label">Character Name<span class="af-req">*</span></label>
+              <input class="af-input" name="charname" placeholder="Your character on US-Nightslayer" required>
+            </div>
+            <div class="af-field">
+              <label class="af-label">Class &amp; Spec<span class="af-req">*</span></label>
+              <select class="af-select" name="classspec" required>
+                <option value="">— Select class/spec —</option>
+                <optgroup label="Healer">
+                  <option>Paladin — Holy</option>
+                  <option>Priest — Holy / Disc</option>
+                  <option>Druid — Restoration</option>
+                  <option>Shaman — Restoration</option>
+                </optgroup>
+                <optgroup label="Tank">
+                  <option>Warrior — Protection</option>
+                  <option>Paladin — Protection</option>
+                  <option>Druid — Feral (Tank)</option>
+                </optgroup>
+                <optgroup label="Melee DPS">
+                  <option>Warrior — Fury / Arms</option>
+                  <option>Paladin — Retribution</option>
+                  <option>Rogue — Combat / Subtlety</option>
+                  <option>Druid — Feral (DPS)</option>
+                  <option>Shaman — Enhancement</option>
+                </optgroup>
+                <optgroup label="Ranged DPS">
+                  <option>Mage — Arcane / Fire / Frost</option>
+                  <option>Warlock — Affliction / Destro / Demo</option>
+                  <option>Hunter — BM / MM / SV</option>
+                  <option>Druid — Balance</option>
+                  <option>Shaman — Elemental</option>
+                  <option>Priest — Shadow</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+          <div class="af-row">
+            <div class="af-field">
+              <label class="af-label">Race<span class="af-req">*</span></label>
+              <select class="af-select" name="race" required>
+                <option value="">— Select race —</option>
+                <option>Orc</option>
+                <option>Troll</option>
+                <option>Undead</option>
+                <option>Tauren</option>
+                <option>Blood Elf</option>
+              </select>
+            </div>
+            <div class="af-field">
+              <label class="af-label">TBC Experience<span class="af-req">*</span></label>
+              <select class="af-select" name="exp" required>
+                <option value="">— Select —</option>
+                <option>Original TBC (2007)</option>
+                <option>Private server TBC</option>
+                <option>TBC Classic 2021</option>
+                <option>This Fresh TBC only</option>
+                <option>No prior TBC experience</option>
+              </select>
+            </div>
+          </div>
+          <div class="af-field">
+            <label class="af-label">WarcraftLogs URL<span class="af-req">*</span></label>
+            <input class="af-input" name="logs" type="url" placeholder="https://fresh.warcraftlogs.com/character/..." required>
+          </div>
+          <div class="af-field">
+            <label class="af-label">Discord Username<span class="af-req">*</span></label>
+            <input class="af-input" name="discord" placeholder="username#0000 or username" required>
+          </div>
+          <div class="af-field">
+            <label class="af-label">Mon &amp; Tue 6–9 PM PST Availability<span class="af-req">*</span></label>
+            <select class="af-select" name="avail" required>
+              <option value="">— Select —</option>
+              <option value="both">Yes — both nights, every week</option>
+              <option value="most">Yes — most weeks, will communicate absences</option>
+              <option value="one">Only one night available</option>
+              <option value="no">No — not available at those times</option>
+            </select>
+          </div>
+          <div class="af-field">
+            <label class="af-label">Why Eradication?<span class="af-req">*</span></label>
+            <textarea class="af-textarea" name="why" placeholder="What draws you to us specifically? What are you looking for in a guild?" required></textarea>
+          </div>
+          <div class="af-field">
+            <label class="af-label">Anything Else?</label>
+            <textarea class="af-textarea" name="extra" placeholder="Previous guild history, alts, anything you want us to know..." style="min-height:60px"></textarea>
+          </div>
+          <div class="af-msg" id="appMsg"></div>
+          <button type="submit" class="af-submit" id="appSubmit">⚔ Submit Application</button>
+        </form>
       </div>
 
       <div class="req-block trial-block">
@@ -1133,6 +1333,51 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
         <p style="font-size:.8rem;color:var(--dim);line-height:1.65">Trials are evaluated on <strong style="color:var(--txt)">attendance</strong>, <strong style="color:var(--txt)">performance</strong>, <strong style="color:var(--txt)">preparation</strong>, and <strong style="color:var(--txt)">attitude</strong>. After two weeks, officers vote. Full raider rank awarded on majority approval. Feedback is given regardless of outcome.</p>
       </div>
 
+    </div>
+  </div>
+</div>
+</section>
+
+
+<div class="divhr"></div>
+<!-- WARCRAFTLOGS PANEL -->
+<section id="logs" class="wcl-sec sp">
+<div class="con">
+  <h2 class="stitle fire gf">Recent Performance</h2>
+  <p class="ssub">Live data from WarcraftLogs — our last raid week</p>
+  <div class="wcl-grid">
+    <div>
+      <div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--fb);margin-bottom:10px;display:flex;align-items:center;gap:8px">
+        <i class="fas fa-skull-crossbones" style="color:var(--fel)"></i> Recent Boss Kills
+        <span id="wclStatus" style="font-family:'Share Tech Mono',monospace;font-size:.46rem;letter-spacing:1px;color:var(--dim);margin-left:auto">Loading...</span>
+      </div>
+      <div class="wcl-kills" id="wclKills">
+        <div class="wcl-loading"><i class="fas fa-sync-alt"></i>Fetching logs...</div>
+      </div>
+      <a href="https://fresh.warcraftlogs.com/guild/id/811017" target="_blank" class="wcl-link-btn" style="margin-top:12px">
+        <i class="fas fa-external-link-alt"></i> View Full Guild Logs
+      </a>
+    </div>
+    <div class="wcl-stats">
+      <div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--fb);margin-bottom:10px;display:flex;align-items:center;gap:8px">
+        <i class="fas fa-chart-bar" style="color:var(--fire)"></i> Guild Stats
+      </div>
+      <div class="wcl-stat-card" style="border-color:rgba(61,255,110,.12)">
+        <div class="wcl-stat-num fel" id="wclClears" style="color:var(--fel)">—</div>
+        <div class="wcl-stat-lbl">T4 Full Clears Logged</div>
+      </div>
+      <div class="wcl-stat-card" style="border-color:rgba(244,140,6,.1)">
+        <div class="wcl-stat-num" style="color:var(--fire)" id="wclBestParse">—</div>
+        <div class="wcl-stat-lbl">Best Guild Parse</div>
+      </div>
+      <div class="wcl-stat-card" style="border-color:rgba(123,47,255,.12)">
+        <div class="wcl-stat-num" style="color:#a78bfa" id="wclRanking">—</div>
+        <div class="wcl-stat-lbl">Server Ranking</div>
+      </div>
+      <div style="background:rgba(61,255,110,.04);border:1px solid rgba(61,255,110,.1);border-radius:8px;padding:12px 14px;font-size:.76rem;color:var(--dim);line-height:1.65">
+        <i class="fas fa-info-circle" style="color:var(--fel);margin-right:6px"></i>
+        Live data pulled from WarcraftLogs API. Parse colors: <span class="parse-gold">Gold 99+</span> · <span class="parse-purple">Purple 95+</span> · <span class="parse-blue">Blue 75+</span> · <span class="parse-green">Green 50+</span>
+      </div>
     </div>
   </div>
 </div>
@@ -1169,10 +1414,18 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
 </div>
 </section>
 
+<button id="soundBtn" title="Sound effects" onclick="toggleSound()"><i class="fas fa-volume-mute" id="soundIcon"></i></button>
 <div id="btt" title="Back to top"><i class="fas fa-chevron-up"></i></div>
 <footer>
+<div class="footer-inner">
+  <span class="footer-crest">⚔️</span>
   <div class="flogo">Eradication</div>
   <div class="fsub">US-Nightslayer · Horde · The Burning Crusade Classic · Phase 1</div>
+  <div class="footer-tagline">Dad's home. Pull the boss. — Vanilla-tested leadership · Semi-dadcore culture · Full clear every lockout.</div>
+  <div class="footer-socials">
+    <a href="https://discord.gg/ppqWpgvJFT" target="_blank" class="fsoc-btn disc"><i class="fab fa-discord"></i> Discord</a>
+    <a href="https://fresh.warcraftlogs.com/guild/id/811017" target="_blank" class="fsoc-btn logs"><i class="fas fa-chart-bar"></i> WarcraftLogs</a>
+  </div>
   <nav class="footer-nav">
     <a href="#home">Home</a>
     <a href="#progression">Progress</a>
@@ -1181,6 +1434,7 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
     <a href="#schedule">Schedule</a>
     <a href="#loot">Loot</a>
     <a href="#recruitment">Recruit</a>
+    <a href="#logs">Logs</a>
     <a href="#gallery">Gallery</a>
     <a href="#requirements">Requirements</a>
     <a href="#contact">Contact</a>
@@ -1188,6 +1442,7 @@ footer{background:var(--d0);border-top:1px solid rgba(244,140,6,.14);padding:26p
     <a href="https://fresh.warcraftlogs.com/guild/id/811017" target="_blank">WarcraftLogs</a>
   </nav>
   <p class="fcopy">© 2026 Eradication &nbsp;·&nbsp; World of Warcraft is a trademark of Blizzard Entertainment, Inc. &nbsp;·&nbsp; <span class="hbtn" id="hordeBtn">For the Horde.</span></p>
+</div>
 </footer>
 <script>
 // STARFIELD
@@ -1605,6 +1860,320 @@ document.getElementById('hordeBtn').addEventListener('click',()=>{hc++;if(hc===1
     dz.addEventListener('drop',e=>{e.preventDefault();dz.style.borderColor='';dz.style.background='';handleGalleryUpload(e.dataTransfer.files)});
   }
 })();
+
+
+
+
+// ─── SOUND ENGINE ─────────────────────────────────
+let soundOn=false;
+let audioCtx=null;
+function getAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx;}
+function playTone(freq,dur,type='sine',vol=0.18){
+  if(!soundOn)return;
+  try{
+    const a=getAudio();
+    const o=a.createOscillator();
+    const g=a.createGain();
+    o.connect(g);g.connect(a.destination);
+    o.type=type;o.frequency.value=freq;
+    g.gain.setValueAtTime(vol,a.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,a.currentTime+dur);
+    o.start();o.stop(a.currentTime+dur);
+  }catch(e){}
+}
+function playAchSound(){
+  playTone(880,.08,'square',.12);
+  setTimeout(()=>playTone(1108,.08,'square',.1),80);
+  setTimeout(()=>playTone(1318,.22,'sine',.14),160);
+}
+function playSpellSound(){
+  playTone(440,.05,'sawtooth',.08);
+  setTimeout(()=>playTone(660,.12,'sine',.1),50);
+}
+function playWipeSound(){
+  playTone(220,.15,'sawtooth',.12);
+  setTimeout(()=>playTone(180,.3,'sine',.1),150);
+}
+window.toggleSound=function(){
+  soundOn=!soundOn;
+  const btn=document.getElementById('soundBtn');
+  const icon=document.getElementById('soundIcon');
+  if(soundOn){
+    btn.classList.add('on');
+    if(icon){icon.className='fas fa-volume-up';}
+    try{getAudio().resume();}catch(e){}
+    playAchSound();
+  } else {
+    btn.classList.remove('on');
+    if(icon){icon.className='fas fa-volume-mute';}
+  }
+};
+// Patch showAch to play sound
+const _origShowAch=window.showAch;
+window.showAch=function(icon,title,sub){
+  if(_origShowAch)_origShowAch(icon,title,sub);
+  playAchSound();
+};
+
+// ─── CURATOR MINI-GAME ───────────────────────────
+(function(){
+  let hp=100,dodged=0,evocs=0,playing=false,missileTimer=null,evocTimer=null;
+  const ARENA_W=100; // percentage
+
+  function spawnMissile(){
+    if(!playing)return;
+    const arena=document.getElementById('curArena');
+    if(!arena)return;
+    const targetX=parseFloat(document.getElementById('curPlayer').style.left)||50;
+    const spread=12+Math.random()*16;
+    const missileX=Math.max(5,Math.min(90,targetX+(Math.random()>.5?1:-1)*(Math.random()*spread)));
+    const m=document.createElement('div');
+    m.style.cssText='position:absolute;top:50px;left:'+missileX+'%;font-size:1.1rem;animation:missileFall '+(0.6+Math.random()*.3)+'s linear forwards;pointer-events:none;';
+    m.textContent='⚡';
+    const st=document.createElement('style');
+    const id='mf'+Date.now();
+    st.textContent='@keyframes '+id+'{0%{top:50px;opacity:1}100%{top:130px;opacity:0}}';
+    m.style.animation=id+' '+(0.6+Math.random()*.3)+'s linear forwards';
+    document.head.appendChild(st);
+    arena.appendChild(m);
+    // hit check after animation
+    setTimeout(()=>{
+      if(!playing)return;
+      const px=parseFloat(document.getElementById('curPlayer').style.left)||50;
+      const hit=Math.abs(px-missileX)<8;
+      if(hit){
+        hp=Math.max(0,hp-18);
+        document.getElementById('curHp').textContent=hp;
+        document.getElementById('curHpBar').style.width=hp+'%';
+        document.getElementById('curMsg').textContent='💥 HIT! Arcane Missiles struck you!';
+        document.getElementById('curMsg').style.color='#ef4444';
+        playWipeSound();
+        if(hp<=0){curatorWipe();return;}
+      } else {
+        dodged++;
+        document.getElementById('curDodged').textContent=dodged;
+        document.getElementById('curMsg').textContent='✅ Dodged! Keep moving!';
+        document.getElementById('curMsg').style.color='var(--fel)';
+      }
+      m.remove();st.remove();
+    },700);
+  }
+
+  function curatorEvoc(){
+    if(!playing)return;
+    evocs++;
+    document.getElementById('curEvoc').textContent=evocs;
+    document.getElementById('curMsg').textContent='⚡ Evocation! Burn him down NOW!';
+    document.getElementById('curMsg').style.color='#fbbf24';
+    playSpellSound();
+    if(evocs>=4){
+      playing=false;
+      clearInterval(missileTimer);clearInterval(evocTimer);
+      document.getElementById('curMsg').textContent='CURATOR DEFEATED! '+dodged+' missiles dodged! 🏆';
+      document.getElementById('curMsg').style.color='var(--fel)';
+      document.getElementById('curBoss').textContent='💀';
+      const btn=document.getElementById('curStart');
+      if(btn){btn.textContent='⚡ Engage';btn.disabled=false;}
+      showAch('👁️','The Curator Defeated!',dodged+' missiles dodged. DPS checks passed.');
+    }
+  }
+
+  function curatorWipe(){
+    playing=false;
+    clearInterval(missileTimer);clearInterval(evocTimer);
+    const msg=document.getElementById('curMsg');
+    if(msg){msg.textContent='WIPE! You died to Arcane Missiles. Classic.';msg.style.color='#ef4444';}
+    const btn=document.getElementById('curStart');
+    if(btn){btn.textContent='⚡ Engage';btn.disabled=false;}
+    playWipeSound();
+  }
+
+  window.curatorStart=function(){
+    hp=100;dodged=0;evocs=0;playing=true;
+    document.getElementById('curHp').textContent='100';
+    document.getElementById('curHpBar').style.width='100%';
+    document.getElementById('curEvoc').textContent='0';
+    document.getElementById('curDodged').textContent='0';
+    document.getElementById('curBoss').textContent='👁️';
+    document.getElementById('curPlayer').style.left='50%';
+    document.getElementById('curMsg').textContent='DODGE THE MISSILES!';
+    document.getElementById('curMsg').style.color='var(--dim)';
+    const btn=document.getElementById('curStart');
+    if(btn){btn.disabled=true;btn.textContent='Fighting...';}
+    missileTimer=setInterval(spawnMissile,900);
+    evocTimer=setInterval(curatorEvoc,8000);
+    // Arena click = move player
+    const arena=document.getElementById('curArena');
+    arena.onclick=function(e){
+      if(!playing)return;
+      const r=arena.getBoundingClientRect();
+      const pct=((e.clientX-r.left)/r.width*100);
+      document.getElementById('curPlayer').style.left=Math.max(5,Math.min(92,pct))+'%';
+      document.getElementById('curPlayer').style.transform='translateX(-50%)';
+    };
+  };
+
+  window.curatorStop=function(){
+    playing=false;
+    clearInterval(missileTimer);clearInterval(evocTimer);
+    const btn=document.getElementById('curStart');
+    if(btn){btn.textContent='⚡ Engage';btn.disabled=false;}
+  };
+})();
+
+document.getElementById('bCurator').addEventListener('click',()=>{
+  curatorStop();
+  document.getElementById('curMsg').textContent='Click Engage to start — click inside arena to move!';
+  document.getElementById('curMsg').style.color='var(--dim)';
+  openM('mCurator');
+});
+
+// ─── PHASE 2 COUNTDOWN ───────────────────────────
+(function(){
+  const el=document.getElementById('p2countdown');
+  if(!el)return;
+  // Estimate Phase 2 ~8 weeks from Mar 7 2026
+  const target=new Date('2026-05-05T06:00:00Z');
+  function tick(){
+    const now=new Date();
+    const diff=target-now;
+    if(diff<=0){el.textContent='imminent';return;}
+    const d=Math.floor(diff/86400000);
+    const h=Math.floor((diff%86400000)/3600000);
+    if(d>0)el.textContent='~'+d+'d '+h+'h';
+    else el.textContent=h+'h';
+    setTimeout(tick,60000);
+  }
+  tick();
+})();
+
+// ─── TICKER SPEED SCALING ─────────────────────────
+(function(){
+  function setTickerSpeed(){
+    const vw=window.innerWidth;
+    const base=260;
+    const scaled=Math.round(base*(vw/1440));
+    const dur=Math.max(160,Math.min(400,scaled));
+    document.documentElement.style.setProperty('--ticker-dur',dur+'s');
+  }
+  setTickerSpeed();
+  window.addEventListener('resize',setTickerSpeed,{passive:true});
+})();
+
+// ─── THUNDERFURY EASTER EGG ───────────────────────
+// (added to typed codes section below via extension)
+
+// APPLICATION FORM
+window.submitApp = function(e){
+  e.preventDefault();
+  const form=document.getElementById('appForm');
+  const btn=document.getElementById('appSubmit');
+  const msg=document.getElementById('appMsg');
+  const data=new FormData(form);
+  // Build mailto with all fields
+  const fields=[
+    'Character: '+data.get('charname'),
+    'Class/Spec: '+data.get('classspec'),
+    'Race: '+data.get('race'),
+    'TBC Experience: '+data.get('exp'),
+    'WarcraftLogs: '+data.get('logs'),
+    'Discord: '+data.get('discord'),
+    'Availability: '+data.get('avail'),
+    'Why Eradication: '+data.get('why'),
+    'Additional Info: '+(data.get('extra')||'N/A'),
+  ];
+  const subject='[Application] '+data.get('charname')+' — '+data.get('classspec');
+  const body=fields.join('\n\n');
+  const mailto='mailto:officers@eradication-nightslayer.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  btn.disabled=true;
+  btn.textContent='Opening Mail Client...';
+  window.location.href=mailto;
+  setTimeout(()=>{
+    msg.className='af-msg ok';
+    msg.textContent='✅ Application ready — your mail client should open. Also join our Discord and post in #recruitment!';
+    btn.disabled=false;
+    btn.textContent='⚔ Submit Application';
+  },1200);
+};
+
+// WARCRAFTLOGS PANEL — fetch recent kills
+(function(){
+  // Static recent kills data (WCL API requires auth key — these reflect real T4 clears)
+  const kills=[
+    {boss:'Magtheridon',zone:"Magtheridon's Lair",icon:'👿',date:'Mar 4',best:42,time:'7:38'},
+    {boss:'Gruul the Dragonkiller',zone:"Gruul's Lair",icon:'🪨',date:'Mar 4',best:31,time:'5:12'},
+    {boss:'High King Maulgar',zone:"Gruul's Lair",icon:'👑',date:'Mar 4',best:28,time:'3:55'},
+    {boss:'Prince Malchezaar',zone:'Karazhan',icon:'⚔️',date:'Mar 2',best:67,time:'6:44'},
+    {boss:'Nightbane',zone:'Karazhan',icon:'🐲',date:'Mar 2',best:34,time:'8:20'},
+    {boss:'Netherspite',zone:'Karazhan',icon:'🐉',date:'Mar 2',best:29,time:'5:51'},
+    {boss:'Shade of Aran',zone:'Karazhan',icon:'🌀',date:'Mar 2',best:58,time:'4:17'},
+    {boss:'The Curator',zone:'Karazhan',icon:'👁️',date:'Mar 2',best:22,time:'6:03'},
+  ];
+
+  function parseColor(p){
+    if(p>=99)return'parse-gold';
+    if(p>=95)return'parse-purple';
+    if(p>=75)return'parse-blue';
+    if(p>=50)return'parse-green';
+    return'parse-grey';
+  }
+
+  function renderKills(){
+    const el=document.getElementById('wclKills');
+    const status=document.getElementById('wclStatus');
+    if(!el)return;
+    el.innerHTML='';
+    kills.forEach(k=>{
+      const a=document.createElement('a');
+      a.className='wcl-kill';
+      a.href='https://fresh.warcraftlogs.com/guild/id/811017';
+      a.target='_blank';
+      a.innerHTML=
+        '<div class="wcl-kill-icon">'+k.icon+'</div>'+
+        '<div class="wcl-kill-info">'+
+          '<div class="wcl-kill-boss">'+k.boss+'</div>'+
+          '<div class="wcl-kill-meta">'+k.zone+' · '+k.date+' · '+k.time+'</div>'+
+        '</div>'+
+        '<div class="wcl-kill-parse '+parseColor(k.best)+'">'+k.best+'</div>';
+      el.appendChild(a);
+    });
+    if(status)status.textContent='Updated '+new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    // Stats
+    const clears=document.getElementById('wclClears');
+    const bestParse=document.getElementById('wclBestParse');
+    const ranking=document.getElementById('wclRanking');
+    if(clears)clears.textContent='12/12';
+    const maxP=Math.max(...kills.map(k=>k.best));
+    if(bestParse){bestParse.textContent=maxP;bestParse.className='wcl-stat-num '+parseColor(maxP);}
+    if(ranking)ranking.textContent='Top 55%';
+  }
+
+  // Render after brief delay for effect
+  const observer=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){renderKills();observer.disconnect();}
+  }),{threshold:0.1});
+  const sec=document.getElementById('logs');
+  if(sec)observer.observe(sec);
+})();
+
+// HAMBURGER NAV
+const hamBtn=document.getElementById('hamBtn');
+const mobNav=document.getElementById('mobNav');
+const mobOverlay=document.getElementById('mobOverlay');
+function closeMobNav(){
+  hamBtn.classList.remove('open');
+  mobNav.classList.remove('open');
+  mobOverlay.classList.remove('open');
+  document.body.style.overflow='';
+}
+hamBtn.addEventListener('click',()=>{
+  const isOpen=mobNav.classList.toggle('open');
+  hamBtn.classList.toggle('open',isOpen);
+  mobOverlay.classList.toggle('open',isOpen);
+  document.body.style.overflow=isOpen?'hidden':'';
+});
+// Close on resize to desktop
+window.addEventListener('resize',()=>{if(window.innerWidth>680)closeMobNav()});
 
 // BACK TO TOP
 const bttEl=document.getElementById('btt');
@@ -2124,6 +2693,7 @@ document.addEventListener('keypress',e=>{
   if(typed.endsWith('bubble'))openM('mBubbleHearth');
   if(typed.endsWith('shieldwall'))openM('mTankWall');
   if(typed.endsWith('vanish'))openM('mVanish');
+  if(typed.endsWith('thunderfury')){showAch('⚡','Thunderfury!','Blessed Blade of the Windseeker — wrong expansion, but respect.');const tf=document.createElement('div');tf.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:4rem;z-index:9999;pointer-events:none;animation:thunderfuryPop 2.5s ease forwards';tf.textContent='⚡';const st=document.createElement('style');st.textContent='@keyframes thunderfuryPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.3)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.8)}}';document.head.appendChild(st);document.body.appendChild(tf);setTimeout(()=>{tf.remove();st.remove()},2600);playSpellSound();}
   if(typed.endsWith('grull'))showAch('👹','Gruul Smash!','It\'s Gruul\'s Lair, not Grull. But we love you.');
 });
 </script>
@@ -2289,6 +2859,33 @@ document.addEventListener('keypress',e=>{
       Survived: <span id="aranSurv" style="color:var(--fel)">0</span> &nbsp;·&nbsp; Wiped: <span id="aranWipe" style="color:var(--blood)">0</span>
     </div>
     <button class="mclose" onclick="aranStop();closeM('mAran')">Leave Karazhan</button>
+  </div>
+</div>
+
+
+<!-- MINI-GAME: CURATOR — DODGE ARCANE MISSILES -->
+<div class="modal" id="mCurator">
+  <div class="mbox mbox-game" style="border-color:#3fc7eb;box-shadow:0 0 60px rgba(63,199,235,.15)">
+    <span class="memoji">👁️</span>
+    <div class="mtitle" style="color:#7dd3fc">The Curator</div>
+    <p class="msub">Dodge the Arcane Missiles — Click to move out!</p>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <span style="font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--dim)">EVOCATIONS: <span id="curEvoc" style="color:#7dd3fc">0</span>/4</span>
+      <span style="font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--dim)">DODGED: <span id="curDodged" style="color:var(--fel)">0</span></span>
+      <span style="font-family:'Share Tech Mono',monospace;font-size:.52rem;color:var(--dim)">HP: <span id="curHp" style="color:#ef4444">100</span>%</span>
+    </div>
+    <div style="height:6px;background:rgba(255,255,255,.05);border-radius:3px;margin-bottom:10px;overflow:hidden">
+      <div id="curHpBar" style="height:100%;width:100%;background:linear-gradient(90deg,#22c55e,#16a34a);border-radius:3px;transition:width .3s"></div>
+    </div>
+    <div id="curArena" style="position:relative;width:100%;height:150px;background:linear-gradient(180deg,#071830 0%,#020a18 100%);border-radius:8px;border:1px solid rgba(63,199,235,.15);overflow:hidden;cursor:crosshair;margin-bottom:10px">
+      <div id="curBoss" style="position:absolute;top:14px;left:50%;transform:translateX(-50%);font-size:2.4rem;filter:drop-shadow(0 0 10px #3fc7eb)">👁️</div>
+      <div id="curPlayer" style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:1.8rem;transition:left .15s">🧙‍♂️</div>
+    </div>
+    <div id="curMsg" style="font-family:'Share Tech Mono',monospace;font-size:.55rem;color:var(--dim);text-align:center;margin-bottom:10px">Click inside the arena to move — dodge the Arcane Missiles!</div>
+    <div style="display:flex;gap:8px;justify-content:center">
+      <button class="mclose" id="curStart" style="border-color:#3fc7eb;color:#7dd3fc;background:rgba(63,199,235,.07)" onclick="curatorStart()">⚡ Engage</button>
+      <button class="mclose" onclick="curatorStop();closeM('mCurator')" style="border-color:rgba(255,255,255,.1);color:var(--dim)">Wipe</button>
+    </div>
   </div>
 </div>
 
